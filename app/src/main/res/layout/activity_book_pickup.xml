@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/waste4" />
 
     <TextView
-        android:id="@+id/locationText2"
+        android:id="@+id/datettimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLocation" />
 
 
     <CheckBox
@@ -74,7 +74,7 @@
         android:layout_marginEnd="24dp"
         android:text="CheckBox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/containsTitleText" />
 
     <CheckBox
         android:id="@+id/waste4"
@@ -107,7 +107,7 @@
         app:layout_constraintStart_toEndOf="@+id/waste4" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/inputLocation"
         android:layout_width="357dp"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
@@ -131,7 +131,7 @@
         app:layout_constraintEnd_toStartOf="@+id/editTextTime"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationText2" />
+        app:layout_constraintTop_toBottomOf="@+id/datettimeText" />
 
     <EditText
         android:id="@+id/editTextTime"
@@ -144,7 +144,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnConfirm"
         android:layout_width="358dp"
         android:layout_height="60dp"
         android:layout_marginBottom="28dp"
@@ -175,7 +175,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/containsTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

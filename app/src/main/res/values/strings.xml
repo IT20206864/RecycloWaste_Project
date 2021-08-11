@@ -11,5 +11,12 @@
     <string name="booking_payment_creditdebit">Credit/ Debit Card</string>
     <string name="booking_payment_payonpickup">Pay On Pickup</string>
     <string name="booking_payment_proceed">Proceed</string>
+    <string name="booking_details_driver">Driver :  Mr. Randika Silva</string>
+    <string name="booking_details_type">Type :  Domestic Waste</string>
+    <string name="booking_details_contains">Contains :  </string>
+    <string name="booking_details_location">Location :  Malabe Town</string>
+    <string name="booking_details_datettime">Date and Time : 08/08/2021 08:30AM</string>
+    <string name="booking_details_cancel">Cancel Booking</string>
+    <string name="booking_details_reschedule">Re-schedule</string>
 
 </resources>

@@ -7,7 +7,7 @@
     tools:context=".BookingPayment">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/paymentTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/payment"
         android:layout_width="345dp"
         android:layout_height="136dp"
         android:layout_marginTop="16dp"
@@ -29,11 +29,11 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/paymentTitleText" />
 
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/paymentMethodText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/booking_payment_select"
@@ -41,44 +41,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/payment" />
 
     <RadioGroup
         android:layout_width="170dp"
         android:layout_height="117dp"
         android:layout_marginTop="20dp"
-        android:checkedButton="@id/radioButton"
+        android:checkedButton="@id/radioCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/paymentMethodText">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/booking_payment_creditdebit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.109"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/paymentMethodText" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioPickup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/booking_payment_payonpickup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.109"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+            app:layout_constraintTop_toBottomOf="@+id/radioCard" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnProceed"
         android:layout_width="341dp"
         android:layout_height="55dp"
         android:layout_marginBottom="64dp"
+        android:onClick="clickConfirm"
         android:text="@string/booking_payment_proceed"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
