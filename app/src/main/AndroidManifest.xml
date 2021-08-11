@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
-        <activity android:name=".BookPickup"></activity>
+        <activity android:name=".BookingDetails"></activity>
+        <activity android:name=".BookingPayment" />
+        <activity android:name=".BookPickup" />
         <activity android:name=".select_driver" />
         <activity
             android:name=".MainActivity"

@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">RecycloWaste</string>
+    <string name="book_pickup_type">Type : </string>
+    <string name="book_pickup_contains">Contains : </string>
+    <string name="book_pickup_location">Location : </string>
+    <string name="book_pickup_datetime">Date and Time : </string>
+    <string name="book_pickup_confirm">Confirm</string>
+    <string name="booking_payment_payment">Payment : </string>
+    <string name="booking_payment_amount">LKR :  420.69</string>
+    <string name="booking_payment_select">Select payment method : </string>
+    <string name="booking_payment_creditdebit">Credit/ Debit Card</string>
+    <string name="booking_payment_payonpickup">Pay On Pickup</string>
+    <string name="booking_payment_proceed">Proceed</string>
+
 </resources>
