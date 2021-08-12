@@ -87,6 +87,7 @@
         android:layout_marginBottom="44dp"
         android:text="@string/booking_details_reschedule"
         android:textAllCaps="false"
+        app:backgroundTint="@color/green_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnCancel"
         app:layout_constraintStart_toStartOf="parent" />

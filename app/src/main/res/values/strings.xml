@@ -4,6 +4,7 @@
     <string name="tv_PostAd">Post Ad</string>
     <string name="tv_prd_title">Product Title</string>
     <string name="prdt_description">Product Description</string>
+    <string name="book_pickup_title">Book Pickup</string>
     <string name="book_pickup_type">Type : </string>
     <string name="book_pickup_contains">Contains : </string>
     <string name="book_pickup_location">Location : </string>

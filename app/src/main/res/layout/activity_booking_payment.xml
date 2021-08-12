@@ -82,6 +82,7 @@
         android:onClick="clickConfirm"
         android:text="@string/booking_payment_proceed"
         android:textAllCaps="false"
+        app:backgroundTint="@color/green_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

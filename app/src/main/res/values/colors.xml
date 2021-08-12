@@ -10,4 +10,5 @@
     <color name="Header_FontColor">#629c44</color>
     <color name="Sub_HeaderColor">#4c7a34</color>
     <color name="PageBodyFontColor">#0A1301</color>
+    <color name="green_new">#1bb818</color>
 </resources>
