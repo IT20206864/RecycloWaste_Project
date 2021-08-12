@@ -4,4 +4,22 @@
     <string name="tv_PostAd">Post Ad</string>
     <string name="tv_prd_title">Product Title</string>
     <string name="prdt_description">Product Description</string>
+    <string name="book_pickup_type">Type : </string>
+    <string name="book_pickup_contains">Contains : </string>
+    <string name="book_pickup_location">Location : </string>
+    <string name="book_pickup_datetime">Date and Time : </string>
+    <string name="book_pickup_confirm">Confirm</string>
+    <string name="booking_payment_payment">Payment : </string>
+    <string name="booking_payment_amount">LKR :  420.69</string>
+    <string name="booking_payment_select">Select payment method : </string>
+    <string name="booking_payment_creditdebit">Credit/ Debit Card</string>
+    <string name="booking_payment_payonpickup">Pay On Pickup</string>
+    <string name="booking_payment_proceed">Proceed</string>
+    <string name="booking_details_driver">Driver :  Mr. Randika Silva</string>
+    <string name="booking_details_type">Type :  Domestic Waste</string>
+    <string name="booking_details_contains">Contains :  </string>
+    <string name="booking_details_location">Location :  Malabe Town</string>
+    <string name="booking_details_datettime">Date and Time : 08/08/2021 08:30AM</string>
+    <string name="booking_details_cancel">Cancel Booking</string>
+    <string name="booking_details_reschedule">Re-schedule</string>
 </resources>
