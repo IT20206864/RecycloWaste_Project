@@ -2,4 +2,12 @@
     <string name="app_name">RecycloWaste</string>
     <string name="bt_fordriver">For Driver</string>
     <string name="bt_forbooking">For Booking</string>
+    <string name="tv_fordriver">For Driver</string>
+    <string name="tv_ct">Your tip is currently</string>
+    <string name="tv_tipview" />
+    <string name="bt_hundred">Rs 100</string>
+    <string name="bt_fifty">Rs 50</string>
+    <string name="bt_fhundred">Rs 500</string>
+    <string name="nd_customamount" />
+    <string name="bt_done">Done</string>
 </resources>
