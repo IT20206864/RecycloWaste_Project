@@ -14,10 +14,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void openSecond(View view) {
-        Intent second_activity = new Intent(this, BookPickup.class);
+    public void openBookPickup(View view) {
+        Intent bookPickup = new Intent(this, BookPickup.class);
 
-        startActivity(second_activity);
+        startActivity(bookPickup);
+
+    }
+    public void openMyBookings(View view) {
+        Intent myBookings = new Intent(this, MyBookings.class);
+
+        startActivity(myBookings);
 
     }
 }
