@@ -6,4 +6,5 @@
     <dimen name="Label_TV_Dist">4</dimen>
     <dimen name="Body_Left_Margin">55</dimen>
     <dimen name="SubHeading_Left_Margin">16</dimen>
+    <dimen name="btn_radius">30px</dimen>
 </resources>

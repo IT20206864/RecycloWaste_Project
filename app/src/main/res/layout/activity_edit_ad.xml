@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostAd">
+    tools:context=".EditAd">
 
     <TextView
         android:id="@+id/tv_MarketplaceTitle"
@@ -27,7 +27,7 @@
         android:layout_marginStart="@dimen/SubHeading_Left_Margin"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/page_sub_header_font"
-        android:text="@string/tv_PostAd"
+        android:text="@string/editAd"
         android:textColor="@color/Sub_HeaderColor"
         android:textSize="@dimen/SubHeaderFontSize"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +103,6 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         android:focusableInTouchMode="false"
-        android:hint="@string/addImage"
         android:text="@string/addImage"
         android:textSize="12sp"
         app:backgroundTint="#79D312"
@@ -142,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="@string/tv_PostAd"
+        android:text="@string/editAd"
         app:backgroundTint="@color/btn_green"
         app:cornerRadius="@dimen/btn_radius"
         app:layout_constraintBaseline_toBaselineOf="@+id/et_prdtQuantity"
@@ -179,4 +178,5 @@
         app:layout_constraintStart_toEndOf="@+id/SubHeading"
         app:layout_constraintTop_toBottomOf="@+id/tv_MarketplaceTitle"
         app:srcCompat="@drawable/ic_baseline_library_add_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

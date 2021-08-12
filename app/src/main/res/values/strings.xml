@@ -36,4 +36,9 @@
     <string name="my_bookings_date_text">Date :</string>
     <string name="my_bookings_time_text">Time :</string>
     <string name="my_bookings_see_details">See Details</string>
+    <string name="editAd">Edit Ad</string>
+    <string name="prdtImage">Product Image</string>
+    <string name="prdtPrice">Product Price</string>
+    <string name="addImage">Add Image</string>
+    <string name="prdtQuantity">Product Quantity</string>
 </resources>
