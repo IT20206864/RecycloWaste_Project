@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/page_header_font</item>
+        <item>@font/page_sub_header_font</item>
+        <item>@font/page_content_font</item>
+    </array>
+</resources>

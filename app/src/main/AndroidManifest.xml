@@ -9,16 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
+        <activity android:name=".MyBookings"
+            android:label="@string/my_bookings_title"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".BookingDetails" />
         <activity
-            android:name=".Reviews"
-            android:exported="true" />
-        <activity android:name=".MainActivity">
+            android:name=".BookingPayment"
+            android:label="Payment"
+            android:parentActivityName=".BookPickup" />
+        <activity
+            android:name=".BookPickup"
+            android:label="@string/book_pickup_title"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".select_driver" />
+        <activity android:name=".PostAd" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="RecycloWaste">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

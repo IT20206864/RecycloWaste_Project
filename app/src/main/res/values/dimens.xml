@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Page_Headers">24sp</dimen>
+    <dimen name="SubHeaderFontSize">20sp</dimen>
+    <dimen name="PageContentFontSize">16sp</dimen>
+    <dimen name="Label_TV_Dist">4</dimen>
+    <dimen name="Body_Left_Margin">55</dimen>
+    <dimen name="SubHeading_Left_Margin">16</dimen>
+    <dimen name="btn_radius">30px</dimen>
+</resources>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditAd">
+
+    <TextView
+        android:id="@+id/tv_MarketplaceTitle"
+        android:layout_width="214dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/page_header_font"
+        android:text="@string/tv_MarketplaceTitle"
+        android:textColor="@color/Header_FontColor"
+        android:textSize="@dimen/Page_Headers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/SubHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/SubHeading_Left_Margin"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/page_sub_header_font"
+        android:text="@string/editAd"
+        android:textColor="@color/Sub_HeaderColor"
+        android:textSize="@dimen/SubHeaderFontSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_MarketplaceTitle" />
+
+    <TextView
+        android:id="@+id/tv_ProductTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/tv_prd_title"
+        android:textColor="@color/PageBodyFontColor"
+        android:textSize="@dimen/PageContentFontSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SubHeading" />
+
+    <EditText
+        android:id="@+id/et_prdtTitle"
+        android:layout_width="285dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="@dimen/Label_TV_Dist"
+        android:ems="10"
+        android:fontFamily="@font/page_content_font"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ProductTitle" />
+
+    <TextView
+        android:id="@+id/tv_prdtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/prdt_description"
+        android:textColor="@color/PageBodyFontColor"
+        android:textSize="@dimen/PageContentFontSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_prdtTitle" />
+
+    <EditText
+        android:id="@+id/et_prdt_Desc"
+        android:layout_width="281dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="@dimen/Label_TV_Dist"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_prdtDescription" />
+
+    <TextView
+        android:id="@+id/tv_prdtImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/prdtImage"
+        android:textColor="@color/PageBodyFontColor"
+        android:textSize="@dimen/PageContentFontSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_prdt_Desc" />
+
+    <Button
+        android:id="@+id/btn_addImage"
+        android:layout_width="137dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:focusableInTouchMode="false"
+        android:text="@string/addImage"
+        android:textSize="12sp"
+        app:backgroundTint="#79D312"
+        app:cornerRadius="@dimen/btn_radius"
+        app:layout_constraintStart_toStartOf="@+id/tv_prdtImage"
+        app:layout_constraintTop_toBottomOf="@+id/tv_prdtImage" />
+
+    <TextView
+        android:id="@+id/tv_prdtPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/prdtPrice"
+        android:textColor="@color/PageBodyFontColor"
+        android:textSize="@dimen/PageContentFontSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addImage" />
+
+    <TextView
+        android:id="@+id/tv_prdtQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/prdtQuantity"
+        android:textColor="@color/PageBodyFontColor"
+        android:textSize="@dimen/PageContentFontSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+
+    <Button
+        android:id="@+id/btn_PostAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/editAd"
+        app:backgroundTint="@color/btn_green"
+        app:cornerRadius="@dimen/btn_radius"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_prdtQuantity"
+        app:layout_constraintStart_toEndOf="@+id/et_prdtQuantity" />
+
+    <EditText
+        android:id="@+id/et_prdtQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_prdtQuantity" />
+
+    <EditText
+        android:id="@+id/editTextNumber2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="@dimen/Label_TV_Dist"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_prdtPrice" />
+
+    <ImageView
+        android:id="@+id/icon_editAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:tint="@color/icon_color"
+        app:layout_constraintStart_toEndOf="@+id/SubHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tv_MarketplaceTitle"
+        app:srcCompat="@drawable/ic_baseline_library_add_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
