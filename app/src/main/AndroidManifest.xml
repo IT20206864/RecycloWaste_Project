@@ -13,6 +13,7 @@
         <activity android:name=".BookingPayment" />
         <activity android:name=".BookPickup" />
         <activity android:name=".select_driver" />
+        <activity android:name=".PostAd"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -22,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
