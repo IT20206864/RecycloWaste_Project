@@ -26,7 +26,7 @@ public class MyBookings extends AppCompatActivity {
         Booking booking5 = new Booking("Ramesh","Medical Waste", "Matale Town", "08-07-2021","09:30AM");
         Booking booking6 = new Booking("Niroshan","Electronic Waste", "Kandy Town", "08-06-2021","10:30AM");
 
-list = new ArrayList<>();
+        list = new ArrayList<>();
         list.add(booking1);
         list.add(booking2);
         list.add(booking3);
