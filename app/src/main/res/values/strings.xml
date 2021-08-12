@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RecycloWaste</string>
+    <string name="bt_fordriver">For Driver</string>
+    <string name="bt_forbooking">For Booking</string>
 </resources>
