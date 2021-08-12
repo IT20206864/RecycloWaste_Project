@@ -23,4 +23,10 @@
     <string name="booking_details_datettime">Date and Time : 08/08/2021 08:30AM</string>
     <string name="booking_details_cancel">Cancel Booking</string>
     <string name="booking_details_reschedule">Re-schedule</string>
+    <string name="my_bookings_driver_text">Driver :</string>
+    <string name="my_bookings_type_text">Type :</string>
+    <string name="my_bookings_location_text">Location :</string>
+    <string name="my_bookings_date_text">Date :</string>
+    <string name="my_bookings_time_text">Time :</string>
+    <string name="my_bookings_see_details">See Details</string>
 </resources>
