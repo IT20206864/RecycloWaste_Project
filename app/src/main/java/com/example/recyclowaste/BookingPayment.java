@@ -15,7 +15,7 @@ public class BookingPayment extends AppCompatActivity {
     }
 
     public void clickConfirm(View view) {
-        Intent details = new Intent(this, MyBookings.class);
+        Intent details = new Intent(this, BookingDetails.class);
         startActivity(details);
     }
 }

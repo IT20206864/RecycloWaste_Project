@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,11 +32,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
-        String driver = data.get(position).getDriver();
-        String type = data.get(position).getType();
-        String location = data.get(position).getLocation();
-        String date = data.get(position).getDate();
-        String time = data.get(position).getTime();
+        holder.booking = data.get(position);
+        String driver = holder.booking.getDriver();
+        String type = holder.booking.getType();
+        String location = holder.booking.getLocation();
+        String date = holder.booking.getDate();
+        String time = holder.booking.getTime();
 
         holder.driverText.setText(driver);
         holder.type.setText(type);
@@ -53,6 +55,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView driverText, type, location, date, time;
+        Booking booking;
+        Button btnDetails;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             driverText = itemView.findViewById(R.id.driverText);
@@ -60,6 +64,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             location = itemView.findViewById(R.id.location_text);
             date = itemView.findViewById(R.id.date_text);
             time = itemView.findViewById(R.id.time_text);
+            btnDetails = itemView.findViewById(R.id.btnDetails);
 
         }
     }
