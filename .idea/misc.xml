@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews.xml" value="0.25" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_book_pickup.xml" value="0.264" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews.xml" value="0.264" />
         <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_booking.xml" value="0.209375" />
-        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_driver.xml" value="0.25" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_bookuser.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_driver.xml" value="0.264" />
       </map>
     </option>
   </component>

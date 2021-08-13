@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">RecycloWaste</string>
+
     <string name="home_pickup">Book Pickup</string>
     <string name="home_bookings">My Bookings</string>
     <string name="home_package">My Package</string>
@@ -36,9 +37,10 @@
     <string name="my_bookings_date_text">Date :</string>
     <string name="my_bookings_time_text">Time :</string>
     <string name="my_bookings_see_details">See Details</string>
+
     <string name="bt_fordriver">For Driver</string>
     <string name="bt_forbooking">For Booking</string>
-    <string name="tv_fordriver">For Driver</string>
+    <string name="tv_fordriver1">For Driver</string>
     <string name="tv_ct">Your tip is currently</string>
     <string name="tv_tipview" />
     <string name="bt_hundred">Rs 100</string>
@@ -46,6 +48,7 @@
     <string name="bt_fhundred">Rs 500</string>
     <string name="nd_customamount" />
     <string name="bt_done">Done</string>
+
     <string name="editAd">Edit Ad</string>
     <string name="prdtImage">Product Image</string>
     <string name="prdtPrice">Product Price</string>
@@ -63,4 +66,16 @@
     <string name="edit_profile_email">E-Mail</string>
     <string name="edit_profile_telno">Telephone No.</string>
     <string name="edit_profile_save">Save</string>
+
+    <string name="tv_reviewinfo">Tell us about your recent experience with our service or let us know if you have any questions</string>
+    <string name="bt_rating">Submit</string>
+    <string name="pt_ur" />
+    <string name="tv_userreview">User Review</string>
+    <string name="bt_addreview">Add review</string>
+    <string name="bt_editreview">Edit Review</string>
+    <string name="tv_forbookingpg1">For Booking</string>
+    <string name="tv_reviewinfobook">Rate the booked customers garbage managment and neatness</string>
+    <string name="tv_forbookingpg">Rate the booking</string>
+    <string name="tv_fordriver">Rate the driver</string>
+
 </resources>

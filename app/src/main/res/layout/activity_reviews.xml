@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
-        android:text="@string/tv_fordriver"
+        android:text="@string/tv_fordriver1"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_ct"
