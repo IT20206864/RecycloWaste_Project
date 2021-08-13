@@ -12,9 +12,8 @@ import android.widget.Spinner;
 
 public class BookPickup extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner dropdown;
-    String domestic[] = new String[]{"DW 1", "DW 2", "DW 3", "DW 4", "DW 5", "DW 6"};
-    String medical[] = new String[]{"MW 1", "MW 2", "MW 3", "MW 4", "MW 5", "MW 6"};
-    String electronic[] = new String[]{"EW 1", "EW 2", "EW 3", "EW 4", "EW 5", "EW 6"};
+    String domestic[] = new String[]{"Plastic", "Wood", "Paper", "Organic", "Glass", "Metal"};
+    String medical[] = new String[]{"Syringes", "Gloves", "Needles", "Liquids", "Bandages", "Drugs"};
     CheckBox waste1;
     CheckBox waste2;
     CheckBox waste3;
@@ -35,7 +34,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         //get the spinner from the xml.
         dropdown = findViewById(R.id.typeSpinner);
 //create a list of items for the spinner.
-        String[] items = new String[]{"Domestic Waste", "Medical Waste", "Electronic Waste"};
+        String[] items = new String[]{"Domestic Waste", "Medical Waste"};
 //create an adapter to describe how the items are displayed, adapters are used in several places in android.
 //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -68,14 +67,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
             waste5.setText(medical[4]);
             waste6.setText(medical[5]);
         }
-        else if(dropdown.getSelectedItem() == "Electronic Waste"){
-            waste1.setText(electronic[0]);
-            waste2.setText(electronic[1]);
-            waste3.setText(electronic[2]);
-            waste4.setText(electronic[3]);
-            waste5.setText(electronic[4]);
-            waste6.setText(electronic[5]);
-        }
+
     }
 
     @Override

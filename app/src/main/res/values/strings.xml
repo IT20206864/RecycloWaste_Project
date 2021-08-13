@@ -5,7 +5,7 @@
     <string name="home_bookings">My Bookings</string>
     <string name="home_package">My Package</string>
     <string name="home_marketplace">Marketplace</string>
-    <string name="home_recycle">Recycle Centers</string>
+    <string name="home_logout">Log Out</string>
     <string name="home_user">User Profile</string>
     <string name="tv_MarketplaceTitle">Marketplace</string>
     <string name="tv_PostAd">Post Ad</string>
