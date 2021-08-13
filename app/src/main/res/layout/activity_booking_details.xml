@@ -20,7 +20,8 @@
         android:fontFamily="@font/page_content_font"
         android:text="@string/booking_details_reschedule"
         android:textAllCaps="false"
-        app:backgroundTint="@color/green_new" />
+        app:backgroundTint="@color/green_new"
+        app:cornerRadius="@dimen/btn_radius" />
 
     <Button
         android:id="@+id/btnCancel"
@@ -33,7 +34,8 @@
         android:fontFamily="@font/page_content_font"
         android:text="@string/booking_details_cancel"
         android:textAllCaps="false"
-        app:backgroundTint="@android:color/holo_red_light" />
+        app:backgroundTint="@android:color/holo_red_light"
+        app:cornerRadius="@dimen/btn_radius" />
 
     <TextView
         android:id="@+id/tv_driver_title"
