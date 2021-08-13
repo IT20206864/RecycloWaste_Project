@@ -46,4 +46,9 @@
     <string name="bt_fhundred">Rs 500</string>
     <string name="nd_customamount" />
     <string name="bt_done">Done</string>
+    <string name="editAd">Edit Ad</string>
+    <string name="prdtImage">Product Image</string>
+    <string name="prdtPrice">Product Price</string>
+    <string name="addImage">Add Image</string>
+    <string name="prdtQuantity">Product Quantity</string>
 </resources>
