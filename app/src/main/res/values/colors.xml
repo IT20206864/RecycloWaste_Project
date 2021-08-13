@@ -6,11 +6,12 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="Header_FontColor">#629c44</color>
     <color name="Sub_HeaderColor">#4c7a34</color>
     <color name="PageBodyFontColor">#0A1301</color>
     <color name="green_new">#3DDC84</color>
     <color name="btn_green">#32CD32</color>
     <color name="icon_color">#3A8A08</color>
+    <color name="tv_grey">#ACACAC</color>
 </resources>

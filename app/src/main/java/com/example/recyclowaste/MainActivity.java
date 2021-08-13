@@ -26,4 +26,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(myBookings);
 
     }
+
+    public void openUserProfile(View view) {
+        Intent userProfile = new Intent(this, UserProfile.class);
+
+        startActivity(userProfile);
+    }
 }

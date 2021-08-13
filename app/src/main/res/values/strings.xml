@@ -1,5 +1,5 @@
 <resources>
-<string name="app_name">RecycloWaste</string>
+    <string name="app_name">RecycloWaste</string>
     <string name="home_pickup">Book Pickup</string>
     <string name="home_bookings">My Bookings</string>
     <string name="home_package">My Package</string>
@@ -52,4 +52,15 @@
     <string name="addImage">Add Image</string>
     <string name="prdtQuantity">Product Quantity</string>
     <string name="user_profile_title">User Profile</string>
+    <string name="user_profile_email">E-Mail</string>
+    <string name="user_profile_telno">Telephone No.</string>
+    <string name="user_profile_edit_prof">Edit Profile</string>
+    <string name="user_profile_change_pwd">Change Password</string>
+    <string name="user_profile_delete_acc">Delete Account</string>
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="edit_profile_fname">First Name</string>
+    <string name="edit_profile_lname">Last Name</string>
+    <string name="edit_profile_email">E-Mail</string>
+    <string name="edit_profile_telno">Telephone No.</string>
+    <string name="edit_profile_save">Save</string>
 </resources>
