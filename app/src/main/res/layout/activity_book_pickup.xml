@@ -12,11 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="340dp"
+        android:layout_marginEnd="327dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/page_content_font"
         android:text="@string/book_pickup_type"
         android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/spinnerCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +30,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="315dp"
+        android:layout_marginEnd="291dp"
         android:fontFamily="@font/page_content_font"
         android:text="@string/book_pickup_location"
         android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/waste4" />
@@ -42,10 +46,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="280dp"
+        android:layout_marginEnd="240dp"
         android:fontFamily="@font/page_content_font"
         android:text="@string/book_pickup_datetime"
         android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputLocation" />
@@ -120,37 +126,16 @@
 
     <EditText
         android:id="@+id/inputLocation"
-        android:layout_width="357dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="290dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnTime2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/locationText" />
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="169dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="30dp"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextTime"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="122dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="30dp"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLocation" />
 
     <Button
         android:id="@+id/btnConfirm"
@@ -175,6 +160,7 @@
         android:layout_width="357dp"
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -194,12 +180,57 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="315dp"
+        android:layout_marginEnd="290dp"
         android:fontFamily="@font/page_content_font"
         android:text="@string/book_pickup_contains"
         android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCard" />
+
+    <Button
+        android:id="@+id/btnDate"
+        android:layout_width="161dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="29dp"
+        android:drawableEnd="@drawable/ic_baseline_calendar_today_24_black"
+        android:fontFamily="@font/page_content_font"
+        android:text="08/08/2021"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnTime"
+        app:layout_constraintEnd_toStartOf="@+id/btnTime"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnTime"
+        android:layout_width="161dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:drawableEnd="@drawable/ic_baseline_access_time_24_black"
+        android:fontFamily="@font/page_content_font"
+        android:text="08:30 AM"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datettimeText" />
+
+    <Button
+        android:id="@+id/btnTime2"
+        android:layout_width="53dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:drawableEnd="@drawable/ic_baseline_gps_fixed_24"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/inputLocation"
+        app:layout_constraintTop_toBottomOf="@+id/locationText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

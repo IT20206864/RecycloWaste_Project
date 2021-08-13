@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,112 +7,187 @@
     android:background="@color/white"
     tools:context=".BookingDetails">
 
-    <TextView
-        android:id="@+id/dateAndTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/page_content_font"
-        android:text="@string/booking_details_datettime"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location" />
-
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/page_content_font"
-        android:text="@string/booking_details_location"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content" />
-
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/page_content_font"
-        android:text="------, -------, --------, --------, --------"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/containsTitle" />
-
-    <TextView
-        android:id="@+id/containsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/page_content_font"
-        android:text="@string/booking_details_contains"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type" />
-
-    <TextView
-        android:id="@+id/driver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/page_content_font"
-        android:text="@string/booking_details_driver"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/page_content_font"
-        android:text="@string/booking_details_type"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/driver" />
-
     <Button
         android:id="@+id/btnReschedule"
         android:layout_width="141dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="44dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        android:layout_toStartOf="@+id/btnCancel"
         android:fontFamily="@font/page_content_font"
         android:text="@string/booking_details_reschedule"
         android:textAllCaps="false"
-        app:backgroundTint="@color/green_new"
-        app:cornerRadius="@dimen/btn_radius"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:backgroundTint="@color/green_new" />
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_width="197dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="28dp"
         android:fontFamily="@font/page_content_font"
         android:text="@string/booking_details_cancel"
         android:textAllCaps="false"
-        app:backgroundTint="@android:color/holo_red_light"
-        app:cornerRadius="@dimen/btn_radius"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/btnReschedule" />
+        app:backgroundTint="@android:color/holo_red_light" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_driver_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="200dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/booking_details_driver"
+        android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_type_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_driver"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="200dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/booking_details_type"
+        android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_contains_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_type"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="200dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/booking_details_contains"
+        android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_location_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_contains"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="200dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/booking_details_location"
+        android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_location_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_location"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="200dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/booking_details_datettime"
+        android:textColor="@color/black"
+        android:textSize="@dimen/SubHeaderFontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_driver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_driver_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="Randika Silva"
+        android:textColor="@color/tv_grey"
+        android:textSize="@dimen/SubHeaderFontSize" />
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_type_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="Domestic Waste"
+        android:textColor="@color/tv_grey"
+        android:textSize="@dimen/SubHeaderFontSize" />
+
+    <TextView
+        android:id="@+id/tv_contains"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_contains_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="Plastics, Papers"
+        android:textColor="@color/tv_grey"
+        android:textSize="@dimen/SubHeaderFontSize" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_location_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="Malabe Town"
+        android:textColor="@color/tv_grey"
+        android:textSize="@dimen/SubHeaderFontSize" />
+
+    <TextView
+        android:id="@+id/tv_location2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_location_title2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="08/08/2021 08:30 AM"
+        android:textColor="@color/tv_grey"
+        android:textSize="@dimen/SubHeaderFontSize" />
+
+</RelativeLayout>
