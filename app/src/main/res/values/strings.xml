@@ -51,4 +51,5 @@
     <string name="prdtPrice">Product Price</string>
     <string name="addImage">Add Image</string>
     <string name="prdtQuantity">Product Quantity</string>
+    <string name="user_profile_title">User Profile</string>
 </resources>
