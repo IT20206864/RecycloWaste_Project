@@ -10,31 +10,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
 
+        <activity
+            android:name=".HomeMarketplace"
+            android:label ="Marketplace Advertisments"
+            android:parentActivityName=".MainActivity"
+
+            />
+
         <activity android:name=".EditProfile"
             android:label="@string/edit_profile_title"
             android:parentActivityName=".UserProfile"></activity>
+
         <activity
             android:name=".UserProfile"
             android:label="@string/user_profile_title"
             android:parentActivityName=".MainActivity" />
 
+
         <activity
             android:name=".reviews_bookuser"
             android:exported="true" />
         
-        <activity android:name=".UserProfile"
-            android:label="@string/user_profile_title"
-            android:parentActivityName=".MainActivity"></activity>
-        
-
+      
         <activity
             android:name=".Reviews_Booking"
             android:exported="true" />
         <activity
             android:name=".Reviews_Driver"
             android:exported="true" />
+
         
-<activity
+        <activity
+
             android:name=".MyBookings"
             android:label="@string/my_bookings_title"
             android:parentActivityName=".MainActivity" />
@@ -51,7 +58,25 @@
             android:parentActivityName=".MainActivity" />
         
         <activity android:name=".select_driver" />
-        <activity android:name=".PostAd" />
+        <activity
+            android:name=".PostAd"
+            android:label="Post Ad"
+            android:parentActivityName=".HomeMarketplace"
+            />
+
+        <activity
+            android:name=".EditAd"
+            android:label="@string/editAd"
+            android:parentActivityName=".MyAds"
+            />
+
+        <activity
+            android:name=".MyAds"
+            android:label="@string/myAds"
+            android:parentActivityName=".HomeMarketplace"
+            />
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
