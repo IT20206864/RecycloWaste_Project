@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".Reviews_Driver">
 
+    <TextView
+        android:id="@+id/tv_fordriverpg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/tv_fordriver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_reviewinfo"
+        android:layout_width="337dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/tv_reviewinfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fordriverpg" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
