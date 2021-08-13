@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RecycloWaste</string>
+<string name="app_name">RecycloWaste</string>
     <string name="home_pickup">Book Pickup</string>
     <string name="home_bookings">My Bookings</string>
     <string name="home_package">My Package</string>
