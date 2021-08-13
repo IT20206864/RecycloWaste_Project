@@ -10,6 +10,4 @@
     <string name="bt_fhundred">Rs 500</string>
     <string name="nd_customamount" />
     <string name="bt_done">Done</string>
-    <string name="my_bookings_title">my_bookings_title</string>
-    <string name="book_pickup_title">book_pickup_title</string>
 </resources>
