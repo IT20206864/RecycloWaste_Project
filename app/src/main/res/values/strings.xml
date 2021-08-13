@@ -2,7 +2,7 @@
     <string name="app_name">RecycloWaste</string>
     <string name="bt_fordriver">For Driver</string>
     <string name="bt_forbooking">For Booking</string>
-    <string name="tv_fordriver">For Driver</string>
+    <string name="tv_fordriver1">For Driver</string>
     <string name="tv_ct">Your tip is currently</string>
     <string name="tv_tipview" />
     <string name="bt_hundred">Rs 100</string>
@@ -10,4 +10,14 @@
     <string name="bt_fhundred">Rs 500</string>
     <string name="nd_customamount" />
     <string name="bt_done">Done</string>
+    <string name="tv_reviewinfo">Tell us about your recent experience with our service or let us know if you have any questions</string>
+    <string name="bt_rating">Submit</string>
+    <string name="pt_ur" />
+    <string name="tv_userreview">User Review</string>
+    <string name="bt_addreview">Add review</string>
+    <string name="bt_editreview">Edit Review</string>
+    <string name="tv_forbookingpg1">For Booking</string>
+    <string name="tv_reviewinfobook">Rate the booked customers garbage managment and neatness</string>
+    <string name="tv_forbookingpg">Rate the booking</string>
+    <string name="tv_fordriver">Rate the driver</string>
 </resources>

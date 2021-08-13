@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Reviews_Driver">
+    tools:context=".reviews_bookuser">
 
     <TextView
-        android:id="@+id/tv_fordriverpg"
+        android:id="@+id/tv_forbookingpg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="50dp"
-        android:text="@string/tv_fordriver"
+        android:text="@string/tv_forbookingpg"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,9 +23,9 @@
         android:layout_height="47dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="50dp"
-        android:text="@string/tv_reviewinfo"
+        android:text="@string/tv_reviewinfobook"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_fordriverpg" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_forbookingpg" />
 
     <RatingBar
         android:id="@+id/rb_reviewbook"
