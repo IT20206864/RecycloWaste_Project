@@ -7,7 +7,7 @@
     tools:context=".EditProfile">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_fname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -22,10 +22,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/tv_lname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextTextPersonName"
+        android:layout_below="@+id/inptFname"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
@@ -37,10 +37,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextTextPersonName2"
+        android:layout_below="@+id/inptLname"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
@@ -52,10 +52,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tv_telno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextTextEmailAddress"
+        android:layout_below="@+id/inptEmail"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
@@ -67,10 +67,10 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/inptFname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/tv_fname"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
@@ -80,10 +80,10 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/inptLname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView15"
+        android:layout_below="@+id/tv_lname"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
@@ -93,10 +93,10 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/inptEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView16"
+        android:layout_below="@+id/tv_email"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
@@ -106,10 +106,10 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/inptTelno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView17"
+        android:layout_below="@+id/tv_telno"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
