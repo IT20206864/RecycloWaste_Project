@@ -63,7 +63,7 @@
     <string name="postAdd">Post Ad</string>
     <string name="btn_contact">Contact</string>
     <string name="SamplePrice">25,000</string>
-    <string-array name = "quantity_array">
+    <string-array name="quantity_array">
         <item>1</item>
         <item>2</item>
         <item>3</item>

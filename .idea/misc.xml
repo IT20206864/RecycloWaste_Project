@@ -4,10 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_book_pickup.xml" value="0.264" />
-        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews.xml" value="0.264" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_booking_details.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_booking_payment.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_edit_ad.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_my_bookings.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_post_ad.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_review_history.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_review_history2.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews.xml" value="0.25" />
         <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_booking.xml" value="0.209375" />
         <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_bookuser.xml" value="0.259375" />
         <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_driver.xml" value="0.264" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_select_driver.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_user_profile.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/booking_card.xml" value="0.259375" />
+        <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/reviewitem_design.xml" value="0.264" />
       </map>
     </option>
   </component>
@@ -16,5 +28,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>
