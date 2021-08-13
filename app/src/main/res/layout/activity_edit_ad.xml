@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/tv_MarketplaceTitle"
-        android:layout_width="214dp"
-        android:layout_height="40dp"
+        android:layout_width="172dp"
+        android:layout_height="41dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/page_header_font"
         android:text="@string/tv_MarketplaceTitle"
@@ -178,5 +178,15 @@
         app:layout_constraintStart_toEndOf="@+id/SubHeading"
         app:layout_constraintTop_toBottomOf="@+id/tv_MarketplaceTitle"
         app:srcCompat="@drawable/ic_baseline_library_add_24" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="42dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="16dp"
+        app:tint="@color/icon_color"
+        app:layout_constraintStart_toEndOf="@+id/tv_MarketplaceTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

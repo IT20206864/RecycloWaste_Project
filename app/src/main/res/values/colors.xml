@@ -13,4 +13,6 @@
     <color name="green_new">	#32CD32</color>
     <color name="btn_green">#32CD32</color>
     <color name="icon_color">#3A8A08</color>
+    <color name="editbtnColor">#FFE4B111</color>
+    <color name="btn_deleteColor">#FFE32D2D</color>
 </resources>

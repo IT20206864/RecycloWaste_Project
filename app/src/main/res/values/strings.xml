@@ -41,4 +41,25 @@
     <string name="prdtPrice">Product Price</string>
     <string name="addImage">Add Image</string>
     <string name="prdtQuantity">Product Quantity</string>
+    <string name="tv_myAds">My Ads</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_delete">Delete</string>
+    <string name="TV_allAds">All Ads</string>
+    <string name="myAds">My Ads</string>
+    <string name="postAdd">Post Ad</string>
+    <string name="btn_contact">Contact</string>
+    <string name="SamplePrice">25,000</string>
+    <string-array name = "quantity_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
 </resources>
