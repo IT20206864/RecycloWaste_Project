@@ -99,6 +99,18 @@
     <string name="tv_reviewinfobook">Rate the booked customers garbage managment and neatness</string>
     <string name="tv_forbookingpg">Rate the booking</string>
     <string name="tv_fordriver">Rate the driver</string>
-
+    <string name="sign_up_tv_fname">First Name  </string>
+    <string name="sign_up_tv_lname">Last Name  </string>
+    <string name="sign_up_tv_email">E-Mail  </string>
+    <string name="sign_up_tv_telno">Telephone Number </string>
+    <string name="sign_up_tv_pwd">Password </string>
+    <string name="sign_up_tv_cnfrmpwd">Confirm Password  </string>
+    <string name="sign_up_et_fname">Your first name  </string>
+    <string name="sign_up_et_lname">Your last name  </string>
+    <string name="sign_up_et_email">Your email address  </string>
+    <string name="sign_up_et_telno">Your telephone number </string>
+    <string name="sign_up_et_pwd">Password </string>
+    <string name="sign_up_et_cnfrmpwd">Confirm Password  </string>
+    <string name="sign_up_btn_singup">Sign Up </string>
 
 </resources>
