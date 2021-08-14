@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.recyclowaste" >
+    package="com.example.recyclowaste">
 
     <application
         android:allowBackup="true"
@@ -10,12 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
         <activity
-            android:name=".review_history"
-            android:label="Review History"
+            android:name=".reviewAdd"
             android:exported="true"
-            android:parentActivityName=".review_history"/>
-        <activity android:name=".SignUp"
-            android:label="Sign Up"></activity>
+            android:label="Write a review"
+            android:parentActivityName=".reviewAdd"/>
+        <activity
+            android:name=".review_history"
+            android:exported="true"
+            android:label="Review History"
+            android:parentActivityName=".review_history" />
+        <activity
+            android:name=".SignUp"
+            android:label="Sign Up" />
         <activity
             android:name=".BookingDetails"
             android:label="Details"
@@ -24,7 +30,6 @@
             android:name=".BookingPayment"
             android:label="Payment"
             android:parentActivityName=".BookPickup" />
-
         <activity
             android:name=".HomeMarketplace"
             android:label="Marketplace Advertisments"
@@ -39,19 +44,18 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".reviews_bookuser"
-            android:label="Booking Reviews"
             android:exported="true"
-            android:parentActivityName=".reviews_bookuser"/>
+            android:label="Booking Reviews"
+            android:parentActivityName=".reviews_bookuser" />
         <activity
             android:name=".Reviews_Driver"
-            android:label="Driver Reviews"
             android:exported="true"
-            android:parentActivityName=".Reviews_Driver"/>
+            android:label="Driver Reviews"
+            android:parentActivityName=".Reviews_Driver" />
         <activity
             android:name=".MyBookings"
             android:label="@string/my_bookings_title"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".BookPickup"
             android:label="@string/book_pickup_title"
@@ -72,7 +76,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="RecycloWaste" >
+            android:label="RecycloWaste">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

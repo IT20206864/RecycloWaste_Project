@@ -112,5 +112,11 @@
     <string name="sign_up_et_pwd">Password </string>
     <string name="sign_up_et_cnfrmpwd">Confirm Password  </string>
     <string name="sign_up_btn_singup">Sign Up </string>
+    <string name="tv_addinfo">Share your experience and feeling about our service. Also tell us if any improvments need in our services</string>
+    <string name="tv_apv">Add Video or Photo</string>
+    <string name="tv_wr">Write your review</string>
+    <string name="tp_inputReview" />
+    <string name="tp_inReview" />
+    <string name="et_wr" />
 
 </resources>
