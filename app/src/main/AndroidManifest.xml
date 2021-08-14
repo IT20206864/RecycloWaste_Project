@@ -11,7 +11,9 @@
         android:theme="@style/Theme.RecycloWaste">
         <activity
             android:name=".review_history"
-            android:exported="true" />
+            android:label="Review History"
+            android:exported="true"
+            android:parentActivityName=".review_history"/>
         <activity android:name=".SignUp"
             android:label="Sign Up"></activity>
         <activity
@@ -37,13 +39,14 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".reviews_bookuser"
-            android:exported="true" />
-        <activity
-            android:name=".Reviews_Booking"
-            android:exported="true" />
+            android:label="Booking Reviews"
+            android:exported="true"
+            android:parentActivityName=".reviews_bookuser"/>
         <activity
             android:name=".Reviews_Driver"
-            android:exported="true" />
+            android:label="Driver Reviews"
+            android:exported="true"
+            android:parentActivityName=".Reviews_Driver"/>
         <activity
             android:name=".MyBookings"
             android:label="@string/my_bookings_title"
