@@ -10,13 +10,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
         <activity
-            android:name=".ForgotPassword"
-            android:label="@string/for_forgotpass"
-            android:parentActivityName=".Login"/>
+            android:name=".Reviews"
+            android:exported="true"
+            android:label="Reviews"
+            android:parentActivityName=".Reviews"/>
         <activity
-            android:name=".Login"
-            android:label="@string/login_signIn"
-            />
+            android:name=".reviewAdd"
+            android:exported="true"
+            android:label="Write a review"
+            android:parentActivityName=".reviewAdd"/>
+        <activity
+            android:name=".review_history"
+            android:exported="true"
+            android:label="Review History"
+            android:parentActivityName=".review_history" />
+        <activity
+            android:name=".SignUp"
+            android:label="Sign Up" />
+        <activity
+            android:name=".BookingDetails"
+            android:label="Details"
+            android:parentActivityName=".MyBookings" />
+        <activity
+            android:name=".BookingPayment"
+            android:label="Payment"
+            android:parentActivityName=".BookPickup" />
         <activity
             android:name=".HomeMarketplace"
             android:label="Marketplace Advertisments"
@@ -31,22 +49,18 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".reviews_bookuser"
-            android:exported="true" />
-        <activity
-            android:name=".Reviews_Booking"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Booking Reviews"
+            android:parentActivityName=".reviews_bookuser" />
         <activity
             android:name=".Reviews_Driver"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Driver Reviews"
+            android:parentActivityName=".Reviews_Driver" />
         <activity
             android:name=".MyBookings"
             android:label="@string/my_bookings_title"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".BookingDetails" />
-        <activity
-            android:name=".BookingPayment"
-            android:label="Payment"
-            android:parentActivityName=".BookPickup" />
         <activity
             android:name=".BookPickup"
             android:label="@string/book_pickup_title"
