@@ -63,7 +63,7 @@
     <string name="postAdd">Post Ad</string>
     <string name="btn_contact">Contact</string>
     <string name="SamplePrice">25,000</string>
-    <string-array name = "quantity_array">
+    <string-array name="quantity_array">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -99,6 +99,19 @@
     <string name="tv_reviewinfobook">Rate the booked customers garbage managment and neatness</string>
     <string name="tv_forbookingpg">Rate the booking</string>
     <string name="tv_fordriver">Rate the driver</string>
+    <string name="login_companyName">RecycloWaste</string>
+    <string name="tv_signIn">Sign In</string>
+    <string name="tv_signInmsg">Hi there!Nice to see you again.</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_signIn">Sign In</string>
+    <string name="tv_forgotPass">Forgot Password?</string>
+    <string name="login_signUp">Sign Up</string>
+    <string name="for_forgotpass">Forgot Password</string>
+    <string name="forg_msg">You might have received an OTP to your email</string>
+    <string name="login_newPass">New Password</string>
+    <string name="for_OTP">OTP</string>
+    <string name="forg_Change">Change Password</string>
 
 
 </resources>

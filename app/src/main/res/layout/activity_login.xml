@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/login_icon"
+        android:layout_width="87dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        app:tint="@color/icon_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_local_shipping_24" />
+
+    <TextView
+        android:id="@+id/login_companyname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/page_header_font"
+        android:text="@string/login_companyName"
+        android:textColor="@color/Header_FontColor"
+        android:textSize="@dimen/Page_Headers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_icon" />
+
+    <TextView
+        android:id="@+id/tv_signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/page_content_font"
+        android:shadowColor="@color/Sub_HeaderColor"
+        android:text="@string/tv_signIn"
+        android:textColor="@color/Sub_HeaderColor"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_companyname" />
+
+    <TextView
+        android:id="@+id/tv_messageSignin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/page_sub_header_font"
+        android:text="@string/tv_signInmsg"
+        android:textColor="@color/btn_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signIn" />
+
+    <TextView
+        android:id="@+id/login_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/page_content_font"
+        android:shadowColor="@color/Sub_HeaderColor"
+        android:text="@string/login_email"
+        android:textColor="@color/icon_color"
+        android:textSize="@dimen/PageContentFontSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_messageSignin" />
+
+    <EditText
+        android:id="@+id/et_Forgot_Email"
+        android:layout_width="@dimen/login_labelwidth"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="@dimen/Label_TV_Dist"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_email" />
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/page_content_font"
+        android:text="@string/login_password"
+        android:textColor="@color/icon_color"
+        android:textSize="@dimen/PageContentFontSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_Forgot_Email" />
+
+    <EditText
+        android:id="@+id/et_Forgot_NewPass"
+        android:layout_width="@dimen/login_labelwidth"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="@dimen/Label_TV_Dist"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+
+    <Button
+        android:id="@+id/btn_changePass"
+        android:layout_width="299dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/login_signIn"
+        android:textSize="@dimen/PageContentFontSize"
+        app:backgroundTint="@color/btn_green"
+        app:cornerRadius="@dimen/btn_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_Forgot_NewPass" />
+
+    <TextView
+        android:id="@+id/tv_forgotpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/page_header_font"
+        android:text="@string/tv_forgotPass"
+        android:textColor="@color/btn_deleteColor"
+        app:drawableTint="@color/btn_deleteColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/page_header_font"
+        android:text="@string/login_signUp"
+        android:textColor="@color/Sub_HeaderColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
