@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".review_history">
-    
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewReviews"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
-        android:id="@+id/recyclerviewReviews"></androidx.recyclerview.widget.RecyclerView>
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"></androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

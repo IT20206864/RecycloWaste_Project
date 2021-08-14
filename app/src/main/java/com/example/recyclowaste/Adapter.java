@@ -67,5 +67,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             btnDetails = itemView.findViewById(R.id.btnDetails);
 
         }
+
     }
 }
