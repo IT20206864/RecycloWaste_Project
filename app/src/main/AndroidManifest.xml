@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.recyclowaste">
+    package="com.example.recyclowaste" >
 
     <application
         android:allowBackup="true"
@@ -10,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
+        <activity
+            android:name=".review_history"
+            android:exported="true" />
         <activity android:name=".SignUp"
             android:label="Sign Up"></activity>
         <activity
@@ -20,6 +22,7 @@
             android:name=".BookingPayment"
             android:label="Payment"
             android:parentActivityName=".BookPickup" />
+
         <activity
             android:name=".HomeMarketplace"
             android:label="Marketplace Advertisments"
@@ -45,6 +48,7 @@
             android:name=".MyBookings"
             android:label="@string/my_bookings_title"
             android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".BookPickup"
             android:label="@string/book_pickup_title"
@@ -65,7 +69,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="RecycloWaste">
+            android:label="RecycloWaste" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
