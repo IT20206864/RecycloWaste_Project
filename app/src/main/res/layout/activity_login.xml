@@ -8,42 +8,28 @@
 
     <ImageView
         android:id="@+id/login_icon"
-        android:layout_width="87dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="16dp"
-        app:tint="@color/icon_color"
+        android:layout_width="336dp"
+        android:layout_height="173dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_local_shipping_24" />
-
-    <TextView
-        android:id="@+id/login_companyname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/page_header_font"
-        android:text="@string/login_companyName"
-        android:textColor="@color/Header_FontColor"
-        android:textSize="@dimen/Page_Headers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_icon" />
+        app:srcCompat="@drawable/RecycloWasteIcon"
+        app:tint="@color/icon_color" />
 
     <TextView
         android:id="@+id/tv_signIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
-        android:layout_marginTop="40dp"
         android:fontFamily="@font/page_content_font"
         android:shadowColor="@color/Sub_HeaderColor"
         android:text="@string/tv_signIn"
         android:textColor="@color/Sub_HeaderColor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_companyname" />
+        app:layout_constraintTop_toBottomOf="@+id/login_icon" />
 
     <TextView
         android:id="@+id/tv_messageSignin"

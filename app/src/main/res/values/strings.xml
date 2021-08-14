@@ -112,6 +112,7 @@
     <string name="login_newPass">New Password</string>
     <string name="for_OTP">OTP</string>
     <string name="forg_Change">Change Password</string>
+    <string name="home_menu">Main Menu</string>
 
 
 </resources>
