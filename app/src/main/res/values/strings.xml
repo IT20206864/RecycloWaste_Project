@@ -113,6 +113,8 @@
     <string name="for_OTP">OTP</string>
     <string name="forg_Change">Change Password</string>
     <string name="home_menu">Main Menu</string>
+    <string name="Sample_desc_Marketplace">This is a sample Description</string>
+    <string name="Sample_Price">25,000</string>
 
 
 </resources>
