@@ -7,7 +7,7 @@
     tools:context=".PostAd">
 
     <TextView
-        android:id="@+id/tv_MarketplaceTitle"
+        android:id="@+id/tv_Post_MarketplaceTitle"
         android:layout_width="167dp"
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/SubHeading"
+        android:id="@+id/post_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/SubHeading_Left_Margin"
@@ -31,10 +31,10 @@
         android:textColor="@color/Sub_HeaderColor"
         android:textSize="@dimen/SubHeaderFontSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_MarketplaceTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_Post_MarketplaceTitle" />
 
     <TextView
-        android:id="@+id/tv_ProductTitle"
+        android:id="@+id/tv_postProductTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
@@ -44,10 +44,10 @@
         android:textColor="@color/PageBodyFontColor"
         android:textSize="@dimen/PageContentFontSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SubHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/post_heading" />
 
     <EditText
-        android:id="@+id/et_prdtTitle"
+        android:id="@+id/et_post_prdtTitle"
         android:layout_width="285dp"
         android:layout_height="46dp"
         android:layout_marginStart="@dimen/Body_Left_Margin"
@@ -56,10 +56,10 @@
         android:fontFamily="@font/page_content_font"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ProductTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_postProductTitle" />
 
     <TextView
-        android:id="@+id/tv_prdtDescription"
+        android:id="@+id/tv_post_prdtDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
@@ -69,10 +69,10 @@
         android:textColor="@color/PageBodyFontColor"
         android:textSize="@dimen/PageContentFontSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_prdtTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/et_post_prdtTitle" />
 
     <EditText
-        android:id="@+id/et_prdt_Desc"
+        android:id="@+id/et_post_prdt_Desc"
         android:layout_width="310dp"
         android:layout_height="54dp"
         android:layout_marginStart="@dimen/Body_Left_Margin"
@@ -81,10 +81,10 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_prdtDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_prdtDescription" />
 
     <TextView
-        android:id="@+id/tv_prdtImage"
+        android:id="@+id/tv_post_prdtImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
@@ -94,10 +94,10 @@
         android:textColor="@color/PageBodyFontColor"
         android:textSize="@dimen/PageContentFontSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_prdt_Desc" />
+        app:layout_constraintTop_toBottomOf="@+id/et_post_prdt_Desc" />
 
     <Button
-        android:id="@+id/btn_addImage"
+        android:id="@+id/btn_post_addImage"
         android:layout_width="137dp"
         android:layout_height="38dp"
         android:layout_marginStart="40dp"
@@ -108,11 +108,11 @@
         android:textSize="12sp"
         app:backgroundTint="#79D312"
         app:cornerRadius="@dimen/btn_radius"
-        app:layout_constraintStart_toStartOf="@+id/tv_prdtImage"
-        app:layout_constraintTop_toBottomOf="@+id/tv_prdtImage" />
+        app:layout_constraintStart_toStartOf="@+id/tv_post_prdtImage"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_prdtImage" />
 
     <TextView
-        android:id="@+id/tv_prdtPrice"
+        android:id="@+id/tv_post_prdtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
@@ -122,10 +122,10 @@
         android:textColor="@color/PageBodyFontColor"
         android:textSize="@dimen/PageContentFontSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_addImage" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_post_addImage" />
 
     <TextView
-        android:id="@+id/tv_prdtQuantity"
+        android:id="@+id/tv_post_prdtQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
@@ -135,31 +135,31 @@
         android:textColor="@color/PageBodyFontColor"
         android:textSize="@dimen/PageContentFontSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+        app:layout_constraintTop_toBottomOf="@+id/post_prdtPrice" />
 
     <Button
-        android:id="@+id/btn_PostAd"
+        android:id="@+id/btn_post_PostAd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="@string/tv_PostAd"
         app:backgroundTint="@color/btn_green"
         app:cornerRadius="@dimen/btn_radius"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_prdtQuantity"
-        app:layout_constraintStart_toEndOf="@+id/et_prdtQuantity" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_post_prdtQuantity"
+        app:layout_constraintStart_toEndOf="@+id/et_post_prdtQuantity" />
 
     <EditText
-        android:id="@+id/et_prdtQuantity"
+        android:id="@+id/et_post_prdtQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_prdtQuantity" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_prdtQuantity" />
 
     <EditText
-        android:id="@+id/editTextNumber2"
+        android:id="@+id/post_prdtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
@@ -167,26 +167,26 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_prdtPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_prdtPrice" />
 
     <ImageView
-        android:id="@+id/icon_editAd"
+        android:id="@+id/icon_posteditAd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         app:tint="@color/icon_color"
-        app:layout_constraintStart_toEndOf="@+id/SubHeading"
-        app:layout_constraintTop_toBottomOf="@+id/tv_MarketplaceTitle"
+        app:layout_constraintStart_toEndOf="@+id/post_heading"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Post_MarketplaceTitle"
         app:srcCompat="@drawable/ic_baseline_library_add_24" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/post_icon"
         android:layout_width="37dp"
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
         app:tint="@color/icon_color"
-        app:layout_constraintStart_toEndOf="@+id/tv_MarketplaceTitle"
+        app:layout_constraintStart_toEndOf="@+id/tv_Post_MarketplaceTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
