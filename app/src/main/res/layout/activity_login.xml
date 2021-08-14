@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/login_icon"
-        android:layout_width="336dp"
-        android:layout_height="173dp"
+        android:layout_width="391dp"
+        android:layout_height="198dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.41"
@@ -23,13 +23,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Body_Left_Margin"
+        android:layout_marginTop="180dp"
         android:fontFamily="@font/page_content_font"
         android:shadowColor="@color/Sub_HeaderColor"
         android:text="@string/tv_signIn"
         android:textColor="@color/Sub_HeaderColor"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_icon" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_messageSignin"
