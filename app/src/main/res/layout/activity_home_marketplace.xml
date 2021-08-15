@@ -143,7 +143,7 @@
                     android:text="@string/btn_contact"
                     android:textSize="@dimen/btn_Myads_TextSize"
                     app:backgroundTint="@color/btn_green"
-                    app:layout_constraintStart_toEndOf="@+id/spinner1"
+                    app:layout_constraintStart_toEndOf="@+id/marketplace_spinner1"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
                 <ScrollView
@@ -194,11 +194,11 @@
                     android:text="@string/btn_contact"
                     android:textSize="12sp"
                     app:backgroundTint="@color/btn_green"
-                    app:layout_constraintStart_toEndOf="@+id/spinner2"
+                    app:layout_constraintStart_toEndOf="@+id/marketplace_spinner2"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
                 <Spinner
-                    android:id="@+id/spinner1"
+                    android:id="@+id/marketplace_spinner1"
                     android:layout_width="76dp"
                     android:layout_height="36dp"
                     android:layout_marginTop="8dp"
@@ -206,7 +206,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
                 <Spinner
-                    android:id="@+id/spinner2"
+                    android:id="@+id/marketplace_spinner2"
                     android:layout_width="76dp"
                     android:layout_height="36dp"
                     android:layout_marginTop="8dp"
