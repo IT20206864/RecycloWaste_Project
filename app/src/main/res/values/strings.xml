@@ -132,6 +132,19 @@
     <string name="bt_editPayment" />
     <string name="bt_paymentEdit">Edit</string>
     <string name="bt_paymentConfirm">Confirm Payment</string>
+    <string name="tv_fullname">Full Name</string>
+    <string name="tv_mobile">Mobile Number</string>
+    <string name="tv_pkgName">Package Name</string>
+    <string name="tv_mNumber" />
+    <string name="tv_fName" />
+    <string name="tv_duration">"Time period "</string>
+    <string name="bt_save">Save Details</string>
+    <string name="tv_packageAmount">Package Payment</string>
+    <string name="tv_packPrice" />
+    <string name="tv_packageDate">Days Per week</string>
+    <string name="tv_dayPerWeek" />
+    <string name="btn_unsubscribe">Unsubscribe</string>
+    <string name="bt_monthPay">Pay</string>
 
 
 </resources>

@@ -11,7 +11,9 @@
         android:theme="@style/Theme.RecycloWaste">
         <activity
             android:name=".MyPackage"
-            android:exported="true" />
+            android:exported="true"
+            android:label="My Packages"
+            android:parentActivityName=".MyPackage"/>
         <activity
             android:name=".SelectPackageOne"
             android:exported="true" />
