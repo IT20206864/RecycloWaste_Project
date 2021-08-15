@@ -10,15 +10,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
         <activity
+            android:name=".MyPackage"
+            android:exported="true" />
+        <activity
+            android:name=".SelectPackageOne"
+            android:exported="true" />
+        <activity
+            android:name=".EditPaymentDetails"
+            android:exported="true"
+            android:label="Payment Details"
+            android:parentActivityName=".EditPaymentDetails"/>
+        <activity
+            android:name=".ViewPaymentDetails"
+            android:exported="true"
+            android:label="Payment Details"
+            android:parentActivityName=".ViewPaymentDetails"/>
+
+        <activity
+            android:name=".PaymentForm"
+            android:exported="true"
+            android:label="Payment Form"
+            android:parentActivityName=".PaymentForm"/>
+        <activity
             android:name=".Reviews"
             android:exported="true"
             android:label="Reviews"
-            android:parentActivityName=".Reviews"/>
+            android:parentActivityName=".Reviews" />
         <activity
             android:name=".reviewAdd"
             android:exported="true"
             android:label="Write a review"
-            android:parentActivityName=".reviewAdd"/>
+            android:parentActivityName=".reviewAdd" />
         <activity
             android:name=".review_history"
             android:exported="true"
