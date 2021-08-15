@@ -73,7 +73,7 @@
                     android:layout_marginTop="32dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/ic_baseline_assignment_24" />
 
                 <ImageView
                     android:id="@+id/marketplace_img2"
@@ -83,7 +83,7 @@
                     android:layout_marginTop="90dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/marketplace_img"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/ic_baseline_assignment_24" />
 
                 <ScrollView
                     android:id="@+id/scrollView2"
@@ -106,7 +106,9 @@
                             android:layout_height="match_parent"
                             android:ems="10"
                             android:gravity="start|top"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:text="@string/Sample_desc_Marketplace"
+                            android:textSize="10sp" />
 
                         <EditText
                             android:id="@+id/editTextTextMultiLine3"
@@ -126,6 +128,8 @@
                     android:layout_marginTop="8dp"
                     android:ems="10"
                     android:inputType="number"
+                    android:text="@string/SamplePrice"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
@@ -143,12 +147,12 @@
 
                 <Button
                     android:id="@+id/btn_contact"
-                    android:layout_width="@dimen/btn_delete_width"
-                    android:layout_height="@dimen/btn_deleteHeight"
+                    android:layout_width="73dp"
+                    android:layout_height="34dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/btn_delete"
-                    android:textSize="@dimen/btn_Myads_TextSize"
+                    android:textSize="10sp"
                     app:backgroundTint="@color/btn_deleteColor"
                     app:layout_constraintStart_toEndOf="@+id/btn_edit"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
@@ -177,7 +181,9 @@
                             android:layout_height="match_parent"
                             android:ems="10"
                             android:gravity="start|top"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:text="@string/Sample_desc_Marketplace"
+                            android:textSize="10sp" />
                     </LinearLayout>
                 </ScrollView>
 
@@ -189,6 +195,8 @@
                     android:layout_marginTop="8dp"
                     android:ems="10"
                     android:inputType="number"
+                    android:text="@string/SamplePrice"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
@@ -206,12 +214,12 @@
 
                 <Button
                     android:id="@+id/btn_contact2"
-                    android:layout_width="@dimen/btn_delete_width"
-                    android:layout_height="@dimen/btn_deleteHeight"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/btn_delete"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     app:backgroundTint="@color/btn_deleteColor"
                     app:layout_constraintStart_toEndOf="@+id/btn_edit2"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
