@@ -15,8 +15,8 @@ public class HomeMarketplace extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_marketplace);
 
-        Spinner spinner1 = (Spinner)findViewById(R.id.spinner1);
-        Spinner spinner2 = (Spinner)findViewById(R.id.spinner2);
+        Spinner spinner1 = (Spinner)findViewById(R.id.marketplace_spinner1);
+        Spinner spinner2 = (Spinner)findViewById(R.id.marketplace_spinner2);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.quantity_array,android.R.layout.simple_spinner_item);
 

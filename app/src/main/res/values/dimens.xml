@@ -12,4 +12,5 @@
     <dimen name="btn_editHeight">36dp</dimen>
     <dimen name="btn_delete_width">82dp</dimen>
     <dimen name="btn_deleteHeight">36dp</dimen>
+    <dimen name="login_labelwidth">290dp</dimen>
 </resources>
