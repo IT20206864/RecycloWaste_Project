@@ -111,7 +111,7 @@
                             android:ems="10"
                             android:gravity="start|top"
                             android:inputType="textMultiLine"
-                            android:text="@string/Sample_desc_Marketplace"
+                            android:text="@string/marketplace_Desc"
                             android:textSize="10sp" />
 
                         <EditText
@@ -132,7 +132,7 @@
                     android:layout_marginTop="8dp"
                     android:ems="10"
                     android:inputType="number"
-                    android:text="@string/Sample_Price"
+                    android:text="@string/SamplePrice"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
@@ -174,7 +174,7 @@
                             android:ems="10"
                             android:gravity="start|top"
                             android:inputType="textMultiLine"
-                            android:text="@string/Sample_desc_Marketplace"
+                            android:text="@string/marketplace_Desc"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </ScrollView>

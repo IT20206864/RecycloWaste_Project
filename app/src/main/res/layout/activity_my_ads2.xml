@@ -73,7 +73,7 @@
                     android:layout_marginTop="32dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/ic_baseline_assignment_24" />
 
                 <ImageView
                     android:id="@+id/marketplace_img2"
@@ -83,7 +83,7 @@
                     android:layout_marginTop="90dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/marketplace_img"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/ic_baseline_assignment_24" />
 
                 <ScrollView
                     android:id="@+id/scrollView2"
@@ -106,7 +106,9 @@
                             android:layout_height="match_parent"
                             android:ems="10"
                             android:gravity="start|top"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:text="@string/marketplace_Desc"
+                            android:textSize="10sp" />
 
                         <EditText
                             android:id="@+id/editTextTextMultiLine3"
@@ -126,6 +128,8 @@
                     android:layout_marginTop="8dp"
                     android:ems="10"
                     android:inputType="number"
+                    android:text="@string/SamplePrice"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
@@ -177,7 +181,9 @@
                             android:layout_height="match_parent"
                             android:ems="10"
                             android:gravity="start|top"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textMultiLine"
+                            android:text="@string/marketplace_Desc"
+                            android:textSize="10sp" />
                     </LinearLayout>
                 </ScrollView>
 
@@ -189,6 +195,8 @@
                     android:layout_marginTop="8dp"
                     android:ems="10"
                     android:inputType="number"
+                    android:text="@string/SamplePrice"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
