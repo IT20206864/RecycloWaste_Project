@@ -32,4 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(userProfile);
     }
+
+    public void openSignUp(View view) {
+        Intent signUp = new Intent(this, SignUp.class);
+
+        startActivity(signUp);
+    }
 }

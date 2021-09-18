@@ -105,7 +105,7 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/et_desc1"
+                            android:id="@+id/et_edit_desc1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:ems="10"
@@ -125,7 +125,7 @@
                 </ScrollView>
 
                 <EditText
-                    android:id="@+id/editTextNumber"
+                    android:id="@+id/et_price"
                     android:layout_width="85dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="136dp"
@@ -138,7 +138,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
                 <Button
-                    android:id="@+id/btn_contact"
+                    android:id="@+id/btn_delete"
                     android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="2dp"
@@ -159,7 +159,7 @@
                     android:fillViewport="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/marketplace_img2"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber">
+                    app:layout_constraintTop_toBottomOf="@+id/et_price">
                     android:fillViewport="true">
 
                     <LinearLayout
@@ -168,7 +168,7 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/et_desc2"
+                            android:id="@+id/et_edit_desc2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:ems="10"
@@ -180,7 +180,7 @@
                 </ScrollView>
 
                 <EditText
-                    android:id="@+id/editTextNumber4"
+                    android:id="@+id/et_price2"
                     android:layout_width="82dp"
                     android:layout_height="39dp"
                     android:layout_marginStart="134dp"
@@ -193,7 +193,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
                 <Button
-                    android:id="@+id/btn_contact2"
+                    android:id="@+id/btn_delete2"
                     android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="4dp"
@@ -209,7 +209,7 @@
                     android:layout_width="72dp"
                     android:layout_height="33dp"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/editTextNumber"
+                    app:layout_constraintStart_toEndOf="@+id/et_price"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
                 <Spinner
@@ -217,7 +217,7 @@
                     android:layout_width="74dp"
                     android:layout_height="35dp"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/editTextNumber4"
+                    app:layout_constraintStart_toEndOf="@+id/et_price2"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
