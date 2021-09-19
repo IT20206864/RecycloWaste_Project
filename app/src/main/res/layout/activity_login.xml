@@ -15,7 +15,7 @@
         app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/recyclowasteicon"
+        app:srcCompat="@drawable/recyclo_waste"
         app:tint="@color/icon_color" />
 
     <TextView

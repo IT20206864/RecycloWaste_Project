@@ -3,9 +3,9 @@
     <dimen name="Page_Headers">24sp</dimen>
     <dimen name="SubHeaderFontSize">20sp</dimen>
     <dimen name="PageContentFontSize">16sp</dimen>
-    <dimen name="Label_TV_Dist">4</dimen>
-    <dimen name="Body_Left_Margin">55</dimen>
-    <dimen name="SubHeading_Left_Margin">16</dimen>
+    <dimen name="Label_TV_Dist">4dp</dimen>
+    <dimen name="Body_Left_Margin">55dp</dimen>
+    <dimen name="SubHeading_Left_Margin">16dp</dimen>
     <dimen name="btn_radius">30px</dimen>
     <dimen name="btn_Myads_TextSize">12sp</dimen>
     <dimen name="btn_editWidth">70dp</dimen>

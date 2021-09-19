@@ -38,4 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(signUp);
     }
+
+    public void openHomeMarketplace(View view) {
+            Intent homeMarketplace = new Intent(this, ForgotPassword.class);
+
+        startActivity(homeMarketplace);
+    }
 }

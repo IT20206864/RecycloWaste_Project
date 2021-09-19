@@ -7,6 +7,7 @@
     <string name="home_marketplace">Marketplace</string>
     <string name="home_recycle">Recycle Centers</string>
     <string name="home_user">User Profile</string>
+    <string name="home_logout">Log out</string>
     <string name="tv_MarketplaceTitle">Marketplace</string>
     <string name="tv_PostAd">Post Ad</string>
     <string name="tv_prd_title">Product Title</string>
@@ -145,6 +146,22 @@
     <string name="tv_dayPerWeek" />
     <string name="btn_unsubscribe">Unsubscribe</string>
     <string name="bt_monthPay">Pay</string>
+    <string name="tv_apv"></string>
+    <string name="tv_addinfo"></string>
+    <string name="tv_wr"></string>
+    <string name="et_wr"></string>
 
-
+    <string name="sign_up_tv_fname">First Name  </string>
+    <string name="sign_up_tv_lname">Last Name  </string>
+    <string name="sign_up_tv_email">E-Mail  </string>
+    <string name="sign_up_tv_telno">Telephone Number </string>
+    <string name="sign_up_tv_pwd">Password </string>
+    <string name="sign_up_tv_cnfrmpwd">Confirm Password  </string>
+    <string name="sign_up_et_fname">Your first name  </string>
+    <string name="sign_up_et_lname">Your last name  </string>
+    <string name="sign_up_et_email">Your email address  </string>
+    <string name="sign_up_et_telno">Your telephone number </string>
+    <string name="sign_up_et_pwd">Password </string>
+    <string name="sign_up_et_cnfrmpwd">Confirm Password  </string>
+    <string name="sign_up_btn_singup">Sign Up </string>
 </resources>

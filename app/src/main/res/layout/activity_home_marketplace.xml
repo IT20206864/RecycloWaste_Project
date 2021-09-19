@@ -77,7 +77,8 @@
                     android:layout_marginTop="32dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_text_snippet_24" />
+
+                    app:srcCompat="@drawable/avatar_male" />
 
                 <ImageView
                     android:id="@+id/marketplace_img2"
@@ -86,8 +87,11 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="90dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/marketplace_img"
-                    app:srcCompat="@drawable/ic_baseline_assignment_24" />
+
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    app:srcCompat="@drawable/avatar_female"
+                    tools:srcCompat="@tools:sample/avatars" />
+
 
                 <ScrollView
                     android:id="@+id/scrollView2"
@@ -95,9 +99,11 @@
                     android:layout_height="98dp"
                     android:layout_marginTop="32dp"
                     android:fillViewport="true"
-                    app:layout_constraintStart_toEndOf="@+id/marketplace_img"
-                    app:layout_constraintTop_toTopOf="parent">
-                    android:fillViewport="true">
+
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -158,9 +164,11 @@
                     android:layout_marginEnd="9dp"
                     android:fillViewport="true"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/marketplace_img2"
-                    app:layout_constraintTop_toBottomOf="@+id/et_price">
-                    android:fillViewport="true">
+
+                    app:layout_constraintStart_toEndOf="@+id/imageView12"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber">
+
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -231,10 +239,10 @@
         android:layout_height="69dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
-        app:tint="@color/icon_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView4"
-        tools:src="@drawable/ic_baseline_account_circle_24" />
+        app:srcCompat="@drawable/ic_baseline_account_circle_24"
+        app:tint="@color/icon_color" />
 
     <ImageView
         android:id="@+id/Market_Post_img"
@@ -242,10 +250,10 @@
         android:layout_height="69dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
-        app:tint="@color/icon_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView4"
-        tools:src="@drawable/ic_baseline_add_box_24" />
+        app:srcCompat="@drawable/ic_baseline_add_box_24"
+        app:tint="@color/icon_color" />
 
     <TextView
         android:id="@+id/tv_myAds"
