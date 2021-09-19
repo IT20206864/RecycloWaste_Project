@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="-32dp"
         android:layout_marginBottom="31dp"
-        app:srcCompat="@drawable/RecycloWasteIcon" />
+        app:srcCompat="@drawable/recyclo_waste" />
 
     <TextView
         android:id="@+id/textView5"
@@ -156,6 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:onClick="openHomeMarketplace"
             app:cardBackgroundColor="@color/green_new"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp"
