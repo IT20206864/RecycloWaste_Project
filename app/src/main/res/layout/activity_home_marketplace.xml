@@ -46,8 +46,8 @@
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="409dp"
-        android:layout_height="398dp"
+        android:layout_width="407dp"
+        android:layout_height="396dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="3dp"
@@ -67,93 +67,19 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="387dp">
+                android:layout_height="match_parent">
+
 
                 <ImageView
                     android:id="@+id/marketplace_img"
                     android:layout_width="104dp"
                     android:layout_height="98dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
 
                     app:srcCompat="@drawable/avatar_male" />
-
-                <ImageView
-                    android:id="@+id/marketplace_img2"
-                    android:layout_width="104dp"
-                    android:layout_height="98dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="90dp"
-                    app:layout_constraintStart_toStartOf="parent"
-
-                    app:layout_constraintTop_toBottomOf="@+id/imageView"
-                    app:srcCompat="@drawable/avatar_female"
-                    tools:srcCompat="@tools:sample/avatars" />
-
-
-                <ScrollView
-                    android:id="@+id/scrollView2"
-                    android:layout_width="265dp"
-                    android:layout_height="98dp"
-                    android:layout_marginTop="32dp"
-                    android:fillViewport="true"
-
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="parent"
-                    >
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/et_edit_desc1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:inputType="textMultiLine"
-                            android:text="@string/Sample_desc_Marketplace"
-                            android:textSize="10sp" />
-
-                        <EditText
-                            android:id="@+id/editTextTextMultiLine3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:inputType="textMultiLine" />
-                    </LinearLayout>
-                </ScrollView>
-
-                <EditText
-                    android:id="@+id/et_price"
-                    android:layout_width="85dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="136dp"
-                    android:layout_marginTop="8dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:text="@string/SamplePrice"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-                <Button
-                    android:id="@+id/btn_delete"
-                    android:layout_width="100dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/btn_contact"
-                    android:textSize="@dimen/btn_Myads_TextSize"
-                    app:backgroundTint="@color/btn_green"
-                    app:layout_constraintStart_toEndOf="@+id/marketplace_spinner1"
-                    app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
                 <ScrollView
                     android:id="@+id/scrollView3"
@@ -166,8 +92,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
 
                     app:layout_constraintStart_toEndOf="@+id/imageView12"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber">
-
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+                    tools:ignore="UnknownId">
 
 
                     <LinearLayout
@@ -182,7 +108,7 @@
                             android:ems="10"
                             android:gravity="start|top"
                             android:inputType="textMultiLine"
-                            android:text="@string/Sample_desc_Marketplace"
+                            android:text="@string/marketplace_desc"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </ScrollView>
@@ -202,23 +128,15 @@
 
                 <Button
                     android:id="@+id/btn_delete2"
-                    android:layout_width="100dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="98dp"
+                    android:layout_height="33dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="@string/btn_contact"
                     android:textSize="12sp"
                     app:backgroundTint="@color/btn_green"
                     app:layout_constraintStart_toEndOf="@+id/marketplace_spinner2"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-                <Spinner
-                    android:id="@+id/marketplace_spinner1"
-                    android:layout_width="72dp"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/et_price"
-                    app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
                 <Spinner
                     android:id="@+id/marketplace_spinner2"

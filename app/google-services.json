@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "378116623851",
+    "project_id": "recyclowaste-73719",
+    "storage_bucket": "recyclowaste-73719.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378116623851:android:ae058417b44da3e09c5dae",
+        "android_client_info": {
+          "package_name": "com.example.recyclowaste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378116623851-16m4cvp4lhijjklbk3nf4n8u3amca3gf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2UL60mosCgHdNCN4kMjzOvlzUZSXZkRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378116623851-16m4cvp4lhijjklbk3nf4n8u3amca3gf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

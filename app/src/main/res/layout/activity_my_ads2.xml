@@ -65,37 +65,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/marketplace_img"
-                    android:layout_width="104dp"
-                    android:layout_height="98dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                    app:srcCompat="@drawable/avatar_male" />
-
 
                 <ImageView
                     android:id="@+id/marketplace_img2"
                     android:layout_width="104dp"
                     android:layout_height="98dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="90dp"
                     app:layout_constraintStart_toStartOf="parent"
 
-                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/avatar_female" />
-
 
                 <ScrollView
                     android:id="@+id/scrollView2"
                     android:layout_width="265dp"
                     android:layout_height="98dp"
-                    android:layout_marginTop="32dp"
                     android:fillViewport="true"
-                    app:layout_constraintStart_toEndOf="@+id/marketplace_img"
+                    app:layout_constraintStart_toEndOf="@+id/marketplace_img2"
                     app:layout_constraintTop_toTopOf="parent">
 
 
@@ -105,22 +91,12 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/et_edit_desc1"
+                            android:id="@+id/my_ads_desc"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:ems="10"
-                            android:gravity="start|top"
-                            android:inputType="textMultiLine"
-                            android:text="@string/Sample_desc_Marketplace"
-                            android:textSize="10sp" />
-
-                        <EditText
-                            android:id="@+id/editTextTextMultiLine3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:inputType="textMultiLine" />
+                            android:inputType="textPersonName"
+                            android:text="@string/marketplace_desc" />
                     </LinearLayout>
                 </ScrollView>
 
@@ -161,74 +137,6 @@
                     app:layout_constraintStart_toEndOf="@+id/btn_edit"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-                <ScrollView
-                    android:id="@+id/scrollView3"
-                    android:layout_width="264dp"
-                    android:layout_height="95dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="48dp"
-                    android:layout_marginEnd="9dp"
-                    android:fillViewport="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-
-                    app:layout_constraintStart_toEndOf="@+id/imageView12"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber">
-
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/et_edit_desc2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:ems="10"
-                            android:gravity="start|top"
-                            android:inputType="textMultiLine"
-                            android:text="@string/Sample_desc_Marketplace"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </ScrollView>
-
-                <EditText
-                    android:id="@+id/et_price2"
-                    android:layout_width="120dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="134dp"
-                    android:layout_marginTop="8dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:text="@string/SamplePrice"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-                <Button
-                    android:id="@+id/btn_edit2"
-                    android:layout_width="@dimen/btn_editWidth"
-                    android:layout_height="@dimen/btn_editHeight"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/btn_edit"
-                    android:textSize="12sp"
-                    app:backgroundTint="@color/editbtnColor"
-                    app:layout_constraintStart_toEndOf="@+id/et_price2"
-                    app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-                <Button
-                    android:id="@+id/btn_delete2"
-                    android:layout_width="75dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/btn_delete"
-                    android:textSize="10sp"
-                    app:backgroundTint="@color/btn_deleteColor"
-                    app:layout_constraintStart_toEndOf="@+id/btn_edit2"
-                    app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
@@ -243,6 +151,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_MarketplaceTitle"
 
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
+        app:srcCompat="@drawable/ic_baseline_shopping_cart_24"
+        tools:ignore="UnknownId" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
