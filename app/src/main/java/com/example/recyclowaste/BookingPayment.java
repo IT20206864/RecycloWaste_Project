@@ -27,11 +27,12 @@ public class BookingPayment extends AppCompatActivity {
         dbref = FirebaseDatabase.getInstance().getReference().child("Booking");
         try{
             dbref.push().setValue(booking);
+            /*Intent details = new Intent(this, BookingDetails.class);
+            startActivity(details);*/
             Toast.makeText(getApplicationContext(), "Booking Submitted!", Toast.LENGTH_SHORT).show();
         }catch (Exception e) {
             e.printStackTrace();
         }
-        /*Intent details = new Intent(this, BookingDetails.class);
-        startActivity(details);*/
+
     }
 }

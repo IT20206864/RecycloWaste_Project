@@ -178,7 +178,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                         Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
 
-                        inptlocation.setText(addresses.get(0).getLocality()  + ", " + addresses.get(0).getCountryName());
+                        inptlocation.setText(addresses.get(0).getLocality());
                     }catch (IOException e) {
                         e.printStackTrace();
                     }
