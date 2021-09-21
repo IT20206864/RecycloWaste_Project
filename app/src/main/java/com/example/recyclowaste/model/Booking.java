@@ -1,18 +1,32 @@
 package com.example.recyclowaste.model;
 
-public class Booking {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Booking implements Serializable {
     private String driver;
     private String type;
     private String location;
     private String date;
     private String time;
+    private String includes;
+    private double payment;
 
-    public Booking(String driver, String type, String location, String date, String time) {
+    public Booking(String driver, String type, String location, String date, String time, String includes) {
         this.driver = driver;
         this.type = type;
         this.location = location;
         this.date = date;
         this.time = time;
+        this.includes = includes;
+    }
+
+    public double getPayment() {
+        return payment;
+    }
+
+    public void setPayment(double payment) {
+        this.payment = payment;
     }
 
     public String getDriver() {
@@ -53,5 +67,13 @@ public class Booking {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getIncludes() {
+        return includes;
+    }
+
+    public void setIncludes(String includes) {
+        this.includes = includes;
     }
 }
