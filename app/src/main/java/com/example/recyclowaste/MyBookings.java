@@ -19,9 +19,9 @@ public class MyBookings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_bookings);
         myBookingsView = findViewById(R.id.myBookingsView);
-        Booking booking1 = new Booking("Sameera Silva","Domestic Waste", "Malabe Town", "08-08-2021","08:30AM");
-        Booking booking2 = new Booking("Hasitha Dulan","Medical Waste", "Kaduwela", "08-07-2021","09:30AM");
-        Booking booking3 = new Booking("Roshan Jayasena","Domestic Waste", "Malabe Town", "08-06-2021","10:30AM");
+        Booking booking1 = new Booking("Sameera Silva","Domestic Waste", "Malabe Town", "08-08-2021","08:30AM", null);
+        Booking booking2 = new Booking("Hasitha Dulan","Medical Waste", "Kaduwela", "08-07-2021","09:30AM", null);
+        Booking booking3 = new Booking("Roshan Jayasena","Domestic Waste", "Malabe Town", "08-06-2021","10:30AM", null);
 
 
         list = new ArrayList<>();

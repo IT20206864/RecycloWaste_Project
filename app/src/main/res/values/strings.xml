@@ -15,7 +15,7 @@
     <string name="book_pickup_title">Book Pickup</string>
     <string name="book_pickup_type">Type : </string>
     <string name="book_pickup_contains">Contains : </string>
-    <string name="book_pickup_location">Location : </string>
+    <string name="book_pickup_location">Address : </string>
     <string name="book_pickup_datetime">Date and Time : </string>
     <string name="book_pickup_confirm">Confirm</string>
     <string name="booking_payment_payment">Payment : </string>
