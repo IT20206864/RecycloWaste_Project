@@ -215,7 +215,7 @@
         android:drawableEnd="@drawable/ic_baseline_access_time_24_black"
         android:fontFamily="@font/page_content_font"
         android:onClick="onClickTime"
-        android:text="08:30 AM"
+        android:text="08:30"
         android:textColor="@color/black"
         app:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

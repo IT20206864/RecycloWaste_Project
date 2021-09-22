@@ -39,7 +39,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.booking = data.get(position);
         String driver = holder.booking.getDriver();
         String type = holder.booking.getType();
-        String location = holder.booking.getLocation();
+        String location = holder.booking.getLocation().getLocality();
         String date = holder.booking.getDate();
         String time = holder.booking.getTime();
 

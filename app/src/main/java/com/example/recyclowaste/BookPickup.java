@@ -27,18 +27,26 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Booking;
+import com.example.recyclowaste.model.UserLocation;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 public class BookPickup extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner dropdown;
@@ -55,7 +63,9 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     Button btnTime;
     EditText inptlocation;
     Booking booking;
+    UserLocation userlocation;
     FusedLocationProviderClient fusedLocationProviderClient;
+    DatabaseReference dbref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -96,42 +106,79 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                 Toast.makeText(getApplicationContext(), "Please Give Your Location", Toast.LENGTH_SHORT).show();
             }
             else {
-                String type = dropdown.getSelectedItem().toString();
-                String driver = "Mr. Kusal Mendis";
-                String date = btnDate.getText().toString();
-                String time = btnTime.getText().toString();
-                String location = inptlocation.getText().toString();
+                String drvr[] = new String[1];
+                TreeMap<Double, String> distances = new TreeMap<>();
 
-                if(waste1.isChecked()) {
-                    includes.add(waste1.getText().toString());
-                }
-                if(waste2.isChecked()) {
-                    includes.add(waste2.getText().toString());
-                }
-                if(waste3.isChecked()) {
-                    includes.add(waste3.getText().toString());
-                }
-                if(waste4.isChecked()) {
-                    includes.add(waste4.getText().toString());
-                }
-                if(waste5.isChecked()) {
-                    includes.add(waste5.getText().toString());
-                }
-                if(waste6.isChecked()) {
-                    includes.add(waste6.getText().toString());
-                }
+                dbref = FirebaseDatabase.getInstance().getReference().child("Drivers");
+                dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.hasChildren()) {
+                            float[] dist = new float[1];
+                            for (DataSnapshot snap : snapshot.getChildren()) {
+                                if((Boolean)snap.child("available").getValue() == true) {
+                                    Location.distanceBetween(Double.parseDouble(snap.child("location").child("latitude").getValue().toString()),
+                                            Double.parseDouble(snap.child("location").child("longitude").getValue().toString()), userlocation.getLatitude(), userlocation.getLongitude(), dist);
+                                    distances.put((double)dist[0], snap.child("fullName").getValue().toString());
+                                }
+                            }
 
-                String strIncludes = new String();
+                            if(!distances.isEmpty()) {
+                                Map.Entry<Double, String> selected = distances.firstEntry();
+                                drvr[0] = selected.getValue();
 
-                for(String item : includes) {
-                    strIncludes = strIncludes + item + ",";
-                }
 
-                booking = new Booking(driver,type, location, date, time, strIncludes);
+                                String type = dropdown.getSelectedItem().toString();
+                                String driver = drvr[0];
+                                String date = btnDate.getText().toString();
+                                String time = btnTime.getText().toString();
+                                String location = inptlocation.getText().toString();
 
-                Intent payment = new Intent(this, BookingPayment.class);
-                payment.putExtra("booking", booking);
-                startActivity(payment);
+                                if (waste1.isChecked()) {
+                                    includes.add(waste1.getText().toString());
+                                }
+                                if (waste2.isChecked()) {
+                                    includes.add(waste2.getText().toString());
+                                }
+                                if (waste3.isChecked()) {
+                                    includes.add(waste3.getText().toString());
+                                }
+                                if (waste4.isChecked()) {
+                                    includes.add(waste4.getText().toString());
+                                }
+                                if (waste5.isChecked()) {
+                                    includes.add(waste5.getText().toString());
+                                }
+                                if (waste6.isChecked()) {
+                                    includes.add(waste6.getText().toString());
+                                }
+
+                                String strIncludes = new String();
+
+                                for (String item : includes) {
+                                    strIncludes = strIncludes + item + ",";
+                                }
+
+                                booking = new Booking(driver, type, userlocation, date, time, strIncludes);
+
+                                Intent payment = new Intent(BookPickup.this, BookingPayment.class);
+                                payment.putExtra("booking", booking);
+                                startActivity(payment);
+                            }
+                            else {
+                                Toast.makeText(getApplicationContext(), "No drivers available! Please try again later!", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
             }
 
 
@@ -177,7 +224,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                     try {
                         Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
-
+                        userlocation = new UserLocation(addresses.get(0).getLocality(), addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
                         inptlocation.setText(addresses.get(0).getLocality());
                     }catch (IOException e) {
                         e.printStackTrace();
@@ -227,4 +274,5 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
 
         timePickerDialog.show();
     }
+
 }
