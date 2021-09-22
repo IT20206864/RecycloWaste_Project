@@ -29,7 +29,7 @@ public class BookingPayment extends AppCompatActivity {
     }
 
     public void clickConfirm(View view) {
-        dbref = FirebaseDatabase.getInstance().getReference().child("Booking");
+        dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69");
         try{
             dbref.push().setValue(booking);
             /*Intent details = new Intent(this, BookingDetails.class);
