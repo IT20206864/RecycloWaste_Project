@@ -1,11 +1,13 @@
 package com.example.recyclowaste;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,10 +19,12 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private LayoutInflater layoutInflater;
     private List<Booking> data;
+    private List<String> keys;
 
-    Adapter(Context context, List<Booking> data){
+    Adapter(Context context, List<Booking> data, List<String> keys){
         this.layoutInflater = LayoutInflater.from(context);
         this.data = data;
+        this.keys = keys;
     }
 
     @NonNull
@@ -45,6 +49,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.date.setText(date);
         holder.time.setText(time);
 
+        holder.btnDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent details = new Intent(context, BookingDetails.class);
+                details.putExtra("key", keys.get(position));
+                context.startActivity(details);
+
+            }
+        });
+
 
     }
 
@@ -65,7 +80,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             date = itemView.findViewById(R.id.date_text);
             time = itemView.findViewById(R.id.time_text);
             btnDetails = itemView.findViewById(R.id.btnDetails);
-
         }
 
     }

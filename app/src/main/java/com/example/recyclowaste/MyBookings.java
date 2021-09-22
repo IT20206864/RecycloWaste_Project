@@ -23,6 +23,7 @@ public class MyBookings extends AppCompatActivity {
     RecyclerView myBookingsView;
     Adapter adapter;
     ArrayList<Booking> list;
+    ArrayList<String> keys;
     DatabaseReference dbref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class MyBookings extends AppCompatActivity {
 
 
         list = new ArrayList<>();
+        keys = new ArrayList<>();
         dbref = FirebaseDatabase.getInstance().getReference().child("Booking");
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -42,9 +44,10 @@ public class MyBookings extends AppCompatActivity {
                     for(DataSnapshot snap : snapshot.getChildren()) {
                         list.add(new Booking(snap.child("driver").getValue().toString(), snap.child("type").getValue().toString(), snap.child("location").getValue().toString()
                                 , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString()));
+                        keys.add(snap.getKey().toString());
                     }
 
-                    adapter = new Adapter(MyBookings.this, list);
+                    adapter = new Adapter(MyBookings.this, list, keys);
                     myBookingsView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
