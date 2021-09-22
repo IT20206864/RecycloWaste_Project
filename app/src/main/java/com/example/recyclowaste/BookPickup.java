@@ -23,6 +23,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -61,7 +62,8 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     CheckBox waste6;
     Button btnDate;
     Button btnTime;
-    EditText inptlocation;
+    TextView inptlocation;
+    String loc;
     Booking booking;
     UserLocation userlocation;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -102,7 +104,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
 
     public void clickConfirm(View view) {
         try {
-            if(TextUtils.isEmpty(inptlocation.getText().toString())) {
+            if(loc == null) {
                 Toast.makeText(getApplicationContext(), "Please Give Your Location", Toast.LENGTH_SHORT).show();
             }
             else {
@@ -126,44 +128,58 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                             if(!distances.isEmpty()) {
                                 Map.Entry<Double, String> selected = distances.firstEntry();
                                 drvr[0] = selected.getValue();
+                                boolean containsIsEmpty = true;
 
 
                                 String type = dropdown.getSelectedItem().toString();
                                 String driver = drvr[0];
                                 String date = btnDate.getText().toString();
                                 String time = btnTime.getText().toString();
-                                String location = inptlocation.getText().toString();
+                                loc = inptlocation.getText().toString();
 
                                 if (waste1.isChecked()) {
                                     includes.add(waste1.getText().toString());
+                                    containsIsEmpty = false;
                                 }
                                 if (waste2.isChecked()) {
                                     includes.add(waste2.getText().toString());
+                                    containsIsEmpty = false;
                                 }
                                 if (waste3.isChecked()) {
                                     includes.add(waste3.getText().toString());
+                                    containsIsEmpty = false;
                                 }
                                 if (waste4.isChecked()) {
                                     includes.add(waste4.getText().toString());
+                                    containsIsEmpty = false;
                                 }
                                 if (waste5.isChecked()) {
                                     includes.add(waste5.getText().toString());
+                                    containsIsEmpty = false;
                                 }
                                 if (waste6.isChecked()) {
                                     includes.add(waste6.getText().toString());
+                                    containsIsEmpty = false;
                                 }
 
-                                String strIncludes = new String();
+                                if(!containsIsEmpty) {
+                                    String strIncludes = new String();
 
-                                for (String item : includes) {
-                                    strIncludes = strIncludes + item + ",";
+                                    for (String item : includes) {
+                                        strIncludes = strIncludes + item + ",";
+                                    }
+
+                                    booking = new Booking(driver, type, userlocation, date, time, strIncludes, calculatePayment());
+
+                                    Intent payment = new Intent(BookPickup.this, BookingPayment.class);
+                                    payment.putExtra("booking", booking);
+                                    startActivity(payment);
+                                }
+                                else {
+                                    Toast.makeText(getApplicationContext(), "Please provide necessary details!", Toast.LENGTH_LONG).show();
                                 }
 
-                                booking = new Booking(driver, type, userlocation, date, time, strIncludes);
 
-                                Intent payment = new Intent(BookPickup.this, BookingPayment.class);
-                                payment.putExtra("booking", booking);
-                                startActivity(payment);
                             }
                             else {
                                 Toast.makeText(getApplicationContext(), "No drivers available! Please try again later!", Toast.LENGTH_LONG).show();
@@ -225,7 +241,8 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                         Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
                         userlocation = new UserLocation(addresses.get(0).getLocality(), addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
-                        inptlocation.setText(addresses.get(0).getLocality());
+                        loc = addresses.get(0).getLocality();
+                        inptlocation.setText(loc);
                     }catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -273,6 +290,55 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         }, HOUR, MINUTE, true);
 
         timePickerDialog.show();
+    }
+
+    public double calculatePayment() {
+        double payment = 0;
+
+        if(dropdown.getSelectedItem() == "Domestic Waste"){
+            payment += 150;
+            if (waste1.isChecked()) {
+                payment += 10;
+            }
+            if (waste2.isChecked()) {
+                payment += 10;
+            }
+            if (waste3.isChecked()) {
+                payment += 10;
+            }
+            if (waste4.isChecked()) {
+                payment += 10;
+            }
+            if (waste5.isChecked()) {
+                payment += 10;
+            }
+            if (waste6.isChecked()) {
+                payment += 10;
+            }
+        }
+        else if(dropdown.getSelectedItem() == "Medical Waste"){
+            payment += 250;
+            if (waste1.isChecked()) {
+                payment += 20;
+            }
+            if (waste2.isChecked()) {
+                payment += 20;
+            }
+            if (waste3.isChecked()) {
+                payment += 20;
+            }
+            if (waste4.isChecked()) {
+                payment += 20;
+            }
+            if (waste5.isChecked()) {
+                payment += 20;
+            }
+            if (waste6.isChecked()) {
+                payment += 20;
+            }
+        }
+
+        return payment;
     }
 
 }
