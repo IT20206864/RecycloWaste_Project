@@ -92,11 +92,11 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         int MINUTE = calendar.get(Calendar.MINUTE);
 
         btnDate.setText(DATE + "/" + (MONTH+1) + "/" + YEAR);
-        if(HOUR < 10) {
-            btnTime.setText("0" + (HOUR+1) + ":" + MINUTE);
+        if(HOUR <= 9) {
+            btnTime.setText("0" + (HOUR) + ":" + MINUTE);
         }
         else {
-            btnTime.setText((HOUR+1) + ":" + MINUTE);
+            btnTime.setText((HOUR) + ":" + MINUTE);
         }
 
 
