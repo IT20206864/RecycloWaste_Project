@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.recyclowaste">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -10,12 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
-        <activity android:name=".ForgotPassword"></activity>
+        <activity
+            android:name=".Successful"
+            android:exported="true"
+            android:label="Successful"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".ForgotPassword" />
         <activity
             android:name=".MyPackage"
             android:exported="true"
             android:label="My Packages"
-            android:parentActivityName=".MyPackage"/>
+            android:parentActivityName=".MyPackage" />
         <activity
             android:name=".SelectPackageOne"
             android:exported="true" />
@@ -23,18 +29,17 @@
             android:name=".EditPaymentDetails"
             android:exported="true"
             android:label="Payment Details"
-            android:parentActivityName=".EditPaymentDetails"/>
+            android:parentActivityName=".EditPaymentDetails" />
         <activity
             android:name=".ViewPaymentDetails"
             android:exported="true"
             android:label="Payment Details"
-            android:parentActivityName=".ViewPaymentDetails"/>
-
+            android:parentActivityName=".ViewPaymentDetails" />
         <activity
             android:name=".PaymentForm"
             android:exported="true"
             android:label="Payment Form"
-            android:parentActivityName=".PaymentForm"/>
+            android:parentActivityName=".PaymentForm" />
         <activity
             android:name=".Reviews"
             android:exported="true"
@@ -108,8 +113,7 @@
             android:label="@string/myAds"
             android:exported="true"
             android:parentActivityName=".HomeMarketplace" />
-        <activity android:name=".Login"
-            ></activity>
+        <activity android:name=".Login" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Booking;
+import com.example.recyclowaste.model.UserLocation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -18,10 +19,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class MyBookings extends AppCompatActivity {
     RecyclerView myBookingsView;
     Adapter adapter;
+    Stack<Booking> bookingStack;
+    Stack<String> keyStack;
     ArrayList<Booking> list;
     ArrayList<String> keys;
     DatabaseReference dbref;
@@ -36,15 +40,27 @@ public class MyBookings extends AppCompatActivity {
 
         list = new ArrayList<>();
         keys = new ArrayList<>();
-        dbref = FirebaseDatabase.getInstance().getReference().child("Booking");
+        bookingStack = new Stack<>();
+        keyStack = new Stack<>();
+        dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69");
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.hasChildren()) {
                     for(DataSnapshot snap : snapshot.getChildren()) {
-                        list.add(new Booking(snap.child("driver").getValue().toString(), snap.child("type").getValue().toString(), snap.child("location").getValue().toString()
-                                , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString()));
-                        keys.add(snap.getKey().toString());
+                        UserLocation location = new UserLocation(snap.child("location").child("locality").getValue().toString(),
+                                Double.parseDouble(snap.child("location").child("latitude").getValue().toString()), Double.parseDouble(snap.child("location").child("longitude").getValue().toString()));
+                        bookingStack.push(new Booking(snap.child("driver").getValue().toString(), snap.child("type").getValue().toString(), location
+                                , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString(), Double.parseDouble(snap.child("payment").getValue().toString())));
+                        keyStack.push(snap.getKey().toString());
+                    }
+
+                    while(!bookingStack.isEmpty()) {
+                        list.add(bookingStack.pop());
+                    }
+
+                    while(!keyStack.isEmpty()) {
+                        keys.add(keyStack.pop());
                     }
 
                     adapter = new Adapter(MyBookings.this, list, keys);
