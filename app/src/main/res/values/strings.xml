@@ -29,7 +29,9 @@
     <string name="booking_details_type">Type :  </string>
     <string name="booking_details_contains">Contains :  </string>
     <string name="booking_details_location">Location :  </string>
-    <string name="booking_details_datettime">Date and Time : </string>
+    <string name="booking_details_date">Date : </string>
+    <string name="booking_details_time">Time : </string>
+    <string name="booking_details_payment">Payment : </string>
     <string name="booking_details_cancel">Cancel Booking</string>
     <string name="booking_details_reschedule">Re-schedule</string>
     <string name="my_bookings_title">My Bookings</string>

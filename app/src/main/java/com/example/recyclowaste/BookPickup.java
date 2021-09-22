@@ -82,6 +82,24 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         inptlocation = findViewById(R.id.inputLocation);
         btnDate = findViewById(R.id.btnDate);
         btnTime = findViewById(R.id.btnTime);
+
+        Calendar calendar =  Calendar.getInstance();
+        int YEAR = calendar.get(Calendar.YEAR);
+        int MONTH = calendar.get(Calendar.MONTH);
+        int DATE = calendar.get(Calendar.DATE);
+
+        int HOUR = calendar.get(Calendar.HOUR);
+        int MINUTE = calendar.get(Calendar.MINUTE);
+
+        btnDate.setText(DATE + "/" + (MONTH+1) + "/" + YEAR);
+        if(HOUR < 10) {
+            btnTime.setText("0" + (HOUR+1) + ":" + MINUTE);
+        }
+        else {
+            btnTime.setText((HOUR+1) + ":" + MINUTE);
+        }
+
+
         includes = new ArrayList<String>();
 
         //get the spinner from the xml.
@@ -285,7 +303,13 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int min) {
-                btnTime.setText(hour + ":" + min);
+                if(hour < 10) {
+                    btnTime.setText("0" + hour + ":" + min);
+                }
+                else {
+                    btnTime.setText(hour + ":" + min);
+                }
+
             }
         }, HOUR, MINUTE, true);
 
