@@ -12,13 +12,14 @@ public class Booking implements Serializable {
     private String includes;
     private double payment;
 
-    public Booking(String driver, String type, UserLocation location, String date, String time, String includes) {
+    public Booking(String driver, String type, UserLocation location, String date, String time, String includes, double payment) {
         this.driver = driver;
         this.type = type;
         this.location = location;
         this.date = date;
         this.time = time;
         this.includes = includes;
+        this.payment = payment;
     }
 
     public double getPayment() {
