@@ -6,13 +6,13 @@ import java.util.ArrayList;
 public class Booking implements Serializable {
     private String driver;
     private String type;
-    private String location;
+    private UserLocation location;
     private String date;
     private String time;
     private String includes;
     private double payment;
 
-    public Booking(String driver, String type, String location, String date, String time, String includes) {
+    public Booking(String driver, String type, UserLocation location, String date, String time, String includes) {
         this.driver = driver;
         this.type = type;
         this.location = location;
@@ -45,11 +45,11 @@ public class Booking implements Serializable {
         this.type = type;
     }
 
-    public String getLocation() {
+    public UserLocation getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(UserLocation location) {
         this.location = location;
     }
 

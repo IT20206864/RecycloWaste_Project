@@ -60,7 +60,7 @@ public class BookingDetails extends AppCompatActivity {
                 if(snapshot.hasChildren()) {
                     driver.setText(snapshot.child("driver").getValue().toString());
                     type.setText(snapshot.child("type").getValue().toString());
-                    location.setText(snapshot.child("location").getValue().toString());
+                    location.setText(snapshot.child("location").child("locality").getValue().toString());
                     datetime.setText(snapshot.child("date").getValue().toString() + " " + snapshot.child("time").getValue().toString());
                     contains.setText(snapshot.child("includes").getValue().toString());
                     date = snapshot.child("date").getValue().toString().split("/");
