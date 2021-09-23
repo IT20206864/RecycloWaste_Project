@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -22,9 +25,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Set;
+
 public class BookingDetails extends AppCompatActivity {
     DatabaseReference dbref;
     String key;
+    String keyreq;
+    int reqcode;
+    int reminderCount;
+    boolean reminderwasset;
     TextView driver;
     TextView type;
     TextView tv_date;
@@ -32,7 +41,10 @@ public class BookingDetails extends AppCompatActivity {
     TextView payment;
     TextView location;
     TextView contains;
+    TextView nah;
+    Switch reminder;
     Button reschedule;
+    SharedPreferences sharedPreferences;
     AlertDialog.Builder builder;
     String[] date;
     String[] time;
@@ -49,10 +61,21 @@ public class BookingDetails extends AppCompatActivity {
         location = findViewById(R.id.tv_location);
         contains = findViewById(R.id.tv_contains);
         reschedule = findViewById(R.id.btnReschedule);
+        reminder = findViewById(R.id.remider_switch);
+        nah = findViewById(R.id.nah);
+
         builder = new AlertDialog.Builder(this);
 
         Intent i = getIntent();
         key = i.getStringExtra("key");
+        keyreq = key + "reqcode";
+        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        reminder.setChecked(sharedPreferences.getBoolean(key, false));
+        reqcode = sharedPreferences.getInt(keyreq, 0);
+        reminderCount = sharedPreferences.getInt("ReminderCount", 0);
+        reminderwasset = sharedPreferences.getBoolean((key+"wasset"), false);
+        nah.setText(String.valueOf(reqcode) + ", " + String.valueOf(reminderCount));
+
         dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69").child(key);
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -162,6 +185,9 @@ public class BookingDetails extends AppCompatActivity {
                                                 if(snapshot.hasChild(key)) {
                                                     dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69").child(key);
                                                     dbref.removeValue();
+                                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                    editor.remove(key);
+                                                    editor.remove(keyreq);
                                                     Toast.makeText(getApplicationContext(), "Canceled!", Toast.LENGTH_SHORT).show();
                                                     Intent mybookings = new Intent(BookingDetails.this, MyBookings.class);
                                                     startActivity(mybookings);
@@ -187,6 +213,33 @@ public class BookingDetails extends AppCompatActivity {
 
         alert.setTitle("Warning");
         alert.show();
+    }
+
+    public void setReminder (View view) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if(reminder.isChecked()) {
+            if(reminderwasset ==  false) {
+                editor.putBoolean(key, true);
+                reqcode = reminderCount + 1;
+                editor.putInt(keyreq, reqcode);
+                editor.putInt("ReminderCount", ++reminderCount);
+                editor.putBoolean((key + "wasset"), true);
+                editor.commit();
+                Toast.makeText(getApplicationContext(), "Reminder is ON", Toast.LENGTH_LONG).show();
+            }
+            else {
+                editor.putBoolean(key, true);
+                editor.commit();
+                Toast.makeText(getApplicationContext(), "Reminder is ON", Toast.LENGTH_LONG).show();
+            }
+
+        }
+        else {
+            editor.putBoolean(key, false);
+            editor.commit();
+            Toast.makeText(getApplicationContext(), "Reminder is OFF", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
