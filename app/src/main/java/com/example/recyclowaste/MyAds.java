@@ -46,16 +46,17 @@ public class MyAds extends AppCompatActivity {
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1");
 
-        dbRef.addValueEventListener(new ValueEventListener() {
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap : snapshot.getChildren() ){
-                    Advertisment ad = snap.getValue(Advertisment.class);
-                    ads.add(ad);
+                    ads.add(new Advertisment(snap.child("title").getValue().toString(), snap.child("description").getValue().toString(), snap.child("image").getValue().toString()
+                    ,Float.parseFloat(snap.child("price").getValue().toString()), Integer.parseInt(snap.child("quantity").getValue().toString())));
                 }
 
                 adapter = new AdapterMyAds(getApplicationContext(),ads);
                 recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
