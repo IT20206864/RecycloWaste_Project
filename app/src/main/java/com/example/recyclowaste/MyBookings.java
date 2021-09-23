@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Booking;
@@ -19,16 +23,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Stack;
 
-public class MyBookings extends AppCompatActivity {
+public class MyBookings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     RecyclerView myBookingsView;
     Adapter adapter;
-    Stack<Booking> bookingStack;
-    Stack<String> keyStack;
+    ArrayList<Booking> bookingArray;
+    ArrayList<String> keyArray;
     ArrayList<Booking> list;
     ArrayList<String> keys;
     DatabaseReference dbref;
+    Spinner dropdown;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,36 +43,29 @@ public class MyBookings extends AppCompatActivity {
         myBookingsView = findViewById(R.id.myBookingsView);
         myBookingsView.setLayoutManager(new LinearLayoutManager(this));
 
+        dropdown = findViewById(R.id.sortSpinner);
+
+        String[] items = new String[]{"Newest", "Oldest"};
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
+        dropdown.setAdapter(adapter2);
+        dropdown.setOnItemSelectedListener(this);
+
+
+
 
         list = new ArrayList<>();
         keys = new ArrayList<>();
-        bookingStack = new Stack<>();
-        keyStack = new Stack<>();
+        bookingArray = new ArrayList<>();
+        keyArray = new ArrayList<>();
+
         dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69");
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChildren()) {
-                    for(DataSnapshot snap : snapshot.getChildren()) {
-                        UserLocation location = new UserLocation(snap.child("location").child("locality").getValue().toString(),
-                                Double.parseDouble(snap.child("location").child("latitude").getValue().toString()), Double.parseDouble(snap.child("location").child("longitude").getValue().toString()));
-                        bookingStack.push(new Booking(snap.child("driver").getValue().toString(), snap.child("type").getValue().toString(), location
-                                , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString(), Double.parseDouble(snap.child("payment").getValue().toString())));
-                        keyStack.push(snap.getKey().toString());
-                    }
-
-                    while(!bookingStack.isEmpty()) {
-                        list.add(bookingStack.pop());
-                    }
-
-                    while(!keyStack.isEmpty()) {
-                        keys.add(keyStack.pop());
-                    }
-
-                    adapter = new Adapter(MyBookings.this, list, keys);
-                    myBookingsView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-                }
+                getBookings(snapshot);
+                sortByNewest();
 
             }
 
@@ -76,6 +75,70 @@ public class MyBookings extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void getBookings(DataSnapshot snapshot) {
+        if(snapshot.hasChildren()) {
+            for(DataSnapshot snap : snapshot.getChildren()) {
+                UserLocation location = new UserLocation(snap.child("location").child("locality").getValue().toString(),
+                        Double.parseDouble(snap.child("location").child("latitude").getValue().toString()), Double.parseDouble(snap.child("location").child("longitude").getValue().toString()));
+
+                bookingArray.add(new Booking(snap.child("driver").getValue().toString(), snap.child("type").getValue().toString(), location
+                        , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString(), Double.parseDouble(snap.child("payment").getValue().toString())));
+
+                keyArray.add(snap.getKey().toString());
+            }
+        }
+    }
+
+    public void sortByNewest() {
+
+        list.clear();
+        keys.clear();
+
+        for(int i = bookingArray.size()-1; i >= 0; i--) {
+            list.add(bookingArray.get(i));
+        }
+
+        for(int i = keyArray.size()-1; i >= 0; i--) {
+            keys.add(keyArray.get(i));
+        }
+
+        adapter = new Adapter(MyBookings.this, list, keys);
+        myBookingsView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void sortByOldest() {
+        list.clear();
+        keys.clear();
+
+        for(int i = 0; i < bookingArray.size();i++) {
+            list.add(bookingArray.get(i));
+        }
+
+        for(int i = 0; i < keyArray.size(); i++) {
+            keys.add(keyArray.get(i));
+        }
+
+        adapter = new Adapter(MyBookings.this, list, keys);
+        myBookingsView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(dropdown.getSelectedItem() == "Newest"){
+           sortByNewest();
+        }
+        else if(dropdown.getSelectedItem() == "Oldest"){
+            sortByOldest();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }
