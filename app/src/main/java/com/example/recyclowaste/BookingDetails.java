@@ -3,8 +3,10 @@ package com.example.recyclowaste;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.Set;
 
 public class BookingDetails extends AppCompatActivity {
@@ -74,6 +77,12 @@ public class BookingDetails extends AppCompatActivity {
         reqcode = sharedPreferences.getInt(keyreq, 0);
         reminderCount = sharedPreferences.getInt("ReminderCount", 0);
         reminderwasset = sharedPreferences.getBoolean((key+"wasset"), false);
+        /*SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key, false);
+        editor.putInt(keyreq, 0);
+        editor.putInt("ReminderCount", 0);
+        editor.putBoolean((key + "wasset"), false);
+        editor.commit();*/
         nah.setText(String.valueOf(reqcode) + ", " + String.valueOf(reminderCount));
 
         dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69").child(key);
@@ -219,15 +228,52 @@ public class BookingDetails extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(reminder.isChecked()) {
             if(reminderwasset ==  false) {
-                editor.putBoolean(key, true);
+                //create request code
                 reqcode = reminderCount + 1;
+
+                /*set alarm
+                Intent intent = new Intent(this, AlarmReciever.class);
+                intent.putExtra("notificationId", 1);
+                intent.putExtra("message" , "");
+                PendingIntent alarmIntent =  PendingIntent.getBroadcast(this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+                Calendar startTime = Calendar.getInstance();
+                startTime.set(Calendar.YEAR, Integer.parseInt(date[2]));
+                startTime.set(Calendar.MONTH, Integer.parseInt(date[1])-1);
+                startTime.set(Calendar.DATE, Integer.parseInt(date[0]));
+                startTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
+                startTime.set(Calendar.MINUTE, Integer.parseInt(time[1]));
+                startTime.set(Calendar.SECOND, 0);
+                long alarmStartTime = startTime.getTimeInMillis();
+                alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);*/
+
+                //update shared preferences
+                editor.putBoolean(key, true);
                 editor.putInt(keyreq, reqcode);
                 editor.putInt("ReminderCount", ++reminderCount);
                 editor.putBoolean((key + "wasset"), true);
                 editor.commit();
+
                 Toast.makeText(getApplicationContext(), "Reminder is ON", Toast.LENGTH_LONG).show();
             }
             else {
+                /*set alarm
+                Intent intent = new Intent(this, AlarmReciever.class);
+                intent.putExtra("notificationId", 1);
+                intent.putExtra("message" , "");
+                PendingIntent alarmIntent =  PendingIntent.getBroadcast(this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+                Calendar startTime = Calendar.getInstance();
+                startTime.set(Calendar.YEAR, Integer.parseInt(date[2]));
+                startTime.set(Calendar.MONTH, Integer.parseInt(date[1])-1);
+                startTime.set(Calendar.DATE, Integer.parseInt(date[0]));
+                startTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
+                startTime.set(Calendar.MINUTE, Integer.parseInt(time[1]));
+                startTime.set(Calendar.SECOND, 0);
+                long alarmStartTime = startTime.getTimeInMillis();
+                alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);*/
+
+                //update shared preferences
                 editor.putBoolean(key, true);
                 editor.commit();
                 Toast.makeText(getApplicationContext(), "Reminder is ON", Toast.LENGTH_LONG).show();
@@ -235,6 +281,15 @@ public class BookingDetails extends AppCompatActivity {
 
         }
         else {
+            /*cancel alarm
+            Intent intent = new Intent(this, AlarmReciever.class);
+            intent.putExtra("notificationId", 1);
+            intent.putExtra("message" , "");
+            PendingIntent alarmIntent =  PendingIntent.getBroadcast(this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarm.cancel(alarmIntent);*/
+
+            //update shared preferences
             editor.putBoolean(key, false);
             editor.commit();
             Toast.makeText(getApplicationContext(), "Reminder is OFF", Toast.LENGTH_LONG).show();
