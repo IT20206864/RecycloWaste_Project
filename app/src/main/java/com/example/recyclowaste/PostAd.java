@@ -76,7 +76,7 @@ public class PostAd extends AppCompatActivity {
     }
 
     public void PostAd(View view){
-        dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment");
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1");
         storageRef = FirebaseStorage.getInstance().getReference().child("Advertisment");
         try{
             //Validation for empty form
@@ -92,7 +92,7 @@ public class PostAd extends AppCompatActivity {
 
 
             Toast.makeText(getApplicationContext(),"Ad posted!",Toast.LENGTH_SHORT).show();
-            ClearControls();
+
         }
         catch(NumberFormatException e){
             Toast.makeText(getApplicationContext(),"Please enter a correct amount for the price",Toast.LENGTH_SHORT).show();
@@ -137,6 +137,7 @@ public class PostAd extends AppCompatActivity {
         else{
             Toast.makeText(getApplicationContext(),"No File Selected",Toast.LENGTH_SHORT).show();
         }
+        ClearControls();
     }
 
     private void openFileChooser(){
