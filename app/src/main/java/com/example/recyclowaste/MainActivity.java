@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openHomeMarketplace(View view) {
-            Intent homeMarketplace = new Intent(this, ForgotPassword.class);
+            Intent homeMarketplace = new Intent(this, MyAds.class);
 
         startActivity(homeMarketplace);
     }
