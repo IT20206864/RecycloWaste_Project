@@ -13,7 +13,6 @@ public class Reviews extends AppCompatActivity {
     Review review;
     TextView tv_tipView;
     TextView nd_customamount;
-    Button bt_hundred;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
