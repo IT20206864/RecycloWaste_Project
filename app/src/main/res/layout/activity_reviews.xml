@@ -36,6 +36,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="40dp"
+        android:onClick="openBookUser"
         android:text="@string/bt_forbooking"
         android:textSize="12sp"
         app:backgroundTint="@color/teal_200"
