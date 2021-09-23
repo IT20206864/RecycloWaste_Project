@@ -7,6 +7,7 @@ public class Advertisment {
     private String Image;
     private float Price;
     private int Quantity;
+    private int Ad_ID;
  //   private String Username;
 
    /* public String getUsername() {
