@@ -178,9 +178,7 @@ public class BookingDetails extends AppCompatActivity {
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //  Action for 'NO' Button
                         dialog.cancel();
-
                     }
                 });
 
@@ -223,7 +221,6 @@ public class BookingDetails extends AppCompatActivity {
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //  Action for 'NO' Button
                         dialog.cancel();
 
                     }

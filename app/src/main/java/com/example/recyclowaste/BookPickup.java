@@ -250,8 +250,6 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void onClickLocation (View view) {
-
-
             checkLocationPermission();
     }
 
