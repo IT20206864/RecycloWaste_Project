@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.recyclowaste.model.Booking;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,14 +51,18 @@ public class BookingDetails extends AppCompatActivity {
     DecimalFormat df;
     SimpleDateFormat dateFormat;
     SimpleDateFormat timeFormat;
+    SimpleDateFormat timeFormatDigital;
     Loader loader;
+    Booking booking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_details);
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        timeFormat = new SimpleDateFormat("HH:mm");
+        timeFormat = new SimpleDateFormat("hh:mm");
+        timeFormatDigital = new SimpleDateFormat("HH:mm");
+
         driver = findViewById(R.id.tv_driver);
         type = findViewById(R.id.tv_type);
         tv_date = findViewById(R.id.tv_date);
@@ -84,15 +89,17 @@ public class BookingDetails extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
 
                 if(snapshot.hasChildren()) {
+
                     driver.setText(snapshot.child("driver").getValue().toString());
                     type.setText(snapshot.child("type").getValue().toString());
                     location.setText(snapshot.child("location").child("locality").getValue().toString());
                     tv_date.setText(snapshot.child("date").getValue().toString());
-                    tv_time.setText(snapshot.child("time").getValue().toString());
                     payment.setText("LKR " + df.format(Double.parseDouble(snapshot.child("payment").getValue().toString())));
                     contains.setText(snapshot.child("includes").getValue().toString());
                     date = snapshot.child("date").getValue().toString().split("-");
                     time = snapshot.child("time").getValue().toString().split(":");
+                    tv_time.setText(TimeFormatter.ampmTime(snapshot.child("time").getValue().toString()));
+
                 }
                 loader.dismissLoadingDialog();
 
@@ -131,6 +138,7 @@ public class BookingDetails extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 if(snapshot.hasChild(key)) {
+                                                    String am_pm;
                                                     Calendar cal = Calendar.getInstance();
                                                     cal.set(Calendar.YEAR, year);
                                                     cal.set(Calendar.MONTH, month);
@@ -140,10 +148,10 @@ public class BookingDetails extends AppCompatActivity {
 
                                                     dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username).child(key);
                                                     dbref.child("date").setValue(dateFormat.format(cal.getTime()));
-                                                    dbref.child("time").setValue(timeFormat.format(cal.getTime()));
+                                                    dbref.child("time").setValue(timeFormatDigital.format(cal.getTime()));
 
                                                     tv_date.setText(dateFormat.format(cal.getTime()));
-                                                    tv_time.setText(timeFormat.format(cal.getTime()));
+                                                    tv_time.setText(TimeFormatter.ampmTime(cal));
 
                                                     Toast.makeText(getApplicationContext(), "Successfull!", Toast.LENGTH_SHORT).show();
                                                 }
@@ -160,7 +168,7 @@ public class BookingDetails extends AppCompatActivity {
                                         });
 
                                     }
-                                }, HOUR, MINUTE, true);
+                                }, HOUR, MINUTE, false);
 
                                 timePickerDialog.show();
                             }

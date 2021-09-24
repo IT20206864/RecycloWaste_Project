@@ -77,15 +77,17 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     FusedLocationProviderClient fusedLocationProviderClient;
     DatabaseReference dbref;
     SimpleDateFormat dateFormat;
-    SimpleDateFormat timeFormat;
+    SimpleDateFormat timeFormatDigital;
     Loader loader;
+    String pickupDate;
+    String pickupTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_pickup);
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        timeFormat = new SimpleDateFormat("HH:mm");
+        timeFormatDigital = new SimpleDateFormat("HH:mm");
         loader = new Loader(this);
 
         waste1 = (CheckBox)findViewById(R.id.waste1);
@@ -99,15 +101,14 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         btnTime = findViewById(R.id.btnTime);
 
         Calendar calendar =  Calendar.getInstance();
-        int YEAR = calendar.get(Calendar.YEAR);
-        int MONTH = calendar.get(Calendar.MONTH);
-        int DATE = calendar.get(Calendar.DATE);
 
-        int HOUR = calendar.get(Calendar.HOUR);
-        int MINUTE = calendar.get(Calendar.MINUTE);
+        int HOUR = calendar.get(Calendar.HOUR_OF_DAY);
 
         btnDate.setText(dateFormat.format(calendar.getTime()));
-        btnTime.setText(timeFormat.format(calendar.getTime()));
+        pickupDate = dateFormat.format(calendar.getTime());
+        pickupTime = timeFormatDigital.format(calendar.getTime());
+        btnTime.setText(TimeFormatter.ampmTime(calendar));
+
 
 
         includes = new ArrayList<String>();
@@ -158,8 +159,6 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
 
                                 String type = dropdown.getSelectedItem().toString();
                                 String driver = drvr[0];
-                                String date = btnDate.getText().toString();
-                                String time = btnTime.getText().toString();
                                 loc = inptlocation.getText().toString();
 
                                 if (waste1.isChecked()) {
@@ -194,7 +193,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                                         strIncludes = strIncludes + item + ",";
                                     }
 
-                                    booking = new Booking(driver, type, userlocation, date, time, strIncludes, calculatePayment());
+                                    booking = new Booking(driver, type, userlocation, pickupDate, pickupTime, strIncludes, calculatePayment());
 
                                     Intent payment = new Intent(BookPickup.this, BookingPayment.class);
                                     payment.putExtra("booking", booking);
@@ -314,6 +313,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                 cal.set(Calendar.YEAR, year);
                 cal.set(Calendar.MONTH, month);
                 cal.set(Calendar.DATE, date);
+                pickupDate = dateFormat.format(cal.getTime());
                 btnDate.setText(dateFormat.format(cal.getTime()));
             }
         }, YEAR, MONTH, DATE);
@@ -322,19 +322,21 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
 
     public void onClickTime(View view) {
         Calendar calendar = Calendar.getInstance();
-        int HOUR = calendar.get(Calendar.HOUR);
+        int HOUR = calendar.get(Calendar.HOUR_OF_DAY);
         int MINUTE = calendar.get(Calendar.MINUTE);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int min) {
+                String am_pm;
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.HOUR_OF_DAY, hour);
                 cal.set(Calendar.MINUTE, min);
-                btnTime.setText(timeFormat.format(cal.getTime()));
+                pickupTime = timeFormatDigital.format(cal.getTime());
+                btnTime.setText(TimeFormatter.ampmTime(cal));
 
             }
-        }, HOUR, MINUTE, true);
+        }, HOUR, MINUTE, false);
 
         timePickerDialog.show();
     }
