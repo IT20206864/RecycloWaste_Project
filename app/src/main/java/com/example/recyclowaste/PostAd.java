@@ -145,7 +145,7 @@ public class PostAd extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         activityResult.launch(intent);
-       // startActivityForResult(intent,PICK_IMAGE_REQUEST);
+
 
     }
 
@@ -165,14 +165,6 @@ public class PostAd extends AppCompatActivity {
             }
     );
 
-/*    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
-            mImageUri = data.getData();
-        }
-    }*/
 
     private String getFileExtension(Uri uri){
         ContentResolver cR = getContentResolver();
@@ -180,41 +172,5 @@ public class PostAd extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-/*    private void uploadFile(){
 
-        if(mImageUri != null){
-            StorageReference fileReference = storageRef.child(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
-
-            fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Handler handler = new Handler();  //Delays reset of progress bar by 5s
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressBar.setProgress(0);
-                        }
-                    },5000);
-                    Toast.makeText(getApplicationContext(),"Upload Succesfull!",Toast.LENGTH_SHORT).show();
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                    progressBar.setProgress((int) progress);
-
-                }
-            })
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"No File Selected",Toast.LENGTH_SHORT).show();
-        }
-
-    }*/
 }

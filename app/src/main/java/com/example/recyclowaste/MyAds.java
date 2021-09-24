@@ -23,15 +23,12 @@ import java.util.List;
 
 public class MyAds extends AppCompatActivity {
 
-   /* TextView et_title ;
-    TextView et_description;
-    TextView et_price;
-    TextView et_quantity;*/
 
     private RecyclerView recyclerView;
     private AdapterMyAds adapter;
     private DatabaseReference dbRef;
     private List<Advertisment> ads;
+    private List<String> keys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +37,11 @@ public class MyAds extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.MyAdsRecyclerView);
         recyclerView.setHasFixedSize(true);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this ));
 
         ads = new ArrayList<>();
+        keys = new ArrayList<>();
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1");
 
@@ -52,9 +51,11 @@ public class MyAds extends AppCompatActivity {
                 for(DataSnapshot snap : snapshot.getChildren() ){
                     ads.add(new Advertisment(snap.child("title").getValue().toString(), snap.child("description").getValue().toString(), snap.child("image").getValue().toString()
                     ,Float.parseFloat(snap.child("price").getValue().toString()), Integer.parseInt(snap.child("quantity").getValue().toString())));
+
+                    keys.add(snap.getKey().toString());
                 }
 
-                adapter = new AdapterMyAds(getApplicationContext(),ads);
+                adapter = new AdapterMyAds(MyAds.this,ads,keys);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
@@ -67,15 +68,20 @@ public class MyAds extends AppCompatActivity {
 
     }
 
-    public void onClickEdit(View view){
+
+
+
+
+
+
+    /*public void onClickEdit(View view){
         Intent intent = new Intent(MyAds.this , EditAd.class);
         intent.putExtra("title","Sample Title");
         intent.putExtra("Description","Sample Description");
         intent.putExtra("price","10");
         intent.putExtra("quantity","4");
-      //  intent.putExtra(Intent.EXTRA_STREAM , imageURI);
+        intent.putExtra(Intent.EXTRA_STREAM , imageURI);
         intent.putExtra("key","-MkGmb-IdBBKNZ27tqKI");
         startActivity(intent);
-
-    }
+    }*/
 }
