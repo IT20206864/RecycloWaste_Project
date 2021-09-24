@@ -45,7 +45,7 @@
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="@string/payment_dialog_et_code"
-        android:inputType="date" />
+        android:inputType="numberPassword" />
 
     <Button
         android:id="@+id/btn_pay"
