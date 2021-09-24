@@ -47,7 +47,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.type.setText(type);
         holder.location.setText(location);
         holder.date.setText(date);
-        holder.time.setText(time);
+        holder.time.setText(TimeFormatter.ampmTime(time));
 
         holder.btnDetails.setOnClickListener(new View.OnClickListener() {
             @Override
