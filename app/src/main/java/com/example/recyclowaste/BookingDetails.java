@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -47,11 +48,16 @@ public class BookingDetails extends AppCompatActivity {
     String[] time;
     String username;
     DecimalFormat df;
+    SimpleDateFormat dateFormat;
+    SimpleDateFormat timeFormat;
+    Loader loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_details);
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        timeFormat = new SimpleDateFormat("HH:mm");
         driver = findViewById(R.id.tv_driver);
         type = findViewById(R.id.tv_type);
         tv_date = findViewById(R.id.tv_date);
@@ -60,6 +66,7 @@ public class BookingDetails extends AppCompatActivity {
         location = findViewById(R.id.tv_location);
         contains = findViewById(R.id.tv_contains);
         reschedule = findViewById(R.id.btnReschedule);
+        Loader loader = new Loader(this);
 
         df = new DecimalFormat("####0.00");
 
@@ -70,10 +77,12 @@ public class BookingDetails extends AppCompatActivity {
         Intent i = getIntent();
         key = i.getStringExtra("key");
 
+        loader.showLoadingDialog();
         dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username).child(key);
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+
                 if(snapshot.hasChildren()) {
                     driver.setText(snapshot.child("driver").getValue().toString());
                     type.setText(snapshot.child("type").getValue().toString());
@@ -82,9 +91,10 @@ public class BookingDetails extends AppCompatActivity {
                     tv_time.setText(snapshot.child("time").getValue().toString());
                     payment.setText("LKR " + df.format(Double.parseDouble(snapshot.child("payment").getValue().toString())));
                     contains.setText(snapshot.child("includes").getValue().toString());
-                    date = snapshot.child("date").getValue().toString().split("/");
+                    date = snapshot.child("date").getValue().toString().split("-");
                     time = snapshot.child("time").getValue().toString().split(":");
                 }
+                loader.dismissLoadingDialog();
 
             }
 
@@ -101,10 +111,11 @@ public class BookingDetails extends AppCompatActivity {
         builder.setMessage("Do you want to reschedule pickup?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
                     public void onClick(DialogInterface dialog, int id) {
-                        int YEAR = Integer.parseInt(date[2]);
-                        int MONTH = Integer.parseInt(date[1]) - 1;
-                        int DATE = Integer.parseInt(date[0]);
+                        int YEAR = Integer.parseInt(date[0]);
+                        int MONTH = Integer.parseInt(date[1])-1;
+                        int DATE = Integer.parseInt(date[2]);
 
                         DatePickerDialog datePickerDialog = new DatePickerDialog(BookingDetails.this, new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -120,20 +131,26 @@ public class BookingDetails extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 if(snapshot.hasChild(key)) {
+                                                    Calendar cal = Calendar.getInstance();
+                                                    cal.set(Calendar.YEAR, year);
+                                                    cal.set(Calendar.MONTH, month);
+                                                    cal.set(Calendar.DATE, date);
+                                                    cal.set(Calendar.HOUR_OF_DAY, hour);
+                                                    cal.set(Calendar.MINUTE, min);
+
                                                     dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username).child(key);
-                                                    dbref.child("date").setValue(date + "/" + (month+1) + "/" + year);
-                                                    tv_date.setText(date + "/" + (month+1) + "/" + year);
-                                                    if(hour < 10) {
-                                                        tv_time.setText("0" + hour + ":" + min);
-                                                        dbref.child("time").setValue(("0" + hour + ":" + min));
-                                                    }
-                                                    else {
-                                                        tv_time.setText(hour + ":" + min);
-                                                        dbref.child("time").setValue(hour + ":" + min);
-                                                    }
+                                                    dbref.child("date").setValue(dateFormat.format(cal.getTime()));
+                                                    dbref.child("time").setValue(timeFormat.format(cal.getTime()));
+
+                                                    tv_date.setText(dateFormat.format(cal.getTime()));
+                                                    tv_time.setText(timeFormat.format(cal.getTime()));
 
                                                     Toast.makeText(getApplicationContext(), "Successfull!", Toast.LENGTH_SHORT).show();
                                                 }
+                                                else {
+                                                    Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+                                                }
+
                                             }
 
                                             @Override
@@ -183,6 +200,10 @@ public class BookingDetails extends AppCompatActivity {
                                                     Intent mybookings = new Intent(BookingDetails.this, MyBookings.class);
                                                     startActivity(mybookings);
                                                 }
+                                                else {
+                                                    Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+                                                }
+
                                             }
 
                                             @Override

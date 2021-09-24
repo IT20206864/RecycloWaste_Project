@@ -36,6 +36,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
     DatabaseReference dbref;
     Spinner dropdown;
     String username;
+    Loader loader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         dropdown = findViewById(R.id.sortSpinner);
 
         String[] items = new String[]{"Newest", "Oldest"};
+        loader = new Loader(this);
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 
@@ -63,12 +65,15 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         bookingArray = new ArrayList<>();
         keyArray = new ArrayList<>();
 
+        loader.showLoadingDialog();
         dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username);
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 getBookings(snapshot);
                 sortByNewest();
+                loader.dismissLoadingDialog();
+
 
             }
 
