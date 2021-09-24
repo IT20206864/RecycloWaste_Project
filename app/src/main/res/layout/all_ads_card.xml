@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_all_ads"
+            android:layout_width="129dp"
+            android:layout_height="119dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="66dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_monetization_on_24" />
+
+        <TextView
+            android:id="@+id/title_all_ads"
+            android:layout_width="265dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="1dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/desc_all_ads"
+            android:layout_width="266dp"
+            android:layout_height="83dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_all_ads" />
+
+        <TextView
+            android:id="@+id/price_all_ads"
+            android:layout_width="84dp"
+            android:layout_height="35dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/img_all_ads"
+            app:layout_constraintTop_toBottomOf="@+id/desc_all_ads" />
+
+        <Spinner
+            android:id="@+id/spinner_all_ads"
+            android:layout_width="77dp"
+            android:layout_height="37dp"
+            app:layout_constraintStart_toEndOf="@+id/price_all_ads"
+            app:layout_constraintTop_toBottomOf="@+id/desc_all_ads" />
+
+        <Button
+            android:id="@+id/contact_all_ads"
+            android:layout_width="103dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="2dp"
+            android:text="@string/btn_contact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desc_all_ads" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

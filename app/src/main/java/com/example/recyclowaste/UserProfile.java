@@ -43,7 +43,8 @@ public class UserProfile extends AppCompatActivity {
                 if(snapshot.hasChildren()) {
                     user = new  User(snapshot.child("fname").getValue().toString(), snapshot.child("lname").getValue().toString(),
                             snapshot.child("email").getValue().toString(),snapshot.child("telno").getValue().toString(),
-                            snapshot.child("username").getValue().toString(), snapshot.child("password").getValue().toString(), snapshot.child("type").getValue().toString());
+                            snapshot.child("username").getValue().toString(), snapshot.child("password").getValue().toString(),
+                            snapshot.child("type").getValue().toString());
                     tv_name.setText(user.getFname() + " " + user.getLname());
                     userEmail.setText(user.getEmail());
                     userTelno.setText(user.getTelno());
