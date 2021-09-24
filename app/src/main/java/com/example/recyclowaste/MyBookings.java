@@ -35,6 +35,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
     ArrayList<String> keys;
     DatabaseReference dbref;
     Spinner dropdown;
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,8 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         dropdown.setAdapter(adapter2);
         dropdown.setOnItemSelectedListener(this);
 
+        username = "acanta69";
+
 
 
 
@@ -60,7 +63,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         bookingArray = new ArrayList<>();
         keyArray = new ArrayList<>();
 
-        dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69");
+        dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username);
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
