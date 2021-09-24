@@ -1,6 +1,7 @@
 package com.example.recyclowaste;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -13,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -40,8 +42,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -68,11 +74,18 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     UserLocation userlocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     DatabaseReference dbref;
+    SimpleDateFormat dateFormat;
+    SimpleDateFormat timeFormat;
+    Loader loader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_pickup);
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        timeFormat = new SimpleDateFormat("HH:mm");
+        loader = new Loader(this);
+
         waste1 = (CheckBox)findViewById(R.id.waste1);
         waste2 = (CheckBox)findViewById(R.id.waste2);
         waste3 = (CheckBox)findViewById(R.id.waste3);
@@ -91,13 +104,8 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         int HOUR = calendar.get(Calendar.HOUR);
         int MINUTE = calendar.get(Calendar.MINUTE);
 
-        btnDate.setText(DATE + "/" + (MONTH+1) + "/" + YEAR);
-        if(HOUR <= 9) {
-            btnTime.setText("0" + (HOUR) + ":" + MINUTE);
-        }
-        else {
-            btnTime.setText((HOUR) + ":" + MINUTE);
-        }
+        btnDate.setText(dateFormat.format(calendar.getTime()));
+        btnTime.setText(timeFormat.format(calendar.getTime()));
 
 
         includes = new ArrayList<String>();
@@ -127,6 +135,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                 String drvr[] = new String[1];
                 TreeMap<Double, String> distances = new TreeMap<>();
 
+                loader.showLoadingDialog();
                 dbref = FirebaseDatabase.getInstance().getReference().child("Drivers");
                 dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -202,6 +211,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                             }
 
                         }
+                        loader.dismissLoadingDialog();
                     }
 
                     @Override
@@ -287,7 +297,11 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                btnDate.setText(date + "/" + (month+1) + "/" + year);
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DATE, date);
+                btnDate.setText(dateFormat.format(cal.getTime()));
             }
         }, YEAR, MONTH, DATE);
         datePickerDialog.show();
@@ -301,12 +315,10 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int min) {
-                if(hour < 10) {
-                    btnTime.setText("0" + hour + ":" + min);
-                }
-                else {
-                    btnTime.setText(hour + ":" + min);
-                }
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.HOUR_OF_DAY, hour);
+                cal.set(Calendar.MINUTE, min);
+                btnTime.setText(timeFormat.format(cal.getTime()));
 
             }
         }, HOUR, MINUTE, true);

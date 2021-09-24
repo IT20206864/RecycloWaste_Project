@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class BookingPayment extends AppCompatActivity {
     RadioButton radiocard;
     RadioButton radiopickup;
     DecimalFormat df;
+    Loader loader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class BookingPayment extends AppCompatActivity {
         radiocard= findViewById(R.id.radioCard);
         radiopickup = findViewById(R.id.radioPickup);
         df = new DecimalFormat("####0.00");
+        loader = new Loader(this);
 
         payment = findViewById(R.id.payment);
         Intent i = getIntent();
@@ -72,9 +75,10 @@ public class BookingPayment extends AppCompatActivity {
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(cardNo.getText().toString() != "" && expiry.getText()
-                        .toString()!= "" && code.getText().toString() != "") {
+                if(!TextUtils.isEmpty(cardNo.getText())  && !TextUtils.isEmpty(expiry.getText())
+                        && !TextUtils.isEmpty(code.getText())) {
                     if(terms.isChecked()) {
+                        loader.showLoadingDialog();
                         insertBooking();
                     }
                     else{
@@ -104,5 +108,6 @@ public class BookingPayment extends AppCompatActivity {
         }catch (Exception e) {
             e.printStackTrace();
         }
+        loader.dismissLoadingDialog();
     }
 }
