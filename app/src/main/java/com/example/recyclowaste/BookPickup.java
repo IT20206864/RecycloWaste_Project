@@ -9,7 +9,9 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -120,8 +122,6 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         dropdown.setOnItemSelectedListener(this);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-
 
 
     }
@@ -253,29 +253,42 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     public void onClickLocation (View view) {
 
 
-            getLocation();
+            checkLocationPermission();
     }
 
     @SuppressLint("MissingPermission")
     private void getLocation() {
-        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
-            public void onComplete(@NonNull Task<Location> task) {
-                Location location = task.getResult();
-                if(location != null) {
-                    try {
-                        Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
-                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
-                        userlocation = new UserLocation(addresses.get(0).getLocality(), addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
-                        loc = addresses.get(0).getLocality();
-                        inptlocation.setText(loc);
-                    }catch (IOException e) {
-                        e.printStackTrace();
-                    }
 
+            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    Location location = task.getResult();
+                    if(location != null) {
+                        try {
+                            Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
+                            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
+                            userlocation = new UserLocation(addresses.get(0).getLocality(), addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+                            loc = addresses.get(0).getLocality();
+                            inptlocation.setText(loc);
+                        }catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
                 }
-            }
-        });
+            });
+
+    }
+
+    public void checkLocationPermission() {
+        if(ActivityCompat.checkSelfPermission(BookPickup.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getLocation();
+        }
+        else {
+            ActivityCompat.requestPermissions(BookPickup.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+            getLocation();
+        }
+
     }
 
     @Override
