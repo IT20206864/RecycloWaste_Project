@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -46,33 +47,40 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void onSave(View view) {
-        user.setFname(fname.getText().toString());
-        user.setLname(lname.getText().toString());
-        user.setEmail(email.getText().toString());
-        user.setTelno(telno.getText().toString());
+        if(!TextUtils.isEmpty(fname.getText()) && !TextUtils.isEmpty(lname.getText()) && !TextUtils.isEmpty(email.getText())
+        && !TextUtils.isEmpty(telno.getText())){
+            user.setFname(fname.getText().toString());
+            user.setLname(lname.getText().toString());
+            user.setEmail(email.getText().toString());
+            user.setTelno(telno.getText().toString());
 
-        DatabaseReference dbref  = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUsername());
-        dbref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChildren()){
-                    dbref.child("fname").setValue(user.getFname());
-                    dbref.child("lname").setValue(user.getLname());
-                    dbref.child("email").setValue(user.getEmail());
-                    dbref.child("telno").setValue(user.getTelno());
+            DatabaseReference dbref  = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUsername());
+            dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.hasChildren()){
+                        dbref.child("fname").setValue(user.getFname());
+                        dbref.child("lname").setValue(user.getLname());
+                        dbref.child("email").setValue(user.getEmail());
+                        dbref.child("telno").setValue(user.getTelno());
 
-                    Toast.makeText(getApplicationContext(), "Successfull!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Successfull!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-                else {
-                    Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
                 }
+            });
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Please give all the details!", Toast.LENGTH_SHORT).show();
+        }
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 }

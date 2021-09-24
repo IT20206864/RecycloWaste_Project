@@ -90,10 +90,12 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         if(snapshot.hasChildren()) {
             for(DataSnapshot snap : snapshot.getChildren()) {
                 UserLocation location = new UserLocation(snap.child("location").child("locality").getValue().toString(),
-                        Double.parseDouble(snap.child("location").child("latitude").getValue().toString()), Double.parseDouble(snap.child("location").child("longitude").getValue().toString()));
+                        Double.parseDouble(snap.child("location").child("latitude").getValue().toString()),
+                        Double.parseDouble(snap.child("location").child("longitude").getValue().toString()));
 
                 bookingArray.add(new Booking(snap.child("driver").getValue().toString(), snap.child("type").getValue().toString(), location
-                        , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString(), Double.parseDouble(snap.child("payment").getValue().toString())));
+                        , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString(),
+                        Double.parseDouble(snap.child("payment").getValue().toString())));
 
                 keyArray.add(snap.getKey().toString());
             }
