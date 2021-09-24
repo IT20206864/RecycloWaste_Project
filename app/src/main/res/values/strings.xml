@@ -103,6 +103,8 @@
     <string name="tv_reviewinfobook">Rate the booked customers garbage managment and neatness</string>
     <string name="tv_forbookingpg">Rate the booking</string>
     <string name="tv_fordriver">Rate the driver</string>
+
+
     <string name="login_companyName">RecycloWaste</string>
     <string name="tv_signIn">Sign In</string>
     <string name="tv_signInmsg">Hi there!Nice to see you again.</string>
@@ -179,4 +181,5 @@
     <string name="payment_dialog_et_code">Security Code </string>
     <string name="payment_dialog_cb_terms">I agree to terms  and conditions </string>
     <string name="payment_dialog_btn_pay">Pay </string>
+    <string name="tv_wyr">Write your review</string>
 </resources>
