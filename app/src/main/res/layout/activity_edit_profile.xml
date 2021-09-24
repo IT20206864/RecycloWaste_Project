@@ -20,7 +20,7 @@
         android:text="@string/edit_profile_fname"
         android:textColor="@color/black"
         android:textSize="@dimen/SubHeaderFontSize"
-        android:textStyle="bold" />
+        android:textStyle="normal" />
 
     <TextView
         android:id="@+id/tv_lname"
@@ -36,7 +36,7 @@
         android:text="@string/edit_profile_lname"
         android:textColor="@color/black"
         android:textSize="@dimen/SubHeaderFontSize"
-        android:textStyle="bold" />
+        android:textStyle="normal" />
 
     <TextView
         android:id="@+id/tv_email"
@@ -52,7 +52,7 @@
         android:text="@string/edit_profile_email"
         android:textColor="@color/black"
         android:textSize="@dimen/SubHeaderFontSize"
-        android:textStyle="bold" />
+        android:textStyle="normal" />
 
     <TextView
         android:id="@+id/tv_telno"
@@ -68,7 +68,7 @@
         android:text="@string/edit_profile_telno"
         android:textColor="@color/black"
         android:textSize="@dimen/SubHeaderFontSize"
-        android:textStyle="bold" />
+        android:textStyle="normal" />
 
     <EditText
         android:id="@+id/inptFname"
@@ -132,8 +132,9 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="28dp"
+        android:onClick="onSave"
         android:text="@string/edit_profile_save"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         app:backgroundTint="@color/green_new"
         app:cornerRadius="@dimen/btn_radius" />
 
