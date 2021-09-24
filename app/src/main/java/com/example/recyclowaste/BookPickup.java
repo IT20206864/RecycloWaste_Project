@@ -90,6 +90,8 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         timeFormatDigital = new SimpleDateFormat("HH:mm");
         loader = new Loader(this);
 
+
+
         waste1 = (CheckBox)findViewById(R.id.waste1);
         waste2 = (CheckBox)findViewById(R.id.waste2);
         waste3 = (CheckBox)findViewById(R.id.waste3);
@@ -278,12 +280,13 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void checkLocationPermission() {
-        if(ActivityCompat.checkSelfPermission(BookPickup.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if(ActivityCompat.checkSelfPermission(BookPickup.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        && ActivityCompat.checkSelfPermission(BookPickup.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getLocation();
         }
         else {
-            ActivityCompat.requestPermissions(BookPickup.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-            getLocation();
+            ActivityCompat.requestPermissions(BookPickup.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            checkLocationPermission();
         }
 
     }
