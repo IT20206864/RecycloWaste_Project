@@ -14,4 +14,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="DialogStyle" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="windowMinWidthMajor">100%</item>
+        <item name="windowMinWidthMinor">100%</item>
+        <item name="colorPrimary">@color/green_new</item>
+        <item name="colorPrimaryVariant">@color/green_new</item>
+        <item name="colorSecondary">@color/green_new</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
+
 </resources>

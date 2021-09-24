@@ -27,16 +27,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Set;
 
 public class BookingDetails extends AppCompatActivity {
     DatabaseReference dbref;
     String key;
-    String keyreq;
-    int reqcode;
-    int reminderCount;
-    boolean reminderwasset;
     TextView driver;
     TextView type;
     TextView tv_date;
@@ -44,13 +41,12 @@ public class BookingDetails extends AppCompatActivity {
     TextView payment;
     TextView location;
     TextView contains;
-    TextView nah;
-    Switch reminder;
     Button reschedule;
-    SharedPreferences sharedPreferences;
     AlertDialog.Builder builder;
     String[] date;
     String[] time;
+    String username;
+    DecimalFormat df;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,28 +60,17 @@ public class BookingDetails extends AppCompatActivity {
         location = findViewById(R.id.tv_location);
         contains = findViewById(R.id.tv_contains);
         reschedule = findViewById(R.id.btnReschedule);
-        reminder = findViewById(R.id.remider_switch);
-        nah = findViewById(R.id.nah);
+
+        df = new DecimalFormat("####0.00");
+
+        username = "acanta69";
 
         builder = new AlertDialog.Builder(this);
 
         Intent i = getIntent();
         key = i.getStringExtra("key");
-        keyreq = key + "reqcode";
-        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
-        reminder.setChecked(sharedPreferences.getBoolean(key, false));
-        reqcode = sharedPreferences.getInt(keyreq, 0);
-        reminderCount = sharedPreferences.getInt("ReminderCount", 0);
-        reminderwasset = sharedPreferences.getBoolean((key+"wasset"), false);
-        /*SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(key, false);
-        editor.putInt(keyreq, 0);
-        editor.putInt("ReminderCount", 0);
-        editor.putBoolean((key + "wasset"), false);
-        editor.commit();*/
-        nah.setText(String.valueOf(reqcode) + ", " + String.valueOf(reminderCount));
 
-        dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69").child(key);
+        dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username).child(key);
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -95,7 +80,7 @@ public class BookingDetails extends AppCompatActivity {
                     location.setText(snapshot.child("location").child("locality").getValue().toString());
                     tv_date.setText(snapshot.child("date").getValue().toString());
                     tv_time.setText(snapshot.child("time").getValue().toString());
-                    payment.setText("LKR " + snapshot.child("payment").getValue().toString());
+                    payment.setText("LKR " + df.format(Double.parseDouble(snapshot.child("payment").getValue().toString())));
                     contains.setText(snapshot.child("includes").getValue().toString());
                     date = snapshot.child("date").getValue().toString().split("/");
                     time = snapshot.child("time").getValue().toString().split(":");
@@ -130,12 +115,12 @@ public class BookingDetails extends AppCompatActivity {
                                 TimePickerDialog timePickerDialog = new TimePickerDialog(BookingDetails.this, new TimePickerDialog.OnTimeSetListener() {
                                     @Override
                                     public void onTimeSet(TimePicker timePicker, int hour, int min) {
-                                        DatabaseReference upref  = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69");
+                                        DatabaseReference upref  = FirebaseDatabase.getInstance().getReference().child("Booking").child(username);
                                         upref.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 if(snapshot.hasChild(key)) {
-                                                    dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69").child(key);
+                                                    dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username).child(key);
                                                     dbref.child("date").setValue(date + "/" + (month+1) + "/" + year);
                                                     tv_date.setText(date + "/" + (month+1) + "/" + year);
                                                     if(hour < 10) {
@@ -182,7 +167,7 @@ public class BookingDetails extends AppCompatActivity {
     }
 
     public void cancel (View view) {
-        builder.setMessage("Do you want to cancel the pickup?")
+        builder.setMessage("Do you want to cancel the pickup? This process cannot be undone!")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -194,9 +179,6 @@ public class BookingDetails extends AppCompatActivity {
                                                 if(snapshot.hasChild(key)) {
                                                     dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69").child(key);
                                                     dbref.removeValue();
-                                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                                    editor.remove(key);
-                                                    editor.remove(keyreq);
                                                     Toast.makeText(getApplicationContext(), "Canceled!", Toast.LENGTH_SHORT).show();
                                                     Intent mybookings = new Intent(BookingDetails.this, MyBookings.class);
                                                     startActivity(mybookings);
@@ -224,78 +206,6 @@ public class BookingDetails extends AppCompatActivity {
         alert.show();
     }
 
-    public void setReminder (View view) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        if(reminder.isChecked()) {
-            if(reminderwasset ==  false) {
-                //create request code
-                reqcode = reminderCount + 1;
-
-                /*set alarm
-                Intent intent = new Intent(this, AlarmReciever.class);
-                intent.putExtra("notificationId", 1);
-                intent.putExtra("message" , "");
-                PendingIntent alarmIntent =  PendingIntent.getBroadcast(this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-                Calendar startTime = Calendar.getInstance();
-                startTime.set(Calendar.YEAR, Integer.parseInt(date[2]));
-                startTime.set(Calendar.MONTH, Integer.parseInt(date[1])-1);
-                startTime.set(Calendar.DATE, Integer.parseInt(date[0]));
-                startTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
-                startTime.set(Calendar.MINUTE, Integer.parseInt(time[1]));
-                startTime.set(Calendar.SECOND, 0);
-                long alarmStartTime = startTime.getTimeInMillis();
-                alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);*/
-
-                //update shared preferences
-                editor.putBoolean(key, true);
-                editor.putInt(keyreq, reqcode);
-                editor.putInt("ReminderCount", ++reminderCount);
-                editor.putBoolean((key + "wasset"), true);
-                editor.commit();
-
-                Toast.makeText(getApplicationContext(), "Reminder is ON", Toast.LENGTH_LONG).show();
-            }
-            else {
-                /*set alarm
-                Intent intent = new Intent(this, AlarmReciever.class);
-                intent.putExtra("notificationId", 1);
-                intent.putExtra("message" , "");
-                PendingIntent alarmIntent =  PendingIntent.getBroadcast(this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-                Calendar startTime = Calendar.getInstance();
-                startTime.set(Calendar.YEAR, Integer.parseInt(date[2]));
-                startTime.set(Calendar.MONTH, Integer.parseInt(date[1])-1);
-                startTime.set(Calendar.DATE, Integer.parseInt(date[0]));
-                startTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
-                startTime.set(Calendar.MINUTE, Integer.parseInt(time[1]));
-                startTime.set(Calendar.SECOND, 0);
-                long alarmStartTime = startTime.getTimeInMillis();
-                alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);*/
-
-                //update shared preferences
-                editor.putBoolean(key, true);
-                editor.commit();
-                Toast.makeText(getApplicationContext(), "Reminder is ON", Toast.LENGTH_LONG).show();
-            }
-
-        }
-        else {
-            /*cancel alarm
-            Intent intent = new Intent(this, AlarmReciever.class);
-            intent.putExtra("notificationId", 1);
-            intent.putExtra("message" , "");
-            PendingIntent alarmIntent =  PendingIntent.getBroadcast(this, reqcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-            AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-            alarm.cancel(alarmIntent);*/
-
-            //update shared preferences
-            editor.putBoolean(key, false);
-            editor.commit();
-            Toast.makeText(getApplicationContext(), "Reminder is OFF", Toast.LENGTH_LONG).show();
-        }
-
-    }
 
 
 }
