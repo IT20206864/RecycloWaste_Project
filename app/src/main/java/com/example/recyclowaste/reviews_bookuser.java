@@ -3,6 +3,7 @@ package com.example.recyclowaste;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RatingBar;
@@ -16,6 +17,9 @@ public class reviews_bookuser extends Reviews {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews_bookuser);
+
+        Button submitButtonAdd = (Button) findViewById(R.id.bt_addreviewbook);
+        Button submitButtonEdit = (Button) findViewById(R.id.bt_editreviewbook);
 
         // initiate rating bar and a button
         final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.rb_reviewbook);
@@ -31,5 +35,29 @@ public class reviews_bookuser extends Reviews {
                 Toast.makeText(getApplicationContext(), totalStars + "\n" + rating, Toast.LENGTH_LONG).show();
             }
         });
+        submitButtonAdd.setOnClickListener(new View.OnClickListener() {
+            /** Called add review page when the user touches the button */
+            @Override
+            public void onClick(View view) {
+                Intent intentadd = new Intent(view.getContext(), reviewAdd.class);
+                startActivity(intentadd);
+            }
+        });
+
+        submitButtonEdit.setOnClickListener(new View.OnClickListener() {
+            /** Called edit review page when the user touches the button */
+            @Override
+            public void onClick(View view) {
+                Intent intentedit = new Intent(view.getContext(), review_history.class);
+                startActivity(intentedit);
+            }
+        });
+
     }
+
+    public void onClick(View view) {
+        Intent intentSubmit = new Intent(view.getContext(), reviewAdd.class);
+        startActivity(intentSubmit);
+    }
+
 }

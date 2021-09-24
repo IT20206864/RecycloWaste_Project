@@ -172,4 +172,5 @@
     <string name="booking_successful_thankyou">Thank You For Using Our Service!</string>
     <string name="booking_successful_seedetails">See Your Bookings</string>
     <string name="booking_successful_confirmed">Your Booking Has Been Confirmed!</string>
+    <string name="addReview" />
 </resources>

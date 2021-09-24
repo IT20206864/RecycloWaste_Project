@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class review_history extends AppCompatActivity {
 
+    private static final String TAG = "review_history";
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     List<ModelClassReview> userList;
@@ -21,6 +23,8 @@ public class review_history extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_history);
 
+        Log.d(TAG, "onCreate: started");
+
         initData();
         initRecyclerView();
     }
@@ -29,6 +33,7 @@ public class review_history extends AppCompatActivity {
 
         userList = new ArrayList<>();
 
+        Log.d(TAG, "initData: started");
         userList.add(new ModelClassReview(R.drawable.user,"Angel", "The Service is very good", "10.35 am"));
         userList.add(new ModelClassReview(R.drawable.user,"Sanath", "The Service is very good", "10.38 am"));
         userList.add(new ModelClassReview(R.drawable.user,"Roshan", "The Service is very good", "10.38 am"));
@@ -44,6 +49,7 @@ public class review_history extends AppCompatActivity {
 
     private void initRecyclerView() {
 
+        Log.d(TAG, "initRecyclerView: started");
         recyclerView = findViewById(R.id.recyclerviewReviews);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
