@@ -35,7 +35,7 @@ public class Reviews extends AppCompatActivity {
             public void onClick(View view) {
                 String tip = nd_customamount.getText().toString();
                 int currenttip = 100;
-                tv_tipView.setText(currenttip+tip);
+                tv_tipView.setText("Tip :"+currenttip+tip);
             }
         });
 
@@ -44,7 +44,7 @@ public class Reviews extends AppCompatActivity {
             public void onClick(View view) {
                 String tip = nd_customamount.getText().toString();
                 int currenttip = 50;
-                tv_tipView.setText(currenttip+tip);
+                tv_tipView.setText("Tip :"+currenttip+tip);
             }
         });
 
@@ -53,7 +53,7 @@ public class Reviews extends AppCompatActivity {
             public void onClick(View view) {
                 String tip = nd_customamount.getText().toString();
                 int currenttip = 500;
-                tv_tipView.setText(currenttip+tip);
+                tv_tipView.setText("Tip :"+currenttip+tip);
             }
         });
 
