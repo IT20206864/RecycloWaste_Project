@@ -82,6 +82,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     Loader loader;
     String pickupDate;
     String pickupTime;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -91,7 +92,9 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         timeFormatDigital = new SimpleDateFormat("HH:mm");
         loader = new Loader(this);
 
-
+        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        userlocation = new UserLocation(sharedPreferences.getString("locality", ""), Double.parseDouble(sharedPreferences.getString("latitude", "0")),
+                Double.parseDouble(sharedPreferences.getString("longitude", "0")));
 
         waste1 = (Chip)findViewById(R.id.waste1);
         waste2 = (Chip)findViewById(R.id.waste2);
@@ -111,7 +114,9 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         pickupDate = dateFormat.format(calendar.getTime());
         pickupTime = timeFormatDigital.format(calendar.getTime());
         btnTime.setText(TimeFormatter.ampmTime(calendar));
-
+        if(userlocation.getLocality() != "") {
+            inptlocation.setText(userlocation.getLocality());
+        }
 
 
         includes = new ArrayList<String>();
@@ -132,7 +137,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
 
     public void clickConfirm(View view) {
         try {
-            if(loc == null) {
+            if(userlocation.getLocality() == "") {
                 Toast.makeText(getApplicationContext(), "Please Give Your Location", Toast.LENGTH_SHORT).show();
             }
             else {
@@ -267,9 +272,18 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                         try {
                             Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
                             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
+
                             userlocation = new UserLocation(addresses.get(0).getLocality(), addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("locality", userlocation.getLocality());
+                            editor.putString("latitude", String.valueOf(userlocation.getLatitude()));
+                            editor.putString("longitude", String.valueOf(userlocation.getLongitude()));
+                            editor.commit();
+
                             loc = addresses.get(0).getLocality();
                             inptlocation.setText(loc);
+
                         }catch (IOException e) {
                             e.printStackTrace();
                         }
