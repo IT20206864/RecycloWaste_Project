@@ -77,14 +77,16 @@
 
     <Button
         android:id="@+id/bt_editreviewbook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
         android:layout_marginTop="186dp"
         android:layout_marginEnd="60dp"
         android:onClick="onClick"
         android:text="@string/bt_editreview"
+        android:textSize="12sp"
         app:backgroundTint="@color/btn_green"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bt_addreviewbook"
         app:layout_constraintTop_toBottomOf="@+id/rb_reviewbook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

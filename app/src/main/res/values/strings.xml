@@ -98,7 +98,7 @@
     <string name="pt_ur" />
     <string name="tv_userreview">User Review</string>
     <string name="bt_addreview">Add review</string>
-    <string name="bt_editreview">Edit Review</string>
+    <string name="bt_editreview">Review History</string>
     <string name="tv_forbookingpg1">For Booking</string>
     <string name="tv_reviewinfobook">Rate the booked customers garbage managment and neatness</string>
     <string name="tv_forbookingpg">Rate the booking</string>

@@ -4,31 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_edit_ad.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_edit_payment_details.xml" value="0.17604166666666668" />
         <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_edit_profile.xml" value="0.14" />
         <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_home_marketplace.xml" value="0.1" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_my_package.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_payment_form.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_post_ad.xml" value="0.17604166666666668" />
         <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_review_add.xml" value="0.264" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_review_delete.xml" value="0.25" />
+        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_review_delete.xml" value="0.17604166666666668" />
         <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_review_history.xml" value="0.25" />
         <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_reviews.xml" value="0.22" />
         <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_bookuser.xml" value="0.18" />
         <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_reviews_driver.xml" value="0.264" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_select_package_one.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_sign_up.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_successful.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_user_profile.xml" value="0.2" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_view_payment_details.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/ads_item_card.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/all_ads_card.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/booking_card.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/loading_layout.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/payment_dialog_layout.xml" value="0.17604166666666668" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/review_popup.xml" value="0.18072916666666666" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/reviewitem_design.xml" value="0.264" />
-        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/singlerow.xml" value="0.22552083333333334" />
+        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/activity_user_profile.xml" value="0.1" />
+        <entry key="..\:/Campus/Y2/S2/MAD/RecycloWaste_Project/app/src/main/res/layout/reviewitem_design.xml" value="0.33" />
         <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_edit_payment_details.xml" value="0.2" />
         <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_my_package.xml" value="0.209375" />
         <entry key="..\:/Users/Oshan/AndroidStudioProjects/RecycloWaste_Project/app/src/main/res/layout/activity_payment_form.xml" value="0.25" />
@@ -49,7 +34,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.1" />
+        <option name="scale" value="0.18" />
       </ProjectState>
     </option>
   </component>
