@@ -6,22 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="match_parent"
         android:background="#ffffff">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/imageview"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="60dp">
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/user"></ImageView>
-        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/textview"
@@ -37,28 +23,44 @@
         </TextView>
 
         <TextView
-            android:id="@+id/textviewdate"
-            android:layout_width="120dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="300dp"
-            android:layout_marginTop="25dp"
-            android:text="10:43 am"
-            android:textColor="#000000"
-            android:textSize="12sp">
-
-        </TextView>
-
-        <TextView
             android:id="@+id/textviewmsg"
             android:layout_width="160dp"
             android:layout_height="30dp"
             android:layout_below="@+id/textview"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="-29dp"
             android:text="The service was very good!"
             android:textColor="#000000"
             android:textSize="12sp">
 
         </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textviewmsg"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="173dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="Edit"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="173dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Delete"
+                android:textAllCaps="false" />
+
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 

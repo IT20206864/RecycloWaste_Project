@@ -1,6 +1,7 @@
 package com.example.recyclowaste;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -8,11 +9,14 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,6 +37,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,8 +45,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -54,12 +63,12 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     String domestic[] = new String[]{"Plastic", "Wood", "Paper", "Organic", "Glass", "Metal"};
     String medical[] = new String[]{"Syringes", "Gloves", "Needles", "Liquids", "Bandages", "Drugs"};
     ArrayList<String> includes;
-    CheckBox waste1;
-    CheckBox waste2;
-    CheckBox waste3;
-    CheckBox waste4;
-    CheckBox waste5;
-    CheckBox waste6;
+    Chip waste1;
+    Chip waste2;
+    Chip waste3;
+    Chip waste4;
+    Chip waste5;
+    Chip waste6;
     Button btnDate;
     Button btnTime;
     TextView inptlocation;
@@ -68,35 +77,45 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     UserLocation userlocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     DatabaseReference dbref;
+    SimpleDateFormat dateFormat;
+    SimpleDateFormat timeFormatDigital;
+    Loader loader;
+    String pickupDate;
+    String pickupTime;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_pickup);
-        waste1 = (CheckBox)findViewById(R.id.waste1);
-        waste2 = (CheckBox)findViewById(R.id.waste2);
-        waste3 = (CheckBox)findViewById(R.id.waste3);
-        waste4 = (CheckBox)findViewById(R.id.waste4);
-        waste5 = (CheckBox)findViewById(R.id.waste5);
-        waste6 = (CheckBox)findViewById(R.id.waste6);
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        timeFormatDigital = new SimpleDateFormat("HH:mm");
+        loader = new Loader(this);
+
+        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        userlocation = new UserLocation(sharedPreferences.getString("locality", ""), Double.parseDouble(sharedPreferences.getString("latitude", "0")),
+                Double.parseDouble(sharedPreferences.getString("longitude", "0")));
+
+        waste1 = (Chip)findViewById(R.id.waste1);
+        waste2 = (Chip)findViewById(R.id.waste2);
+        waste3 = (Chip)findViewById(R.id.waste3);
+        waste4 = (Chip)findViewById(R.id.waste4);
+        waste5 = (Chip)findViewById(R.id.waste5);
+        waste6 = (Chip)findViewById(R.id.waste6);
         inptlocation = findViewById(R.id.inputLocation);
         btnDate = findViewById(R.id.btnDate);
         btnTime = findViewById(R.id.btnTime);
 
         Calendar calendar =  Calendar.getInstance();
-        int YEAR = calendar.get(Calendar.YEAR);
-        int MONTH = calendar.get(Calendar.MONTH);
-        int DATE = calendar.get(Calendar.DATE);
 
-        int HOUR = calendar.get(Calendar.HOUR);
-        int MINUTE = calendar.get(Calendar.MINUTE);
+        int HOUR = calendar.get(Calendar.HOUR_OF_DAY);
 
-        btnDate.setText(DATE + "/" + (MONTH+1) + "/" + YEAR);
-        if(HOUR <= 9) {
-            btnTime.setText("0" + (HOUR) + ":" + MINUTE);
-        }
-        else {
-            btnTime.setText((HOUR) + ":" + MINUTE);
+        btnDate.setText(dateFormat.format(calendar.getTime()));
+        pickupDate = dateFormat.format(calendar.getTime());
+        pickupTime = timeFormatDigital.format(calendar.getTime());
+        btnTime.setText(TimeFormatter.ampmTime(calendar));
+        if(userlocation.getLocality() != "") {
+            inptlocation.setText(userlocation.getLocality());
         }
 
 
@@ -114,19 +133,18 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
 
-
-
     }
 
     public void clickConfirm(View view) {
         try {
-            if(loc == null) {
+            if(userlocation.getLocality() == "") {
                 Toast.makeText(getApplicationContext(), "Please Give Your Location", Toast.LENGTH_SHORT).show();
             }
             else {
                 String drvr[] = new String[1];
                 TreeMap<Double, String> distances = new TreeMap<>();
 
+                loader.showLoadingDialog();
                 dbref = FirebaseDatabase.getInstance().getReference().child("Drivers");
                 dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -149,8 +167,6 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
 
                                 String type = dropdown.getSelectedItem().toString();
                                 String driver = drvr[0];
-                                String date = btnDate.getText().toString();
-                                String time = btnTime.getText().toString();
                                 loc = inptlocation.getText().toString();
 
                                 if (waste1.isChecked()) {
@@ -185,7 +201,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                                         strIncludes = strIncludes + item + ",";
                                     }
 
-                                    booking = new Booking(driver, type, userlocation, date, time, strIncludes, calculatePayment());
+                                    booking = new Booking(driver, type, userlocation, pickupDate, pickupTime, strIncludes, calculatePayment());
 
                                     Intent payment = new Intent(BookPickup.this, BookingPayment.class);
                                     payment.putExtra("booking", booking);
@@ -202,6 +218,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                             }
 
                         }
+                        loader.dismissLoadingDialog();
                     }
 
                     @Override
@@ -241,31 +258,52 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void onClickLocation (View view) {
-
-
-            getLocation();
+            checkLocationPermission();
     }
 
     @SuppressLint("MissingPermission")
     private void getLocation() {
-        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
-            public void onComplete(@NonNull Task<Location> task) {
-                Location location = task.getResult();
-                if(location != null) {
-                    try {
-                        Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
-                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
-                        userlocation = new UserLocation(addresses.get(0).getLocality(), addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
-                        loc = addresses.get(0).getLocality();
-                        inptlocation.setText(loc);
-                    }catch (IOException e) {
-                        e.printStackTrace();
-                    }
 
+            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    Location location = task.getResult();
+                    if(location != null) {
+                        try {
+                            Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
+                            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
+
+                            userlocation = new UserLocation(addresses.get(0).getLocality(), addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("locality", userlocation.getLocality());
+                            editor.putString("latitude", String.valueOf(userlocation.getLatitude()));
+                            editor.putString("longitude", String.valueOf(userlocation.getLongitude()));
+                            editor.commit();
+
+                            loc = addresses.get(0).getLocality();
+                            inptlocation.setText(loc);
+
+                        }catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
                 }
-            }
-        });
+            });
+
+    }
+
+    public void checkLocationPermission() {
+        if(ActivityCompat.checkSelfPermission(BookPickup.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        && ActivityCompat.checkSelfPermission(BookPickup.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getLocation();
+        }
+        else {
+            ActivityCompat.requestPermissions(BookPickup.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            checkLocationPermission();
+        }
+
     }
 
     @Override
@@ -287,7 +325,12 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                btnDate.setText(date + "/" + (month+1) + "/" + year);
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DATE, date);
+                pickupDate = dateFormat.format(cal.getTime());
+                btnDate.setText(dateFormat.format(cal.getTime()));
             }
         }, YEAR, MONTH, DATE);
         datePickerDialog.show();
@@ -295,21 +338,21 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
 
     public void onClickTime(View view) {
         Calendar calendar = Calendar.getInstance();
-        int HOUR = calendar.get(Calendar.HOUR);
+        int HOUR = calendar.get(Calendar.HOUR_OF_DAY);
         int MINUTE = calendar.get(Calendar.MINUTE);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int min) {
-                if(hour < 10) {
-                    btnTime.setText("0" + hour + ":" + min);
-                }
-                else {
-                    btnTime.setText(hour + ":" + min);
-                }
+                String am_pm;
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.HOUR_OF_DAY, hour);
+                cal.set(Calendar.MINUTE, min);
+                pickupTime = timeFormatDigital.format(cal.getTime());
+                btnTime.setText(TimeFormatter.ampmTime(cal));
 
             }
-        }, HOUR, MINUTE, true);
+        }, HOUR, MINUTE, false);
 
         timePickerDialog.show();
     }
