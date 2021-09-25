@@ -45,9 +45,6 @@ public class review_history extends AppCompatActivity {
         setTitle("Review History");
         Log.d(TAG, "onCreate: started");
 
-        //initData();
-        //initRecyclerView();
-
         recyclerView=(RecyclerView) findViewById(R.id.recyclerviewReviews);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -80,7 +77,8 @@ public class review_history extends AppCompatActivity {
         adaptertwo.stopListening();
     }
 
-    private void initData() {
+
+    /*private void initData() {
 
         userList = new ArrayList<>();
 
@@ -108,5 +106,5 @@ public class review_history extends AppCompatActivity {
         //adaptertwo = new AdapterTwo(userList);
         recyclerView.setAdapter(adaptertwo);
         adaptertwo.notifyDataSetChanged();
-    }
+    }*/
 }

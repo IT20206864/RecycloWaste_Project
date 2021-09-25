@@ -52,6 +52,7 @@ public class AdapterTwo extends FirebaseRecyclerAdapter<ReviewTwo,AdapterTwo.myv
 
     public AdapterTwo(@NonNull FirebaseRecyclerOptions<ReviewTwo> options)
     {
+
         super(options);
     }
 
@@ -59,10 +60,10 @@ public class AdapterTwo extends FirebaseRecyclerAdapter<ReviewTwo,AdapterTwo.myv
     @Override
     protected void onBindViewHolder(@NonNull final myviewholder holder, @SuppressLint("RecyclerView") final int position, @NonNull ReviewTwo model)
     {
-        holder.rev.setText(ReviewTwo.getRev());
+        holder.rev.setText(model.getRev());
 
         Glide.with(holder.img.getContext())
-                .load(ReviewTwo.getRev())
+                .load(model.getPurl())
                 .placeholder(R.drawable.common_google_signin_btn_icon_dark)
                 .circleCrop()
                 .error(R.drawable.common_google_signin_btn_icon_dark_normal)
@@ -88,19 +89,22 @@ public class AdapterTwo extends FirebaseRecyclerAdapter<ReviewTwo,AdapterTwo.myv
                     @Override
                     public void onClick(View view) {
                         Map<String,Object> map=new HashMap<>();
-                        map.put("100",rev.getText().toString());
+                        map.put("Review",rev.getText().toString());
 
                         FirebaseDatabase.getInstance().getReference().child("reviews")
                                 .child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
+
                                     public void onSuccess(Void aVoid) {
+                                        Toast.makeText(holder.rev.getContext(), "Data Updated Successfully.", Toast.LENGTH_SHORT).show();
                                         dialogPlus.dismiss();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(holder.rev.getContext(), "Error while uploading.", Toast.LENGTH_SHORT).show();
                                         dialogPlus.dismiss();
                                     }
                                 });
@@ -152,7 +156,7 @@ public class AdapterTwo extends FirebaseRecyclerAdapter<ReviewTwo,AdapterTwo.myv
     class myviewholder extends RecyclerView.ViewHolder
     {
         public ImageView img;
-        ImageView edit,delete;
+        Button edit,delete;
         TextView tip;
         public TextView rev;
         public myviewholder(@NonNull View itemView)
@@ -160,8 +164,8 @@ public class AdapterTwo extends FirebaseRecyclerAdapter<ReviewTwo,AdapterTwo.myv
             super(itemView);
             rev=(TextView)itemView.findViewById(R.id.tv_review);
 
-            //edit=(ImageView)itemView.findViewById(R.id.editicon);
-            //delete=(ImageView)itemView.findViewById(R.id.deleteicon);
+            edit=(Button) itemView.findViewById(R.id.btnEdit);
+            delete=(Button) itemView.findViewById(R.id.btnDelete);
         }
     }
 }

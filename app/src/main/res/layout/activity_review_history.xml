@@ -31,8 +31,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
-        android:layout_width="52dp"
-        android:layout_height="51dp"
+        android:layout_width="55dp"
+        android:layout_height="133dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
