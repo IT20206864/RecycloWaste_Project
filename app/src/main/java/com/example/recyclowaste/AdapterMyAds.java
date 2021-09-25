@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -50,15 +52,17 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Advertisment adCurrent = ads.get(position);
         holder.description.setText(adCurrent.getDescription());
-        holder.image.setImageURI(Uri.parse(adCurrent.getImage()));
         holder.title.setText(adCurrent.getTitle());
+   //    holder.image.setImageURI(Uri.parse(adCurrent.getImage()));
       //  holder.price.setText((int) adCurrent.getPrice());
+        Picasso.get().load(adCurrent.getImage()).into(holder.image);
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent data = new Intent(context,EditAd.class);
                 data.putExtra("key",keys.get(position));
+                Log.d("ADebugTag", "Value: " + keys.get(position));
                 context.startActivity(data);
             }
         });
