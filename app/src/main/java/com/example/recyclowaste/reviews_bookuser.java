@@ -39,7 +39,7 @@ public class reviews_bookuser extends Reviews {
             /** Called add review page when the user touches the button */
             @Override
             public void onClick(View view) {
-                Intent intentadd = new Intent(view.getContext(), reviewAdd.class);
+                Intent intentadd = new Intent(getApplicationContext(),reviewAdd.class);
                 startActivity(intentadd);
             }
         });
@@ -55,9 +55,6 @@ public class reviews_bookuser extends Reviews {
 
     }
 
-    public void onClick(View view) {
-        Intent intentSubmit = new Intent(view.getContext(), reviewAdd.class);
-        startActivity(intentSubmit);
-    }
+    
 
 }

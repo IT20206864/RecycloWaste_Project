@@ -182,4 +182,8 @@
     <string name="payment_dialog_cb_terms">I agree to terms  and conditions </string>
     <string name="payment_dialog_btn_pay">Pay </string>
     <string name="tv_wyr">Write your review</string>
+    <string name="tv_reason">Reason</string>
+    <string name="tv_th">Type here</string>
+    <string name="et_reason" />
+    <string name="bt_deletebt">Delete</string>
 </resources>
