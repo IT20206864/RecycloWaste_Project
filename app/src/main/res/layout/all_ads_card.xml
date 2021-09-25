@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="10dp"
+    app:cardBackgroundColor="#4FB638"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,20 +27,25 @@
 
         <TextView
             android:id="@+id/title_all_ads"
-            android:layout_width="265dp"
-            android:layout_height="35dp"
+            android:layout_width="256dp"
+            android:layout_height="33dp"
             android:layout_marginTop="31dp"
             android:layout_marginEnd="1dp"
             android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/desc_all_ads"
-            android:layout_width="266dp"
+            android:layout_width="257dp"
             android:layout_height="83dp"
+            android:layout_marginStart="1dp"
             android:text="TextView"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_all_ads"
             app:layout_constraintTop_toBottomOf="@+id/title_all_ads" />
 
         <TextView

@@ -36,18 +36,11 @@ public class HomeMarketplace extends AppCompatActivity  {
 
         setContentView(R.layout.activity_home_marketplace);
 
-/*
-        Spinner spinner2 = (Spinner)findViewById(R.id.marketplace_spinner2);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.quantity_array,android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
-        spinner2.setAdapter(adapter);
 
 
-*/
+
 
         recyclerView = findViewById(R.id.recyclerView_allAds);
         recyclerView.setHasFixedSize(true);
@@ -87,12 +80,7 @@ public class HomeMarketplace extends AppCompatActivity  {
         }
     }
 
-    /*public void onItemSelected(AdapterView<?> parent, View view,int pos,long id){
-        parent.getItemAtPosition(pos);
-    }
 
-    public void onNothingSelected(AdapterView<?> parent){
 
-    }*/
 
 }

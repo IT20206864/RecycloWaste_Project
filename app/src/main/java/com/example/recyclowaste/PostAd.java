@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -115,7 +116,7 @@ public class PostAd extends AppCompatActivity {
                         }
                     },500);
                     Toast.makeText(getApplicationContext(),"Upload Successfull!",Toast.LENGTH_SHORT).show();
-
+                    Log.d("ADebugTag", "Value: " + et_title.getText().toString().trim());
                     Advertisment ad = new Advertisment(et_title.getText().toString().trim(),et_description.getText().toString().trim(),taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),Float.parseFloat(et_price.getText().toString().trim()),Integer.parseInt(et_quantity.getText().toString().trim()));
                     String uploadId = dbRef.push().getKey();
                     dbRef.child(uploadId).setValue(ad);
@@ -137,7 +138,7 @@ public class PostAd extends AppCompatActivity {
         else{
             Toast.makeText(getApplicationContext(),"No File Selected",Toast.LENGTH_SHORT).show();
         }
-        ClearControls();
+     //   ClearControls();
     }
 
     private void openFileChooser(){

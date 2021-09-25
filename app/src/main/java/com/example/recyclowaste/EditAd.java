@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 import com.example.recyclowaste.model.Advertisment;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -66,25 +68,8 @@ public class EditAd extends AppCompatActivity {
                     et_title.setText(snapshot.child("title").getValue().toString());
                     et_quantity.setText(snapshot.child("quantity").getValue().toString());
                     et_description.setText(snapshot.child("description").getValue().toString());
-                    /*StorageReference sr = FirebaseStorage.getInstance().getReference("Advertisment").child(snapshot.child("image").getValue().toString());
-                    Uri img = sr.getDownloadUrl().getResult();
-                    Log.d("AebugTag", "Value: " + img);
-                    Picasso.get().load(img).into(imgAd);*/
-                  //  et_price.setText(snapshot.child("price").getValue().toString());
-
-                  /*  StorageReference sr = FirebaseStorage.getInstance().getReference("Advertisment").child(snapshot.child("image").getValue().toString());
-                     Log.d("DebugTag", "Value: " + sr);
-                     sr.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                         @Override
-                         public void onSuccess(Uri uri) {
-                             Glide.with(getApplicationContext()).load(uri).into(imgAd);
-                         }
-                     });*/
-
-                    Picasso.get().load(snapshot.child("image").getValue().toString().trim()).into(imgAd);
-                    Log.d("DebugTag", "Value: " +snapshot.child("image").getValue().toString().trim() );
-                    Picasso.get().setLoggingEnabled(true);
-
+                    et_price.setText(snapshot.child("price").getValue().toString());
+                    Picasso.get().load(snapshot.child("image").getValue().toString()).into(imgAd);
 
                 }
                 else{
