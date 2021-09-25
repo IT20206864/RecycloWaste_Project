@@ -51,7 +51,7 @@
     <string name="bt_fifty">Rs 50</string>
     <string name="bt_fhundred">Rs 500</string>
     <string name="nd_customamount" />
-    <string name="bt_done">Done</string>
+    <string name="bt_done">Pay</string>
 
     <string name="editAd">Edit Ad</string>
     <string name="prdtImage">Product Image</string>
@@ -186,4 +186,5 @@
     <string name="tv_th">Type here</string>
     <string name="et_reason" />
     <string name="bt_deletebt">Delete</string>
+    <string name="bt_addpay">Add</string>
 </resources>

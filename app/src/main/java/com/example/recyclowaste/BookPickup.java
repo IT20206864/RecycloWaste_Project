@@ -37,6 +37,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -62,12 +63,12 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     String domestic[] = new String[]{"Plastic", "Wood", "Paper", "Organic", "Glass", "Metal"};
     String medical[] = new String[]{"Syringes", "Gloves", "Needles", "Liquids", "Bandages", "Drugs"};
     ArrayList<String> includes;
-    CheckBox waste1;
-    CheckBox waste2;
-    CheckBox waste3;
-    CheckBox waste4;
-    CheckBox waste5;
-    CheckBox waste6;
+    Chip waste1;
+    Chip waste2;
+    Chip waste3;
+    Chip waste4;
+    Chip waste5;
+    Chip waste6;
     Button btnDate;
     Button btnTime;
     TextView inptlocation;
@@ -81,6 +82,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
     Loader loader;
     String pickupDate;
     String pickupTime;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -90,14 +92,16 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         timeFormatDigital = new SimpleDateFormat("HH:mm");
         loader = new Loader(this);
 
+        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        userlocation = new UserLocation(sharedPreferences.getString("locality", ""), Double.parseDouble(sharedPreferences.getString("latitude", "0")),
+                Double.parseDouble(sharedPreferences.getString("longitude", "0")));
 
-
-        waste1 = (CheckBox)findViewById(R.id.waste1);
-        waste2 = (CheckBox)findViewById(R.id.waste2);
-        waste3 = (CheckBox)findViewById(R.id.waste3);
-        waste4 = (CheckBox)findViewById(R.id.waste4);
-        waste5 = (CheckBox)findViewById(R.id.waste5);
-        waste6 = (CheckBox)findViewById(R.id.waste6);
+        waste1 = (Chip)findViewById(R.id.waste1);
+        waste2 = (Chip)findViewById(R.id.waste2);
+        waste3 = (Chip)findViewById(R.id.waste3);
+        waste4 = (Chip)findViewById(R.id.waste4);
+        waste5 = (Chip)findViewById(R.id.waste5);
+        waste6 = (Chip)findViewById(R.id.waste6);
         inptlocation = findViewById(R.id.inputLocation);
         btnDate = findViewById(R.id.btnDate);
         btnTime = findViewById(R.id.btnTime);
@@ -110,7 +114,9 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
         pickupDate = dateFormat.format(calendar.getTime());
         pickupTime = timeFormatDigital.format(calendar.getTime());
         btnTime.setText(TimeFormatter.ampmTime(calendar));
-
+        if(userlocation.getLocality() != "") {
+            inptlocation.setText(userlocation.getLocality());
+        }
 
 
         includes = new ArrayList<String>();
@@ -131,7 +137,7 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
 
     public void clickConfirm(View view) {
         try {
-            if(loc == null) {
+            if(userlocation.getLocality() == "") {
                 Toast.makeText(getApplicationContext(), "Please Give Your Location", Toast.LENGTH_SHORT).show();
             }
             else {
@@ -266,9 +272,18 @@ public class BookPickup extends AppCompatActivity implements AdapterView.OnItemS
                         try {
                             Geocoder geocoder = new Geocoder(BookPickup.this, Locale.getDefault());
                             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),1);
+
                             userlocation = new UserLocation(addresses.get(0).getLocality(), addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("locality", userlocation.getLocality());
+                            editor.putString("latitude", String.valueOf(userlocation.getLatitude()));
+                            editor.putString("longitude", String.valueOf(userlocation.getLongitude()));
+                            editor.commit();
+
                             loc = addresses.get(0).getLocality();
                             inptlocation.setText(loc);
+
                         }catch (IOException e) {
                             e.printStackTrace();
                         }

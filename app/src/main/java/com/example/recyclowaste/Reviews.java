@@ -25,93 +25,70 @@ public class Reviews extends AppCompatActivity {
     private int courseID = 0;
 
     Review review;
-    TextView tv_tipView;
-    private EditText nd_customamount;
+    TextView tipView;
+    EditText customamount;
+    Button hundred, fifty, fivehundred, add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
-
-        addTip = findViewById(R.id.bt_done);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Tips");
-
-        tv_tipView = (TextView)findViewById(R.id.tv_tipView);
-        nd_customamount = (EditText) findViewById(R.id.nd_customamount);
-        tv_tipView.setText(Review.getTip());
+        //review = new Review(100);
+        tipView = (TextView) findViewById(R.id.tv_tipView);
+        customamount = (EditText) findViewById(R.id.nd_customamount);
+        hundred = (Button) findViewById(R.id.bt_hundred);
+        fifty = (Button) findViewById(R.id.bt_fifty);
+        fivehundred = (Button) findViewById(R.id.bt_fhundred);
+        add = (Button) findViewById(R.id.bt_addpay);
+        //tv_tipView.setText(review.getTip());
 
         Button submitButtonBooking = (Button) findViewById(R.id.bt_forbooking);
         Button submitButtonDriver = (Button) findViewById(R.id.bt_fordriver);
-        Button submitButtonHundred = (Button) findViewById(R.id.bt_hundred);
-        Button submitButtonFifty = (Button) findViewById(R.id.bt_fifty);
-        Button submitButtonFivehundred = (Button) findViewById(R.id.bt_fhundred);
-        Button submitForm = (Button) findViewById(R.id.bt_done);
 
-        /*submitButtonHundred.setOnClickListener(new View.OnClickListener() {
+        hundred.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tip = nd_customamount.getText().toString();
-                int currenttip = 100;
-                tv_tipView.setText("Tip :"+currenttip+tip);
-                courseID = cID + 1;
+                String tip = customamount.getText().toString();
+                String currenttip = 100+tip;
+                tipView.setText(currenttip);
             }
         });
 
-        submitButtonFifty.setOnClickListener(new View.OnClickListener() {
+        fifty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tip = nd_customamount.getText().toString();
-                int currenttip = 50;
-                tv_tipView.setText("Tip :"+currenttip+tip);
-                courseID = cID + 1;
+                String tip = customamount.getText().toString();
+                String currenttip = 50+tip;
+                tipView.setText(currenttip);
             }
         });
 
-        submitButtonFivehundred.setOnClickListener(new View.OnClickListener() {
+        fivehundred.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tip = nd_customamount.getText().toString();
-                int currenttip = 500;
-                tv_tipView.setText("Tip :"+currenttip+tip);
-                courseID = cID + 1;
+                String tip = customamount.getText().toString();
+                String currenttip = 500+tip;
+                tipView.setText(currenttip);
             }
         });
 
-        submitForm.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //get values from texteditor to textviewer
-                String tip = nd_customamount.getText().toString();
-                tv_tipView.setText("Tip :"+tip);
-                courseID = cID + 1;
-                Review review = new Review(tip, courseID);
-
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        databaseReference.child(String.valueOf(courseID)).setValue(review);
-                        Toast.makeText(Reviews.this,"Tip Added", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Reviews.this, Review.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(Reviews.this, "Error is"+error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                String tip = customamount.getText().toString();
+                String currenttip = tip;
+                tipView.setText(currenttip);
             }
         });*/
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // perform click event on button booking
         submitButtonBooking.setOnClickListener(new View.OnClickListener() {
             /** Called booking page when the user touches the button */
             @Override
             public void onClick(View view) {
-                Intent intentb = new Intent(view.getContext(), reviews_bookuser.class);
-                startActivity(intentb);
+                openBookUser();
             }
         });
 
@@ -120,16 +97,21 @@ public class Reviews extends AppCompatActivity {
             /** Called driver page when the user touches the button */
             @Override
             public void onClick(View view) {
-                Intent intentd = new Intent(view.getContext(), Reviews_Driver.class);
-                startActivity(intentd);
+                openDriver();
             }
         });
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
 
-    public void openBookUser(View view) {
-        Intent intentb = new Intent(view.getContext(), reviews_bookuser.class);
+    private void openBookUser() {
+        Intent intentb = new Intent(this, reviews_bookuser.class);
         startActivity(intentb);
     }
+
+    private void openDriver() {
+        Intent intentd = new Intent(this, Reviews_Driver.class);
+        startActivity(intentd);
+    }
+
+
 }
