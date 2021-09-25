@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,18 +36,11 @@ public class HomeMarketplace extends AppCompatActivity  {
 
         setContentView(R.layout.activity_home_marketplace);
 
-/*
-        Spinner spinner2 = (Spinner)findViewById(R.id.marketplace_spinner2);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.quantity_array,android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
-        spinner2.setAdapter(adapter);
 
 
-*/
+
 
         recyclerView = findViewById(R.id.recyclerView_allAds);
         recyclerView.setHasFixedSize(true);
@@ -76,18 +70,17 @@ public class HomeMarketplace extends AppCompatActivity  {
     }
 
     public void getAds(DataSnapshot snapshot){
-        for(DataSnapshot snap : snapshot.getChildren()){
-            adsList.add(new Advertisment(snap.child("title").getValue().toString(),snap.child("description").getValue().toString(),snap.child("image").getValue().toString()
-                    ,Float.parseFloat(snap.child("price").getValue().toString()), Integer.parseInt(snap.child("quantity").getValue().toString())));
+        for(DataSnapshot users : snapshot.getChildren()){
+
+            for(DataSnapshot snap : users.getChildren()){
+                adsList.add(new Advertisment(snap.child("title").getValue().toString(),snap.child("description").getValue().toString(),snap.child("image").getValue().toString()
+                        ,Float.parseFloat(snap.child("price").getValue().toString()), Integer.parseInt(snap.child("quantity").getValue().toString())));
+            }
+
         }
     }
 
-    /*public void onItemSelected(AdapterView<?> parent, View view,int pos,long id){
-        parent.getItemAtPosition(pos);
-    }
 
-    public void onNothingSelected(AdapterView<?> parent){
 
-    }*/
 
 }

@@ -2,8 +2,10 @@ package com.example.recyclowaste;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,6 +34,8 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
     private Context context;
     private List<Advertisment> ads;
     private List<String> keys;
+
+
 
 
     public AdapterMyAds(Context context , List<Advertisment> ads , List<String> keys){
@@ -50,15 +55,18 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Advertisment adCurrent = ads.get(position);
         holder.description.setText(adCurrent.getDescription());
-        holder.image.setImageURI(Uri.parse(adCurrent.getImage()));
         holder.title.setText(adCurrent.getTitle());
-      //  holder.price.setText((int) adCurrent.getPrice());
+       holder.image.setImageURI(Uri.parse(adCurrent.getImage()));
+
+        holder.price.setText(Float.toString(adCurrent.getPrice()));
+        Picasso.get().load(adCurrent.getImage()).into(holder.image);
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent data = new Intent(context,EditAd.class);
                 data.putExtra("key",keys.get(position));
+                Log.d("ADebugTag", "Value: " + keys.get(position));
                 context.startActivity(data);
             }
         });
@@ -72,8 +80,19 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.hasChild(keys.get(position))){
                             DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1").child(keys.get(position));
-                            dbRef.removeValue();
-                            removeItemAt(position);
+                            AlertDialog.Builder confirm = new AlertDialog.Builder(context);
+                            confirm.setTitle("Deletion Confirmation");
+                            confirm.setMessage("Are you sure you want to delete this item?");
+                            confirm.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dbRef.removeValue();
+                                    removeItemAt(position);
+                                }
+                            });
+                            AlertDialog alert = confirm.create();
+                            alert.show();
+
                             Toast.makeText(context.getApplicationContext(), "Ad Deleted!", Toast.LENGTH_SHORT).show();
                         }
                         else{

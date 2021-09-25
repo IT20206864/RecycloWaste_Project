@@ -5,7 +5,10 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,8 +43,22 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
             holder.title.setText(adCurrent.getTitle());
             holder.description.setText(adCurrent.getDescription());
             holder.image.setImageURI(Uri.parse(adCurrent.getImage()));
-     //       holder.price.setText((int) adCurrent.getPrice());
+            holder.price.setText(Float.toString(adCurrent.getPrice()));
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,R.array.quantity_array,android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        holder.spinner.setAdapter(adapter);
+
+
+    }
+    public void onItemSelected(AdapterView<?> parent, View view,int pos,long id){
+        parent.getItemAtPosition(pos);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent){
 
     }
 
@@ -54,6 +71,7 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
 
         ImageView image;
         TextView title,description,price;
+        Spinner spinner;
         public adsViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -61,6 +79,7 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
             description = itemView.findViewById(R.id.desc_all_ads);
             title = itemView.findViewById(R.id.title_all_ads);
             price = itemView.findViewById(R.id.price_all_ads);
+            spinner = (Spinner)itemView.findViewById(R.id.spinner_all_ads);
 
         }
     }

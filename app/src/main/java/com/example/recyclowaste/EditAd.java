@@ -4,21 +4,32 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 import com.example.recyclowaste.model.Advertisment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class EditAd extends AppCompatActivity {
 
@@ -40,19 +51,37 @@ public class EditAd extends AppCompatActivity {
         et_quantity = findViewById(R.id.et_post_prdtQuantity);
         et_title = findViewById(R.id.et_post_prdtTitle);
         et_description = findViewById(R.id.et_post_prdt_Desc);
-        imgAd = findViewById(R.id.img_displayProduct);
+        imgAd = findViewById(R.id.img_displayProductEdit);
 
         Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        String description = intent.getStringExtra("Description");
-        String price = intent.getStringExtra("price");
-        String quantity = intent.getStringExtra("quantity");
+
         key = intent.getStringExtra("key");
-        et_price.setText(price);
-        et_description.setText(description);
-        et_quantity.setText(quantity);
-        et_title.setText(title);
+
+        Log.d("ADebugTag", "Value: " + key);
         //imgAd.setImageURI();
+
+       dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1").child(key);
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChildren()){
+                    et_title.setText(snapshot.child("title").getValue().toString());
+                    et_quantity.setText(snapshot.child("quantity").getValue().toString());
+                    et_description.setText(snapshot.child("description").getValue().toString());
+                    et_price.setText(snapshot.child("price").getValue().toString());
+                    Picasso.get().load(snapshot.child("image").getValue().toString()).into(imgAd);
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Error in fetching data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getApplicationContext(),"Database Error",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void editAd(View view){
@@ -119,4 +148,5 @@ public class EditAd extends AppCompatActivity {
             }
         });*/
     }
+
 }
