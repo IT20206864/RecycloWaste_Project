@@ -80,7 +80,7 @@ public class Reviews extends AppCompatActivity {
                 String currenttip = tip;
                 tipView.setText(currenttip);
             }
-        });*/
+        });
 
 
         // perform click event on button booking
