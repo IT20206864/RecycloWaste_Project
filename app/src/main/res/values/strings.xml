@@ -51,7 +51,7 @@
     <string name="bt_fifty">Rs 50</string>
     <string name="bt_fhundred">Rs 500</string>
     <string name="nd_customamount" />
-    <string name="bt_done">Done</string>
+    <string name="bt_done">Pay</string>
 
     <string name="editAd">Edit Ad</string>
     <string name="prdtImage">Product Image</string>
@@ -182,4 +182,5 @@
     <string name="payment_dialog_cb_terms">I agree to terms  and conditions </string>
     <string name="payment_dialog_btn_pay">Pay </string>
     <string name="tv_wyr">Write your review</string>
+    <string name="bt_addpay">Add</string>
 </resources>
