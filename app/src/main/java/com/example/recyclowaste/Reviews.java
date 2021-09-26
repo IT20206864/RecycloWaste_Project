@@ -3,6 +3,8 @@ package com.example.recyclowaste;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.recyclowaste.model.Review;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +19,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Reviews extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -27,7 +32,7 @@ public class Reviews extends AppCompatActivity {
     Review review;
     TextView tipView;
     EditText customamount;
-    Button hundred, fifty, fivehundred, add;
+    Button hundred, fifty, fivehundred, add, pay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +45,20 @@ public class Reviews extends AppCompatActivity {
         fifty = (Button) findViewById(R.id.bt_fifty);
         fivehundred = (Button) findViewById(R.id.bt_fhundred);
         add = (Button) findViewById(R.id.bt_addpay);
+        pay = (Button) findViewById(R.id.bt_done);
         //tv_tipView.setText(review.getTip());
 
         Button submitButtonBooking = (Button) findViewById(R.id.bt_forbooking);
         Button submitButtonDriver = (Button) findViewById(R.id.bt_fordriver);
+
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                processinsert();
+            }
+        });
+
+
 
         hundred.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +116,24 @@ public class Reviews extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void processinsert(){
+        Map<String, Object> map=new HashMap<>();
+        map.put("Tip",tipView.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("review").push()
+                .setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                tipView.setText("");
+                Toast.makeText(getApplicationContext(), "Paid Successfully", Toast.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),"Payment Unsuccessful", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void openBookUser() {

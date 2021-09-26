@@ -3,6 +3,8 @@ package com.example.recyclowaste;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,8 +24,19 @@ public class reviews_bookuser extends Reviews {
         Button submitButtonEdit = (Button) findViewById(R.id.bt_editreviewbook);
 
         // initiate rating bar and a button
-        final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.rb_reviewbook);
+        RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.rb_reviewbook);
         Button submitButton = (Button) findViewById(R.id.bt_ratingbook);
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mRatingBarCh = rootRef.child("ratings");
+
+        /*findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float rating = simpleRatingBar.getRating();
+                mRatingBarCh.child("rating").setValue(String.valueOf(rating));
+            }
+        });*/
 
         // perform click event on button
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +68,6 @@ public class reviews_bookuser extends Reviews {
 
     }
 
-    
+
 
 }
