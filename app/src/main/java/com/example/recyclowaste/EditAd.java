@@ -69,7 +69,7 @@ public class EditAd extends AppCompatActivity {
                     et_quantity.setText(snapshot.child("quantity").getValue().toString());
                     et_description.setText(snapshot.child("description").getValue().toString());
                     et_price.setText(snapshot.child("price").getValue().toString());
-                    Picasso.get().load(snapshot.child("image").getValue().toString()).into(imgAd);
+                    Picasso.get().load(snapshot.child("image").getValue().toString().trim()).into(imgAd);
 
                 }
                 else{

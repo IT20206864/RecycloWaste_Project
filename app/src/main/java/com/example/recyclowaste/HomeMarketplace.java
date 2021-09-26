@@ -73,8 +73,10 @@ public class HomeMarketplace extends AppCompatActivity  {
         for(DataSnapshot users : snapshot.getChildren()){
 
             for(DataSnapshot snap : users.getChildren()){
-                adsList.add(new Advertisment(snap.child("title").getValue().toString(),snap.child("description").getValue().toString(),snap.child("image").getValue().toString()
-                        ,Float.parseFloat(snap.child("price").getValue().toString()), Integer.parseInt(snap.child("quantity").getValue().toString())));
+                adsList.add(new Advertisment(snap.child("title").getValue().toString(),snap.child("description").getValue().toString()
+                        ,snap.child("image").getValue().toString()
+                        ,Float.parseFloat(snap.child("price").getValue().toString()),
+                        Integer.parseInt(snap.child("quantity").getValue().toString())));
             }
 
         }

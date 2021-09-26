@@ -17,7 +17,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:fontFamily="@font/page_content_font"
-        android:text="@string/sign_up_tv_fname"
+        android:text="Name"
         android:textColor="@color/PageBodyFontColor"
         android:textSize="@dimen/SubHeaderFontSize"
         android:textStyle="bold" />
@@ -33,7 +33,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:fontFamily="@font/page_content_font"
-        android:text="@string/sign_up_tv_lname"
+        android:text="Username"
         android:textColor="@color/PageBodyFontColor"
         android:textSize="@dimen/SubHeaderFontSize"
         android:textStyle="bold" />
@@ -42,7 +42,7 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etLname"
+        android:layout_below="@+id/etUsername"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
@@ -117,7 +117,7 @@
         android:text="@string/sign_up_et_fname" />
 
     <EditText
-        android:id="@+id/etLname"
+        android:id="@+id/etUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLname"
@@ -185,7 +185,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/SignUp_btn"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_alignParentStart="true"

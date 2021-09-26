@@ -2,6 +2,7 @@ package com.example.recyclowaste;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclowaste.model.Advertisment;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -42,7 +44,9 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
             Advertisment adCurrent = ads.get(position);
             holder.title.setText(adCurrent.getTitle());
             holder.description.setText(adCurrent.getDescription());
-            holder.image.setImageURI(Uri.parse(adCurrent.getImage()));
+
+        Log.d("Image Value", "onBindViewHolder: " + adCurrent.getImage().trim() );
+            Picasso.get().load(adCurrent.getImage().trim()).into(holder.image);
             holder.price.setText(Float.toString(adCurrent.getPrice()));
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,R.array.quantity_array,android.R.layout.simple_spinner_item);

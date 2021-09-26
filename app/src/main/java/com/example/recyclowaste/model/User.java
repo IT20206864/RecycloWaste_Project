@@ -2,16 +2,33 @@ package com.example.recyclowaste.model;
 
 public class User {
     private String fname;
-    private String lname;
+    private String username;
     private String email;
     private String telno;
+    private String password;
 
-    public User(String fname, String lname, String email, String telno) {
+
+
+    public User(String fname, String username, String email, String telno,String password) {
         this.fname = fname;
-        this.lname = lname;
+        this.username = username;
         this.email = email;
         this.telno = telno;
+        this.password = password;
     }
+
+    public User() {
+
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public String getFname() {
         return fname;
@@ -21,12 +38,12 @@ public class User {
         this.fname = fname;
     }
 
-    public String getLname() {
-        return lname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

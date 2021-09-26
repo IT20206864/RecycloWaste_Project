@@ -56,10 +56,9 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
         Advertisment adCurrent = ads.get(position);
         holder.description.setText(adCurrent.getDescription());
         holder.title.setText(adCurrent.getTitle());
-       holder.image.setImageURI(Uri.parse(adCurrent.getImage()));
 
         holder.price.setText(Float.toString(adCurrent.getPrice()));
-        Picasso.get().load(adCurrent.getImage()).into(holder.image);
+        Picasso.get().load(adCurrent.getImage().trim()).into(holder.image);
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
