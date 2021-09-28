@@ -195,6 +195,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/page_content_font"
+        android:onClick="submitClick"
         android:text="@string/sign_up_btn_singup"
         android:textAllCaps="false"
         app:cornerRadius="@dimen/btn_radius" />

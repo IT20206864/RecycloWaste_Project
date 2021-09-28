@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Advertisment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,9 @@ public class MyAds extends AppCompatActivity {
     private DatabaseReference dbRef;
     private List<Advertisment> ads;
     private List<String> keys;
+    private FirebaseAuth firebaseAuth;
+    private String username;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,9 @@ public class MyAds extends AppCompatActivity {
         ads = new ArrayList<>();
         keys = new ArrayList<>();
 
-        dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1");
+        username = firebaseAuth.getCurrentUser().getDisplayName();
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username);
 
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

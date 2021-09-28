@@ -88,6 +88,11 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
                                     dbRef.removeValue();
                                     removeItemAt(position);
                                 }
+                            }).setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
                             });
                             AlertDialog alert = confirm.create();
                             alert.show();

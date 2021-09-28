@@ -21,6 +21,7 @@ import com.bumptech.glide.module.AppGlideModule;
 import com.example.recyclowaste.model.Advertisment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +42,8 @@ public class EditAd extends AppCompatActivity {
     Advertisment ad;
     DatabaseReference dbRef;
     String key;
+    String username;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,8 @@ public class EditAd extends AppCompatActivity {
         et_description = findViewById(R.id.et_post_prdt_Desc);
         imgAd = findViewById(R.id.img_displayProductEdit);
 
+        username = firebaseAuth.getCurrentUser().getDisplayName();
+
         Intent intent = getIntent();
 
         key = intent.getStringExtra("key");
@@ -60,7 +65,7 @@ public class EditAd extends AppCompatActivity {
         Log.d("ADebugTag", "Value: " + key);
         //imgAd.setImageURI();
 
-       dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1").child(key);
+       dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username).child(key);
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -107,7 +112,7 @@ public class EditAd extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getApplicationContext(),"Error in updating!",Toast.LENGTH_SHORT).show();
             }
         });
 

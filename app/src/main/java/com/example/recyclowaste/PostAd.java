@@ -26,8 +26,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Advertisment;
+import com.example.recyclowaste.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -50,6 +53,8 @@ public class PostAd extends AppCompatActivity {
     TextView et_quantity;
     ImageView productImg;
     Advertisment ad;
+    FirebaseAuth firebaseAuth;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,27 @@ public class PostAd extends AppCompatActivity {
         btnChoooseImage = findViewById(R.id.btn_post_addImage);
         progressBar = findViewById(R.id.progressBar);
         productImg = findViewById(R.id.img_displayProduct);
+        firebaseAuth = FirebaseAuth.getInstance();
+        username = firebaseAuth.getCurrentUser().getDisplayName();
+
+/*        FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                Log.d("Entry", "Entry1");
+                if(user != null){
+                    Log.d("USERINFO", "USERNAME"+user.getDisplayName());
+
+                    u.setUsername(user.getDisplayName());
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"Not logged", Toast.LENGTH_SHORT).show();
+                    //finish();
+
+                }
+            }
+        };*/
     }
 
     private void ClearControls(){
@@ -77,7 +103,8 @@ public class PostAd extends AppCompatActivity {
     }
 
     public void PostAd(View view){
-        dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1");
+        Log.d("FTag", "Email: "+ username);
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username);
         storageRef = FirebaseStorage.getInstance().getReference().child("Advertisment");
 
             //Validation for empty form
