@@ -1,6 +1,8 @@
 package com.example.recyclowaste.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String fname;
     private String username;
     private String email;

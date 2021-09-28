@@ -35,6 +35,8 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
     ArrayList<String> keys;
     DatabaseReference dbref;
     Spinner dropdown;
+    String username;
+    Loader loader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +48,14 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         dropdown = findViewById(R.id.sortSpinner);
 
         String[] items = new String[]{"Newest", "Oldest"};
+        loader = new Loader(this);
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 
         dropdown.setAdapter(adapter2);
         dropdown.setOnItemSelectedListener(this);
+
+        username = "acanta69";
 
 
 
@@ -60,12 +65,15 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         bookingArray = new ArrayList<>();
         keyArray = new ArrayList<>();
 
-        dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69");
+        loader.showLoadingDialog();
+        dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username);
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 getBookings(snapshot);
                 sortByNewest();
+                loader.dismissLoadingDialog();
+
 
             }
 
@@ -82,10 +90,12 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         if(snapshot.hasChildren()) {
             for(DataSnapshot snap : snapshot.getChildren()) {
                 UserLocation location = new UserLocation(snap.child("location").child("locality").getValue().toString(),
-                        Double.parseDouble(snap.child("location").child("latitude").getValue().toString()), Double.parseDouble(snap.child("location").child("longitude").getValue().toString()));
+                        Double.parseDouble(snap.child("location").child("latitude").getValue().toString()),
+                        Double.parseDouble(snap.child("location").child("longitude").getValue().toString()));
 
                 bookingArray.add(new Booking(snap.child("driver").getValue().toString(), snap.child("type").getValue().toString(), location
-                        , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString(), Double.parseDouble(snap.child("payment").getValue().toString())));
+                        , snap.child("date").getValue().toString(), snap.child("time").getValue().toString(), snap.child("includes").getValue().toString(),
+                        Double.parseDouble(snap.child("payment").getValue().toString())));
 
                 keyArray.add(snap.getKey().toString());
             }

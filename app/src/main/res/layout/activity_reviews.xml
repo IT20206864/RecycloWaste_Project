@@ -168,10 +168,20 @@
         android:id="@+id/bt_done"
         android:layout_width="111dp"
         android:layout_height="48dp"
-        android:layout_marginStart="148dp"
+        android:layout_marginStart="228dp"
         android:layout_marginTop="40dp"
         android:text="@string/bt_done"
         app:backgroundTint="@color/btn_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nd_customamount" />
+
+    <Button
+        android:id="@+id/bt_addpay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/bt_addpay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nd_customamount" />
 

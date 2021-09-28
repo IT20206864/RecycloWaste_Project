@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.recyclowaste">
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,12 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycloWaste">
-        <receiver android:name=".AlarmReciever"/>
+
+        <activity
+            android:name=".Review_Delete"
+            android:exported="true" />
+
+        <receiver android:name=".AlarmReciever" />
+
         <activity
             android:name=".Successful"
             android:exported="true"
             android:label="Successful"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".ForgotPassword" />
         <activity
             android:name=".MyPackage"
@@ -46,7 +53,6 @@
             android:exported="true"
             android:label="Reviews"
             android:parentActivityName=".Reviews" />
-
         <activity
             android:name=".reviewAdd"
             android:exported="true"
@@ -103,18 +109,18 @@
         <activity android:name=".select_driver" />
         <activity
             android:name=".PostAd"
-            android:label="Post Ad"
             android:exported="true"
+            android:label="Post Ad"
             android:parentActivityName=".HomeMarketplace" />
         <activity
             android:name=".EditAd"
-            android:label="@string/editAd"
             android:exported="true"
+            android:label="@string/editAd"
             android:parentActivityName=".MyAds" />
         <activity
             android:name=".MyAds"
-            android:label="@string/myAds"
             android:exported="true"
+            android:label="@string/myAds"
             android:parentActivityName=".HomeMarketplace" />
         <activity
             android:name=".Login"
