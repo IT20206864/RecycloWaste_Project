@@ -50,7 +50,6 @@ public class Reviews extends AppCompatActivity {
         pay = (Button) findViewById(R.id.bt_done);
 
         Double inputTip;
-        //tv_tipView.setText(review.getTip());
 
         Button submitButtonBooking = (Button) findViewById(R.id.bt_forbooking);
         Button submitButtonDriver = (Button) findViewById(R.id.bt_fordriver);
@@ -141,7 +140,7 @@ public class Reviews extends AppCompatActivity {
     private void processinsert(){
         Map<String, Object> map=new HashMap<>();
         map.put("Tip",tipView.getText().toString());
-        FirebaseDatabase.getInstance().getReference().child("review").push()
+        FirebaseDatabase.getInstance().getReference().child("tip").push()
                 .setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {

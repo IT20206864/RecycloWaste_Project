@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openUserProfile(View view) {
+    /*public void openUserProfile(View view) {
         Intent userProfile = new Intent(this, UserProfile.class);
 
         startActivity(userProfile);
-    }
+    }*/
 
     public void openSignUp(View view) {
         Intent signUp = new Intent(this, SignUp.class);

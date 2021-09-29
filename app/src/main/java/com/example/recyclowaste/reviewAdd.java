@@ -39,7 +39,7 @@ public class reviewAdd extends AppCompatActivity {
     private void processinsert(){
         Map<String, Object> map=new HashMap<>();
         map.put("Review",writereview.getText().toString());
-        FirebaseDatabase.getInstance().getReference().child("review").push()
+        FirebaseDatabase.getInstance().getReference().child("review").child("Oshan").push()
         .setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
