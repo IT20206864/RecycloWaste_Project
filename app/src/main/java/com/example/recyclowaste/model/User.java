@@ -4,21 +4,23 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String fname;
-    private String lname;
+    private String username;
     private String email;
     private String telno;
-    private String username;
     private String password;
-    private String type;
 
-    public User(String fname, String lname, String email, String telno, String username, String password, String type) {
+
+
+    public User(String fname, String username, String email, String telno,String password) {
         this.fname = fname;
-        this.lname = lname;
+        this.username = username;
         this.email = email;
         this.telno = telno;
-        this.username = username;
         this.password = password;
-        this.type = type;
+    }
+
+    public User() {
+
     }
 
     public String getPassword() {
@@ -29,21 +31,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getFname() {
         return fname;
@@ -53,12 +40,12 @@ public class User implements Serializable {
         this.fname = fname;
     }
 
-    public String getLname() {
-        return lname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

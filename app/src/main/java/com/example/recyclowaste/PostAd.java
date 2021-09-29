@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -25,8 +26,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Advertisment;
+import com.example.recyclowaste.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -42,14 +46,15 @@ public class PostAd extends AppCompatActivity {
     private ProgressBar progressBar;
     StorageReference storageRef;
     DatabaseReference dbRef;
-    String key_username;
     TextView et_title;
     TextView et_description;
-   // TextView et_image;
+
     TextView et_price;
     TextView et_quantity;
     ImageView productImg;
     Advertisment ad;
+    FirebaseAuth firebaseAuth;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,27 @@ public class PostAd extends AppCompatActivity {
         btnChoooseImage = findViewById(R.id.btn_post_addImage);
         progressBar = findViewById(R.id.progressBar);
         productImg = findViewById(R.id.img_displayProduct);
+        firebaseAuth = FirebaseAuth.getInstance();
+        username = firebaseAuth.getCurrentUser().getDisplayName();
+
+/*        FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                Log.d("Entry", "Entry1");
+                if(user != null){
+                    Log.d("USERINFO", "USERNAME"+user.getDisplayName());
+
+                    u.setUsername(user.getDisplayName());
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"Not logged", Toast.LENGTH_SHORT).show();
+                    //finish();
+
+                }
+            }
+        };*/
     }
 
     private void ClearControls(){
@@ -77,37 +103,43 @@ public class PostAd extends AppCompatActivity {
     }
 
     public void PostAd(View view){
-        dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1");
+        Log.d("FTag", "Email: "+ username);
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username);
         storageRef = FirebaseStorage.getInstance().getReference().child("Advertisment");
-        try{
+
             //Validation for empty form
 
+            if(TextUtils.isEmpty(et_title.getText().toString()))
+                Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
 
-            /*ad.setUsername(key_username);
-            ad.setTitle(et_title.getText().toString().trim());
-            ad.setDescription(et_description.getText().toString().trim());
-            ad.setPrice(Float.parseFloat(et_price.getText().toString().trim()));
-            ad.setQuantity(Integer.parseInt(et_quantity.getText().toString().trim()));*/
+            if(TextUtils.isEmpty(et_description.getText().toString()))
+                Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
 
+            if(TextUtils.isEmpty(et_price.getText().toString()))
+                Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
 
+            if(TextUtils.isEmpty(et_quantity.getText().toString()))
+                Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
 
-
-            Toast.makeText(getApplicationContext(),"Ad posted!",Toast.LENGTH_SHORT).show();
-
-        }
-        catch(NumberFormatException e){
-            Toast.makeText(getApplicationContext(),"Please enter a correct amount for the price",Toast.LENGTH_SHORT).show();
-
-        }
 
         //Getting Image and uploading data to database
 
         if(mImageUri != null){
-            StorageReference fileReference = storageRef.child(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
+          StorageReference fileReference = storageRef.child(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
 
             fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Uri downloadUrl = uri;
+                            Advertisment ad = new Advertisment(et_title.getText().toString().trim(),et_description.getText().toString().trim(),uri.toString(),Float.parseFloat(et_price.getText().toString().trim()),Integer.parseInt(et_quantity.getText().toString().trim()));
+                            dbRef.push().setValue(ad);
+                        }
+                    });
+
                     Handler handler = new Handler();  //Delays reset of progress bar by 5s
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -116,10 +148,10 @@ public class PostAd extends AppCompatActivity {
                         }
                     },500);
                     Toast.makeText(getApplicationContext(),"Upload Successfull!",Toast.LENGTH_SHORT).show();
-                    Log.d("ADebugTag", "Value: " + et_title.getText().toString().trim());
-                    Advertisment ad = new Advertisment(et_title.getText().toString().trim(),et_description.getText().toString().trim(),taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),Float.parseFloat(et_price.getText().toString().trim()),Integer.parseInt(et_quantity.getText().toString().trim()));
-                    String uploadId = dbRef.push().getKey();
-                    dbRef.child(uploadId).setValue(ad);
+                    Toast.makeText(getApplicationContext(),"Ad posted!",Toast.LENGTH_SHORT).show();
+                    Log.d("ADebugTag", "Value: " + taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
