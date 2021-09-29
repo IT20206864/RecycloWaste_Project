@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
+import 	java.util.regex.Matcher;
 
 public class Reviews extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
@@ -38,7 +40,7 @@ public class Reviews extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
-        //review = new Review(100);
+
         tipView = (TextView) findViewById(R.id.tv_tipView);
         customamount = (EditText) findViewById(R.id.nd_customamount);
         hundred = (Button) findViewById(R.id.bt_hundred);
@@ -46,6 +48,8 @@ public class Reviews extends AppCompatActivity {
         fivehundred = (Button) findViewById(R.id.bt_fhundred);
         add = (Button) findViewById(R.id.bt_addpay);
         pay = (Button) findViewById(R.id.bt_done);
+
+        Double inputTip;
         //tv_tipView.setText(review.getTip());
 
         Button submitButtonBooking = (Button) findViewById(R.id.bt_forbooking);
@@ -65,7 +69,11 @@ public class Reviews extends AppCompatActivity {
             public void onClick(View view) {
                 String tip = customamount.getText().toString();
                 String currenttip = 100+tip;
-                tipView.setText(currenttip);
+                String pattern = "([0-9]{4})(.)([0-2]{2})";
+                Pattern r = Pattern.compile(pattern);
+                Matcher m = r.matcher(currenttip);
+                if (m.matches()){System.out.println("Valid price");} else {System.out.println("Invalid price");}
+                tipView.setText("Rs "+currenttip);
             }
         });
 
@@ -74,7 +82,11 @@ public class Reviews extends AppCompatActivity {
             public void onClick(View view) {
                 String tip = customamount.getText().toString();
                 String currenttip = 50+tip;
-                tipView.setText(currenttip);
+                String pattern = "([0-9]{4})(.)([0-2]{2})";
+                Pattern r = Pattern.compile(pattern);
+                Matcher m = r.matcher(currenttip);
+                if (m.matches()){System.out.println("Valid price");} else {System.out.println("Invalid price");}
+                tipView.setText("Rs "+currenttip);
             }
         });
 
@@ -83,7 +95,11 @@ public class Reviews extends AppCompatActivity {
             public void onClick(View view) {
                 String tip = customamount.getText().toString();
                 String currenttip = 500+tip;
-                tipView.setText(currenttip);
+                String pattern = "([0-9]{4})(.)([0-2]{2})";
+                Pattern r = Pattern.compile(pattern);
+                Matcher m = r.matcher(currenttip);
+                if (m.matches()){System.out.println("Valid price");} else {System.out.println("Invalid price");}
+                tipView.setText("Rs "+currenttip);
             }
         });
 
@@ -93,7 +109,11 @@ public class Reviews extends AppCompatActivity {
                 //get values from texteditor to textviewer
                 String tip = customamount.getText().toString();
                 String currenttip = tip;
-                tipView.setText(currenttip);
+                String pattern = "([0-9]{4})(.)([0-2]{2})";
+                Pattern r = Pattern.compile(pattern);
+                Matcher m = r.matcher(currenttip);
+                if (m.matches()){System.out.println("Valid price");} else {System.out.println("Invalid price");}
+                tipView.setText("Rs "+currenttip);
             }
         });
 
