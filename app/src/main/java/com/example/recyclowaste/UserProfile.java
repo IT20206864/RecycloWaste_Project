@@ -1,3 +1,4 @@
+/*
 package com.example.recyclowaste;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,4 +74,4 @@ public class UserProfile extends AppCompatActivity {
         editProfile.putExtra("user", user);
         startActivity(editProfile);
     }
-}
+}*/

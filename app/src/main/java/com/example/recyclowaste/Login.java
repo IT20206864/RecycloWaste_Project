@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity {
     EditText email , password;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    ImageView btn_Google;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class Login extends AppCompatActivity {
         btn_signIn = findViewById(R.id.btn_SIgnIn);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        btn_Google = findViewById(R.id.btn_Google);
 
         btn_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +43,16 @@ public class Login extends AppCompatActivity {
                 performLogin();
             }
         });
+
+        btn_Google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),GoogleSignInActivivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     private void performLogin(){
         String emailLog = email.getText().toString().trim();
