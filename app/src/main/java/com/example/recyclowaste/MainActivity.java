@@ -1,3 +1,4 @@
+/*
 package com.example.recyclowaste;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,4 +57,4 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(homeMarketplace);
     }
-}
+}*/

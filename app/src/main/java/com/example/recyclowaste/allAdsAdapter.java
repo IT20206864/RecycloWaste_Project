@@ -1,6 +1,7 @@
 package com.example.recyclowaste;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,14 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclowaste.model.Advertisment;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -24,10 +32,15 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
 
     private Context context;
     private List<Advertisment> ads;
+    private List<String> users;
+    private String username;
+    private DatabaseReference dbRef;
+    private String TelNo;
 
-    public allAdsAdapter(Context context , List<Advertisment> ads){
+    public allAdsAdapter(Context context , List<Advertisment> ads , List<String> users){
         this.context = context;
         this.ads = ads;
+        this.users = users;
     }
 
     @NonNull
@@ -42,6 +55,7 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
     @Override
     public void onBindViewHolder(@NonNull adsViewHolder holder, int position) {
             Advertisment adCurrent = ads.get(position);
+            username = users.get(position);
             holder.title.setText(adCurrent.getTitle());
             holder.description.setText(adCurrent.getDescription());
 
@@ -56,15 +70,52 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
 
         holder.spinner.setAdapter(adapter);
 
+        holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int quantity = Integer.parseInt((String) adapterView.getItemAtPosition(i)) ;
+             //   Float price = Float.valueOf(holder.price.getText().toString());
+                Float price = Float.valueOf(adCurrent.getPrice());
+                Float total = quantity * price;
+                holder.price.setText(total.toString());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        holder.contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbRef = FirebaseDatabase.getInstance().getReference().child("User").child(username);
+                System.out.print(dbRef);
+                dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                     //   TelNo = snapshot.child("telno").getValue().toString();
+                        TelNo = "0777066217";
+                        System.out.print(TelNo);
+                        Log.d("fTag", "Tel Number: "+TelNo);
+                        Uri call = Uri.parse("tel:" + TelNo);
+                        Intent intent = new Intent(Intent.ACTION_DIAL,call);
+                        context.startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(context.getApplicationContext(), "Number not available", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+            }
+        });
 
     }
-    public void onItemSelected(AdapterView<?> parent, View view,int pos,long id){
-        parent.getItemAtPosition(pos);
-    }
 
-    public void onNothingSelected(AdapterView<?> parent){
-
-    }
 
     @Override
     public int getItemCount() {
@@ -76,6 +127,7 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
         ImageView image;
         TextView title,description,price;
         Spinner spinner;
+        Button contact;
         public adsViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -84,6 +136,7 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
             title = itemView.findViewById(R.id.title_all_ads);
             price = itemView.findViewById(R.id.price_all_ads);
             spinner = (Spinner)itemView.findViewById(R.id.spinner_all_ads);
+            contact = itemView.findViewById(R.id.contact_all_ads);
 
         }
     }
