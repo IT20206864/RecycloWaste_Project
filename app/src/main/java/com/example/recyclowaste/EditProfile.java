@@ -21,7 +21,6 @@ import java.util.Calendar;
 
 public class EditProfile extends AppCompatActivity {
     EditText fname;
-    EditText lname;
     EditText email;
     EditText telno;
     User user;
@@ -34,24 +33,21 @@ public class EditProfile extends AppCompatActivity {
         Intent intent = getIntent();
 
         fname = findViewById(R.id.inptFname);
-        lname = findViewById(R.id.inptLname);
         email = findViewById(R.id.inptEmail);
         telno = findViewById(R.id.inptTelno);
 
         user = (User) intent.getSerializableExtra("user");
 
         fname.setText(user.getFname());
-        //lname.setText(user.getLname());
         email.setText(user.getEmail());
         telno.setText(user.getTelno());
 
     }
 
     public void onSave(View view) {
-        if(!TextUtils.isEmpty(fname.getText()) && !TextUtils.isEmpty(lname.getText()) && !TextUtils.isEmpty(email.getText())
+        if(!TextUtils.isEmpty(fname.getText()) && !TextUtils.isEmpty(email.getText())
         && !TextUtils.isEmpty(telno.getText())){
             user.setFname(fname.getText().toString());
-           // user.setLname(lname.getText().toString());
             user.setEmail(email.getText().toString());
             user.setTelno(telno.getText().toString());
 
@@ -61,7 +57,6 @@ public class EditProfile extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChildren()){
                         dbref.child("fname").setValue(user.getFname());
-                        //dbref.child("lname").setValue(user.getLname());
                         dbref.child("email").setValue(user.getEmail());
                         dbref.child("telno").setValue(user.getTelno());
 

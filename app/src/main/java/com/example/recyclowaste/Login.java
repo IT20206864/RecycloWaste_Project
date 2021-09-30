@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Logging in", Toast.LENGTH_SHORT).show();
                     //Intent to Homepage
-                    Intent intent = new Intent(getApplicationContext(),reviewAdd.class);
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                 }
                 else{

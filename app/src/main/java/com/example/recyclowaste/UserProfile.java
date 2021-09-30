@@ -1,4 +1,4 @@
-/*package com.example.recyclowaste;
+package com.example.recyclowaste;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,14 +26,10 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-        user = new User("Sahan", "Perera", "sahanp@gmail.com","+94773554123","pass");
         tv_name = findViewById(R.id.tv_name);
         userEmail = findViewById(R.id.userEmail);
         userTelno = findViewById(R.id.userTelno);
 
-     //   tv_name.setText(user.getFname() + " " + user.getLname());
-        userEmail.setText(user.getEmail());
-        userTelno.setText(user.getTelno());
         username = "acanta69";
 
         Loader loader = new Loader(this);
@@ -45,11 +41,11 @@ public class UserProfile extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
 
                 if(snapshot.hasChildren()) {
-                    user = new  User(snapshot.child("fname").getValue().toString(), snapshot.child("lname").getValue().toString(),
+                    user = new  User(snapshot.child("fname").getValue().toString(), snapshot.child("username").getValue().toString(),
                             snapshot.child("email").getValue().toString(),snapshot.child("telno").getValue().toString(),
-                            snapshot.child("username").getValue().toString(), snapshot.child("password").getValue().toString(),
-                            snapshot.child("type").getValue().toString());
-                    tv_name.setText(user.getFname() + " " + user.getLname());
+                             snapshot.child("password").getValue().toString()
+                            );
+                    tv_name.setText(user.getFname());
                     userEmail.setText(user.getEmail());
                     userTelno.setText(user.getTelno());
                 }
@@ -67,10 +63,9 @@ public class UserProfile extends AppCompatActivity {
     public void openEditProfile(View view){
         Intent editProfile = new Intent(this, EditProfile.class);
         editProfile.putExtra("fname", user.getFname());
-   //     editProfile.putExtra("lname", user.getLname());
         editProfile.putExtra("email", user.getEmail());
         editProfile.putExtra("telno", user.getTelno());
         editProfile.putExtra("user", user);
         startActivity(editProfile);
     }
-}*/
+}
