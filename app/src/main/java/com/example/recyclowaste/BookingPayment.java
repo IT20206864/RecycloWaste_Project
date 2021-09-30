@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Booking;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,6 +32,7 @@ public class BookingPayment extends AppCompatActivity {
     RadioButton radiopickup;
     DecimalFormat df;
     Loader loader;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +41,11 @@ public class BookingPayment extends AppCompatActivity {
         radiopickup = findViewById(R.id.radioPickup);
         df = new DecimalFormat("####0.00");
         loader = new Loader(this);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         payment = findViewById(R.id.payment);
         Intent i = getIntent();
-        username = "acanta69";
+        username = firebaseAuth.getCurrentUser().getDisplayName();
 
         booking = (Booking)i.getSerializableExtra("booking");
         payment.setText(String.valueOf("LKR " + df.format(booking.getPayment())));
