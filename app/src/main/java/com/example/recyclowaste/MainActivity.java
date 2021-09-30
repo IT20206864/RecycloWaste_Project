@@ -1,4 +1,4 @@
-/*
+
 package com.example.recyclowaste;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firebaseAuth = FirebaseAuth.getInstance();
-        /*if (firebaseAuth.getCurrentUser() == null) {
+        if (firebaseAuth.getCurrentUser() == null) {
             Intent login = new Intent(this, Login.class);
             startActivity(login);
-        }*/
+        }
     }
 
     public void openBookPickup(View view) {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openUserProfile(View view) {
-        Intent userProfile = new Intent(this, Login.class);
+        Intent userProfile = new Intent(this, UserProfile.class);
 
         startActivity(userProfile);
     }
@@ -57,4 +57,4 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(homeMarketplace);
     }
-}*/
+}

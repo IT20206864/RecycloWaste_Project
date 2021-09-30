@@ -1,4 +1,4 @@
-/*
+
 package com.example.recyclowaste;
 
 import androidx.annotation.NonNull;
@@ -26,6 +26,7 @@ public class EditProfile extends AppCompatActivity {
     EditText telno;
     User user;
     DatabaseReference dbref;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class EditProfile extends AppCompatActivity {
         telno = findViewById(R.id.inptTelno);
 
         user = (User) intent.getSerializableExtra("user");
+        key = intent.getStringExtra("key");
 
         fname.setText(user.getFname());
         email.setText(user.getEmail());
@@ -52,7 +54,7 @@ public class EditProfile extends AppCompatActivity {
             user.setEmail(email.getText().toString());
             user.setTelno(telno.getText().toString());
 
-            DatabaseReference dbref  = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUsername());
+            DatabaseReference dbref  = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUsername()).child(key);
             dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,4 +82,4 @@ public class EditProfile extends AppCompatActivity {
         }
 
     }
-}*/
+}

@@ -46,6 +46,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
 
         myBookingsView = findViewById(R.id.myBookingsView);
         myBookingsView.setLayoutManager(new LinearLayoutManager(this));
+        firebaseAuth  = FirebaseAuth.getInstance();
 
         dropdown = findViewById(R.id.sortSpinner);
 
@@ -57,7 +58,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         dropdown.setAdapter(adapter2);
         dropdown.setOnItemSelectedListener(this);
 
-        username = "acanta69";
+        username = firebaseAuth.getCurrentUser().getDisplayName();
 
 
 
