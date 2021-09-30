@@ -199,12 +199,12 @@ public class BookingDetails extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                                        DatabaseReference upref  = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69");
+                                        DatabaseReference upref  = FirebaseDatabase.getInstance().getReference().child("Booking").child(username);
                                         upref.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 if(snapshot.hasChild(key)) {
-                                                    dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69").child(key);
+                                                    dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username).child(key);
                                                     dbref.removeValue();
                                                     Toast.makeText(getApplicationContext(), "Canceled!", Toast.LENGTH_SHORT).show();
                                                     Intent mybookings = new Intent(BookingDetails.this, MyBookings.class);
