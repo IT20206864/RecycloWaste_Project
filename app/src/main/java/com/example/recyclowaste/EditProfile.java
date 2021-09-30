@@ -27,6 +27,7 @@ public class EditProfile extends AppCompatActivity {
     EditText telno;
     User user;
     DatabaseReference dbref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class EditProfile extends AppCompatActivity {
         user = (User) intent.getSerializableExtra("user");
 
         fname.setText(user.getFname());
-        lname.setText(user.getLname());
+        //lname.setText(user.getLname());
         email.setText(user.getEmail());
         telno.setText(user.getTelno());
 
@@ -51,7 +52,7 @@ public class EditProfile extends AppCompatActivity {
         if(!TextUtils.isEmpty(fname.getText()) && !TextUtils.isEmpty(lname.getText()) && !TextUtils.isEmpty(email.getText())
         && !TextUtils.isEmpty(telno.getText())){
             user.setFname(fname.getText().toString());
-            user.setLname(lname.getText().toString());
+           // user.setLname(lname.getText().toString());
             user.setEmail(email.getText().toString());
             user.setTelno(telno.getText().toString());
 
@@ -61,7 +62,7 @@ public class EditProfile extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.hasChildren()){
                         dbref.child("fname").setValue(user.getFname());
-                        dbref.child("lname").setValue(user.getLname());
+                        //dbref.child("lname").setValue(user.getLname());
                         dbref.child("email").setValue(user.getEmail());
                         dbref.child("telno").setValue(user.getTelno());
 
