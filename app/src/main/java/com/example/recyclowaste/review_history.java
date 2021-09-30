@@ -49,9 +49,6 @@ public class review_history extends AppCompatActivity {
                     Log.d("Tag", "onDataChange: "+snapshot.getChildren());
                     System.out.println(snapshot.getChildren());
                     list.add(new ReviewTwo(dataSnapshot.child("Review").getValue().toString()));
-/*
-                    ReviewTwo reviewTwo = dataSnapshot.getValue(ReviewTwo.class);
-                    list.add(reviewTwo);*/
                 }
                 adaptertwo.notifyDataSetChanged();
             }
