@@ -1,3 +1,4 @@
+/*
 package com.example.recyclowaste;
 
 import androidx.annotation.NonNull;
@@ -84,4 +85,4 @@ public class EditProfile extends AppCompatActivity {
         }
 
     }
-}
+}*/
