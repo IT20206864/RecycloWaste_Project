@@ -16,6 +16,7 @@ import com.example.recyclowaste.model.Booking;
 import com.example.recyclowaste.model.UserLocation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +38,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
     Spinner dropdown;
     String username;
     Loader loader;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
 
         myBookingsView = findViewById(R.id.myBookingsView);
         myBookingsView.setLayoutManager(new LinearLayoutManager(this));
+        firebaseAuth  = FirebaseAuth.getInstance();
 
         dropdown = findViewById(R.id.sortSpinner);
 
@@ -55,7 +58,7 @@ public class MyBookings extends AppCompatActivity implements AdapterView.OnItemS
         dropdown.setAdapter(adapter2);
         dropdown.setOnItemSelectedListener(this);
 
-        username = "acanta69";
+        username = firebaseAuth.getCurrentUser().getDisplayName();
 
 
 

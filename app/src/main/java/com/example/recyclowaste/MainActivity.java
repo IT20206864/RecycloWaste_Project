@@ -1,3 +1,4 @@
+
 package com.example.recyclowaste;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
+public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() == null) {
+            Intent login = new Intent(this, Login.class);
+            startActivity(login);
+        }
     }
 
     public void openBookPickup(View view) {
@@ -32,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*public void openUserProfile(View view) {
+    public void openUserProfile(View view) {
         Intent userProfile = new Intent(this, UserProfile.class);
 
         startActivity(userProfile);
-    }*/
+    }
 
     public void openSignUp(View view) {
         Intent signUp = new Intent(this, SignUp.class);

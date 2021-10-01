@@ -22,6 +22,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Booking;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,6 +55,7 @@ public class BookingDetails extends AppCompatActivity {
     SimpleDateFormat timeFormatDigital;
     Loader loader;
     Booking booking;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,8 @@ public class BookingDetails extends AppCompatActivity {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         timeFormat = new SimpleDateFormat("hh:mm");
         timeFormatDigital = new SimpleDateFormat("HH:mm");
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         driver = findViewById(R.id.tv_driver);
         type = findViewById(R.id.tv_type);
@@ -75,7 +79,7 @@ public class BookingDetails extends AppCompatActivity {
 
         df = new DecimalFormat("####0.00");
 
-        username = "acanta69";
+        username = firebaseAuth.getCurrentUser().getDisplayName();
 
         builder = new AlertDialog.Builder(this);
 
@@ -195,12 +199,12 @@ public class BookingDetails extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                                        DatabaseReference upref  = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69");
+                                        DatabaseReference upref  = FirebaseDatabase.getInstance().getReference().child("Booking").child(username);
                                         upref.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 if(snapshot.hasChild(key)) {
-                                                    dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child("acanta69").child(key);
+                                                    dbref = FirebaseDatabase.getInstance().getReference().child("Booking").child(username).child(key);
                                                     dbref.removeValue();
                                                     Toast.makeText(getApplicationContext(), "Canceled!", Toast.LENGTH_SHORT).show();
                                                     Intent mybookings = new Intent(BookingDetails.this, MyBookings.class);

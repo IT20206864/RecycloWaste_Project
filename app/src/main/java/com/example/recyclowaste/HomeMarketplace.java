@@ -28,6 +28,7 @@ public class HomeMarketplace extends AppCompatActivity  {
     RecyclerView recyclerView;
     allAdsAdapter adsAdapter;
     private List<Advertisment> adsList;
+    private List<String> usernamesList;
     private DatabaseReference dbRef;
 
     @Override
@@ -48,6 +49,7 @@ public class HomeMarketplace extends AppCompatActivity  {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adsList = new ArrayList<>();
+        usernamesList = new ArrayList<>();
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment");
 
@@ -56,7 +58,7 @@ public class HomeMarketplace extends AppCompatActivity  {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 getAds(snapshot);
-                adsAdapter = new allAdsAdapter(getApplicationContext(),adsList);
+                adsAdapter = new allAdsAdapter(getApplicationContext(),adsList,usernamesList);
                 recyclerView.setAdapter(adsAdapter);
              //   adsAdapter.notifyDataSetChanged();
             }
@@ -72,11 +74,14 @@ public class HomeMarketplace extends AppCompatActivity  {
     public void getAds(DataSnapshot snapshot){
         for(DataSnapshot users : snapshot.getChildren()){
 
+
             for(DataSnapshot snap : users.getChildren()){
                 adsList.add(new Advertisment(snap.child("title").getValue().toString(),snap.child("description").getValue().toString()
                         ,snap.child("image").getValue().toString()
                         ,Float.parseFloat(snap.child("price").getValue().toString()),
                         Integer.parseInt(snap.child("quantity").getValue().toString())));
+                usernamesList.add(users.getKey());
+                System.out.println(usernamesList);
             }
 
         }
