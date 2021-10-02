@@ -170,6 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:onClick="openHomeMarketplace"
                 android:orientation="vertical">
 
                 <ImageView
@@ -208,6 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:onClick="logout"
                 android:orientation="vertical">
 
                 <ImageView

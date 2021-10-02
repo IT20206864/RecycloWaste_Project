@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Advertisment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,13 +33,35 @@ public class MyAds extends AppCompatActivity {
     private List<Advertisment> ads;
     private List<String> keys;
     private FirebaseAuth firebaseAuth;
+    private FirebaseAuth checkUser;
     private String username;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_ads2);
+
+ /*       checkUser = FirebaseAuth.getInstance();
+        if (checkUser.getCurrentUser() == null) {
+            Intent login = new Intent(this, Login.class);
+            startActivity(login);
+        }*/
+        firebaseAuth = FirebaseAuth.getInstance();
+        checkUser = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = checkUser.getCurrentUser();
+                if(user == null){
+                    Intent intent = new Intent(MyAds.this,Login.class);
+                    startActivity(intent);
+
+                }
+            }
+        };
 
         recyclerView = findViewById(R.id.MyAdsRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -48,6 +72,7 @@ public class MyAds extends AppCompatActivity {
         keys = new ArrayList<>();
 
         username = firebaseAuth.getCurrentUser().getDisplayName();
+        Log.d("FTAG", "onCreate: d"+username);
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username);
 
