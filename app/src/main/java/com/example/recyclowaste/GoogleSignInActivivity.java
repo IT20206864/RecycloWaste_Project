@@ -93,7 +93,7 @@ public class GoogleSignInActivivity extends Login {
                     }
 
                     private void updateUI(FirebaseUser user) {
-                        Intent intent = new Intent(GoogleSignInActivivity.this , PostAd.class);
+                        Intent intent = new Intent(GoogleSignInActivivity.this , MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -85,6 +86,18 @@ public class HomeMarketplace extends AppCompatActivity  {
             }
 
         }
+    }
+
+    public void myAds(View view){
+        Intent myAds = new Intent(this, MyAds.class);
+
+        startActivity(myAds);
+    }
+
+    public void postAd(View view){
+        Intent postAd = new Intent(this, PostAd.class);
+
+        startActivity(postAd);
     }
 
 

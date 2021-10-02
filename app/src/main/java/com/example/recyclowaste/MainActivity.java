@@ -46,14 +46,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(userProfile);
     }
 
-    public void openSignUp(View view) {
-        Intent signUp = new Intent(this, SignUp.class);
+    public void logout(View view) {
+        firebaseAuth.signOut();
+        Intent logout = new Intent(this, Login.class);
 
-        startActivity(signUp);
+        startActivity(logout);
     }
 
     public void openHomeMarketplace(View view) {
-            Intent homeMarketplace = new Intent(this, MyAds.class);
+            Intent homeMarketplace = new Intent(this, HomeMarketplace.class);
 
         startActivity(homeMarketplace);
     }
