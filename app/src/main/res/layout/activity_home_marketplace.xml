@@ -93,15 +93,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Market_Post_img" />
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="202dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Post_MarketplaceTitle" />
-
     <ImageView
         android:id="@+id/icon_marketpplace"
         android:layout_width="38dp"
@@ -116,8 +107,10 @@
         android:id="@+id/recyclerView_allAds"
         android:layout_width="409dp"
         android:layout_height="402dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/Market_Myads"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/post_heading" />
 </androidx.constraintlayout.widget.ConstraintLayout>

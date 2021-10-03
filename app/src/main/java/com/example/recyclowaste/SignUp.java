@@ -59,9 +59,103 @@ public class SignUp extends AppCompatActivity {
         String uName = username.getText().toString().trim();
         dbRef = FirebaseDatabase.getInstance().getReference().child("User").child(uName);
 
-        validations(uName);
 
-        if(!pass.getText().toString().equals(cpass.getText().toString())  ){
+        if(TextUtils.isEmpty(fname.getText().toString())){
+            Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
+            fname.setError("Field is Empty!");
+        }
+
+        if(TextUtils.isEmpty(uName)){
+            Toast.makeText(getApplicationContext(), "Please enter a username", Toast.LENGTH_SHORT).show();
+            username.setError("Field is Empty!");
+        }
+
+         if(TextUtils.isEmpty(email.getText().toString())){
+            Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
+            email.setError("Field is Empty!");
+        }
+
+         if(TextUtils.isEmpty(telNo.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "Please enter your Telephone Number", Toast.LENGTH_SHORT).show();
+            telNo.setError("Field is Empty!");
+        }
+
+         if(TextUtils.isEmpty(pass.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "Please enter a password", Toast.LENGTH_SHORT).show();
+            pass.setError("Field is Empty!");
+        }
+
+         if(TextUtils.isEmpty(cpass.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "Please confirm pass", Toast.LENGTH_SHORT).show();
+            cpass.setError("Field is Empty!");
+        }
+         if(!pass.getText().toString().equals(cpass.getText().toString())  ){
+                Toast.makeText(getApplicationContext(), "Passwords not matching!", Toast.LENGTH_SHORT).show();
+                pass.setError("Please input a different password");
+                pass.setText("");
+                cpass.setText("");
+           //     validations(uName);
+                }
+        else{
+                dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.hasChild(uName)){
+                            Toast.makeText(getApplicationContext(), "Username Already Exists!", Toast.LENGTH_SHORT).show();
+                            username.setError("Username already taken!");
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "Setting names", Toast.LENGTH_SHORT).show();
+                            user.setUsername(uName.trim());
+                            user.setEmail(email.getText().toString().trim());
+                            user.setFname(fname.getText().toString().trim());
+                            user.setPassword(pass.getText().toString().trim());
+                            user.setTelno(telNo.getText().toString().trim());
+
+
+                            PerformAuth(user);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getApplicationContext(), "Database Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+ /*           dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.hasChild(uName)){
+                        Toast.makeText(getApplicationContext(), "Username Already Exists!", Toast.LENGTH_SHORT).show();
+                        username.setError("Username already taken!");
+                    }
+                    else{
+
+                        user.setUsername(uName.trim());
+                        user.setEmail(email.getText().toString().trim());
+                        user.setFname(fname.getText().toString().trim());
+                        user.setPassword(pass.getText().toString().trim());
+                        user.setTelno(telNo.getText().toString().trim());
+
+
+                        PerformAuth(user);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getApplicationContext(), "Database Error", Toast.LENGTH_SHORT).show();
+                }
+            });*/
+
+
+
+
+/*        if(!pass.getText().toString().equals(cpass.getText().toString())  ){
             Toast.makeText(getApplicationContext(), "Passwords not matching!", Toast.LENGTH_SHORT).show();
             pass.setError("Please input a different password");
             pass.setText("");
@@ -76,6 +170,7 @@ public class SignUp extends AppCompatActivity {
                     username.setError("Username already taken!");
                 }
                 else{
+                    Toast.makeText(getApplicationContext(), "Setting names", Toast.LENGTH_SHORT).show();
                     user.setUsername(uName.trim());
                     user.setEmail(email.getText().toString().trim());
                     user.setFname(fname.getText().toString().trim());
@@ -92,7 +187,7 @@ public class SignUp extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getApplicationContext(), "Database Error", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
     }
 
@@ -114,11 +209,11 @@ public class SignUp extends AppCompatActivity {
                         }
                     });
                     Toast.makeText(getApplicationContext(),"Registration Succesful" , Toast.LENGTH_SHORT).show();
-                    dbRef.push().setValue(user);
+                    dbRef.child(user.getUsername()).setValue(user);
                     //Intent to sign in
-                    /*Intent intent = new Intent(getApplicationContext() , Login.class);
+                    Intent intent = new Intent(getApplicationContext() , Login.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);*/
+                    startActivity(intent);
 
                 }
                 else{
@@ -135,7 +230,7 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    public void validations(String uName){
+  /*  public void validations(String uName){
 
         if(TextUtils.isEmpty(fname.getText().toString())){
             Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
@@ -167,7 +262,7 @@ public class SignUp extends AppCompatActivity {
             cpass.setError("Field is Empty!");
         }
 
-    }
+    }*/
 
 
 

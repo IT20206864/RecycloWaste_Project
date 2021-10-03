@@ -1,9 +1,15 @@
 package com.example.recyclowaste;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DownloadManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +17,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +38,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class EditAd extends AppCompatActivity {
@@ -44,19 +53,23 @@ public class EditAd extends AppCompatActivity {
     String key;
     String username;
     FirebaseAuth firebaseAuth;
+    Button btnChoooseImage;
+    Uri mImageUri;
+    StorageReference storageRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_ad);
 
-
+        ad = new Advertisment();
         et_price = findViewById(R.id.post_prdtPrice);
         et_quantity = findViewById(R.id.et_post_prdtQuantity);
         et_title = findViewById(R.id.et_post_prdtTitle);
         et_description = findViewById(R.id.et_post_prdt_Desc);
         imgAd = findViewById(R.id.img_displayProductEdit);
-
+        firebaseAuth = FirebaseAuth.getInstance();
         username = firebaseAuth.getCurrentUser().getDisplayName();
+        btnChoooseImage = findViewById(R.id.btn_edit_addImage);
 
         Intent intent = getIntent();
 
@@ -89,25 +102,85 @@ public class EditAd extends AppCompatActivity {
         });
     }
 
+    public void ChooseImage(View view){
+        openFileChooser();
+    }
+
+    private void openFileChooser(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        activityResult.launch(intent);
+
+
+    }
+
+    ActivityResultLauncher<Intent> activityResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        mImageUri = data.getData();
+
+                        imgAd.setImageURI(mImageUri);
+
+                    }
+                }
+            }
+    );
+
     public void editAd(View view){
 
-        DatabaseReference updRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1").child(key);
+        DatabaseReference updRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username).child(key);
+        storageRef = FirebaseStorage.getInstance().getReference().child("Advertisment");
         updRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.hasChildren()){
-                    ad.setTitle(et_title.getText().toString().trim());
+                  /*  ad.setTitle(et_title.getText().toString().trim());
                     ad.setQuantity(Integer.parseInt(et_quantity.getText().toString().trim()));
                     ad.setPrice(Float.parseFloat(et_price.getText().toString().trim()));
-                    ad.setDescription(et_description.getText().toString().trim());
+                    ad.setDescription(et_description.getText().toString().trim());*/
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Data can not be fetched!", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(getApplicationContext(),"Advertisment Updated!",Toast.LENGTH_SHORT).show();
-                dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1").child(key);
-                dbRef.setValue(ad);
+                if(mImageUri != null){
 
+                    StorageReference fileReference = storageRef.child(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
+
+                    fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Uri downloadUrl = uri;
+                                    Advertisment ad = new Advertisment(et_title.getText().toString().trim(), et_description.getText().toString().trim(), uri.toString(), Float.parseFloat(et_price.getText().toString().trim()), Integer.parseInt(et_quantity.getText().toString().trim()));
+                               //     dbRef.push().setValue(ad);
+                                    dbRef.child("description").setValue(ad.getDescription());
+                                    dbRef.child("image").setValue(ad.getImage());
+                                    dbRef.child("price").setValue(ad.getPrice());
+                                    dbRef.child("quantity").setValue(ad.getQuantity());
+                                    dbRef.child("title").setValue(ad.getTitle());
+                                }
+                            });
+                        }
+                    });
+
+
+
+
+                Toast.makeText(getApplicationContext(),"Advertisment Updated!",Toast.LENGTH_SHORT).show();
+                dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username).child(key);
+                dbRef.setValue(ad);
+                /*Intent intent = new Intent(getApplicationContext() , adPosted.class);
+                startActivity(intent);*/
+
+            }
             }
 
             @Override
@@ -117,41 +190,12 @@ public class EditAd extends AppCompatActivity {
         });
 
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-        /*Query query = FirebaseDatabase.getInstance().getReference().child("Advertisment").orderByChild("ad_id").equalTo("AD1");*/
-
-/*        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                try{
-                    ad.setTitle(et_title.getText().toString().trim());
-                    ad.setQuantity(Integer.parseInt(et_quantity.getText().toString().trim()));
-                    ad.setPrice(Float.parseFloat(et_price.getText().toString().trim()));
-                    ad.setDescription(et_description.getText().toString().trim());
-
-                    dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment");
-                    dbRef.setValue(ad);
-
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
+        private String getFileExtension(Uri uri){
+            ContentResolver cR = getContentResolver();
+            MimeTypeMap mime = MimeTypeMap.getSingleton();
+            return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
 }

@@ -5,7 +5,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -19,24 +18,22 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recyclowaste.model.Advertisment;
-import com.example.recyclowaste.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class PostAd extends AppCompatActivity {
 
@@ -65,30 +62,13 @@ public class PostAd extends AppCompatActivity {
         et_description = findViewById(R.id.et_post_prdt_Desc);
         et_price = findViewById(R.id.post_prdtPrice);
         et_quantity = findViewById(R.id.et_post_prdtQuantity);
-        btnChoooseImage = findViewById(R.id.btn_post_addImage);
+        btnChoooseImage = findViewById(R.id.btn_edit_addImage);
         progressBar = findViewById(R.id.progressBar);
         productImg = findViewById(R.id.img_displayProduct);
         firebaseAuth = FirebaseAuth.getInstance();
         username = firebaseAuth.getCurrentUser().getDisplayName();
 
-/*        FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
 
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                Log.d("Entry", "Entry1");
-                if(user != null){
-                    Log.d("USERINFO", "USERNAME"+user.getDisplayName());
-
-                    u.setUsername(user.getDisplayName());
-
-                }else{
-                    Toast.makeText(getApplicationContext(),"Not logged", Toast.LENGTH_SHORT).show();
-                    //finish();
-
-                }
-            }
-        };*/
     }
 
     private void ClearControls(){
@@ -150,6 +130,8 @@ public class PostAd extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Upload Successfull!",Toast.LENGTH_SHORT).show();
                     Toast.makeText(getApplicationContext(),"Ad posted!",Toast.LENGTH_SHORT).show();
                     Log.d("ADebugTag", "Value: " + taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                    Intent intent = new Intent(getApplicationContext() , adPosted.class);
+                    startActivity(intent);
 
 
                 }
@@ -169,8 +151,11 @@ public class PostAd extends AppCompatActivity {
         }
         else{
             Toast.makeText(getApplicationContext(),"No File Selected",Toast.LENGTH_SHORT).show();
+            ClearControls();
+
         }
-     //   ClearControls();
+
+
     }
 
     private void openFileChooser(){
@@ -191,7 +176,8 @@ public class PostAd extends AppCompatActivity {
                         Intent data = result.getData();
                         mImageUri = data.getData();
 
-                        productImg.setImageURI(mImageUri);
+                   //     productImg.setImageURI(mImageUri);
+                       Picasso.get().load(mImageUri).into(productImg);
 
                     }
                 }
