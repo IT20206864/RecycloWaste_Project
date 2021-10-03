@@ -61,7 +61,7 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
 
         Log.d("Image Value", "onBindViewHolder: " + adCurrent.getImage().trim() );
             Picasso.get().load(adCurrent.getImage().trim()).into(holder.image);
-            holder.price.setText(Float.toString(adCurrent.getPrice()));
+            holder.price.setText("Rs. "+Float.toString(adCurrent.getPrice()));
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,R.array.quantity_array,android.R.layout.simple_spinner_item);
 
@@ -69,6 +69,7 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
 
 
         holder.spinner.setAdapter(adapter);
+        holder.spinner.setSelection(0);
 
         holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -90,14 +91,18 @@ public class allAdsAdapter extends RecyclerView.Adapter<allAdsAdapter.adsViewHol
         holder.contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dbRef = FirebaseDatabase.getInstance().getReference().child("User").child(username);
+                dbRef = FirebaseDatabase.getInstance().getReference().child("User").child(username).child(username);
                 System.out.print(dbRef);
+
+                Log.d("FTAG", "onClick: "+TelNo);
                 dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                     //   TelNo = snapshot.child("telno").getValue().toString();
-                        TelNo = "0777066217";
-                        System.out.print(TelNo);
+
+                        System.out.print(snapshot.child("telno").getValue().toString());
+                        TelNo = snapshot.child("telno").getValue().toString();
+
+
                         Log.d("fTag", "Tel Number: "+TelNo);
                         Uri call = Uri.parse("tel:" + TelNo);
                         Intent intent = new Intent(Intent.ACTION_DIAL,call);

@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclowaste.model.Advertisment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +35,8 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
     private Context context;
     private List<Advertisment> ads;
     private List<String> keys;
-
+    private String username;
+    private FirebaseAuth firebaseAuth;
 
 
 
@@ -48,6 +50,8 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View v = layoutInflater.inflate(R.layout.ads_item_card,parent,false);
+        firebaseAuth = FirebaseAuth.getInstance();
+        username = firebaseAuth.getCurrentUser().getDisplayName();
         return new ItemViewHolder(v);
     }
 
@@ -67,18 +71,20 @@ public class AdapterMyAds extends RecyclerView.Adapter<AdapterMyAds.ItemViewHold
                 data.putExtra("key",keys.get(position));
                 Log.d("ADebugTag", "Value: " + keys.get(position));
                 context.startActivity(data);
+                ((MyAds)context).finish();
+
             }
         });
 
         holder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference deleteRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1");
+                DatabaseReference deleteRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username);
                 deleteRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.hasChild(keys.get(position))){
-                            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child("user1").child(keys.get(position));
+                            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("Advertisment").child(username).child(keys.get(position));
                             AlertDialog.Builder confirm = new AlertDialog.Builder(context);
                             confirm.setTitle("Deletion Confirmation");
                             confirm.setMessage("Are you sure you want to delete this item?");

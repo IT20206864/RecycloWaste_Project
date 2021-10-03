@@ -40,10 +40,6 @@ public class HomeMarketplace extends AppCompatActivity  {
 
 
 
-
-
-
-
         recyclerView = findViewById(R.id.recyclerView_allAds);
         recyclerView.setHasFixedSize(true);
 
@@ -92,12 +88,14 @@ public class HomeMarketplace extends AppCompatActivity  {
         Intent myAds = new Intent(this, MyAds.class);
 
         startActivity(myAds);
+        finish();
     }
 
     public void postAd(View view){
         Intent postAd = new Intent(this, PostAd.class);
 
         startActivity(postAd);
+        finish();
     }
 
 

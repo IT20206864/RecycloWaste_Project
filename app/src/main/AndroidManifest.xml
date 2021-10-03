@@ -14,8 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.RecycloWaste">
+        <activity
+            android:name=".adPosted"
+            android:exported="true" />
         <activity
             android:name=".GoogleSignInActivivity"
             android:exported="true" />

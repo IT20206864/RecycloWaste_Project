@@ -17,6 +17,9 @@ public class Advertisment {
 /*    public void setUsername(String username) {
         Username = username;
     }*/
+    public Advertisment(){
+
+    }
 
     public Advertisment(String title, String description, String image, float price, int quantity /*String username */) {
         Title = title;

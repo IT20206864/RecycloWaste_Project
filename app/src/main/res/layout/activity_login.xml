@@ -127,6 +127,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/page_header_font"
+        android:onClick="Signup"
         android:text="@string/login_signUp"
         android:textColor="@color/Sub_HeaderColor"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -67,7 +67,7 @@ public class Login extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Logging in", Toast.LENGTH_SHORT).show();
                     //Intent to Homepage
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),BookPickup.class);
                     startActivity(intent);
                 }
                 else{
@@ -77,5 +77,10 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void Signup(View view){
+        Intent intent = new Intent(getApplicationContext(),SignUp.class);
+        startActivity(intent);
     }
 }

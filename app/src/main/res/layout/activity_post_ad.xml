@@ -97,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_post_prdt_Desc" />
 
     <Button
-        android:id="@+id/btn_post_addImage"
+        android:id="@+id/btn_edit_addImage"
         android:layout_width="137dp"
         android:layout_height="38dp"
         android:layout_marginStart="40dp"
@@ -123,7 +123,7 @@
         android:textColor="@color/PageBodyFontColor"
         android:textSize="@dimen/PageContentFontSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_post_addImage" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_edit_addImage" />
 
     <TextView
         android:id="@+id/tv_post_prdtQuantity"
